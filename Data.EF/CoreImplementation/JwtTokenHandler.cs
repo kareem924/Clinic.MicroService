@@ -14,7 +14,7 @@ namespace Auth.Infrastructure.CoreImplementation
             if (_jwtSecurityTokenHandler == null)
                 _jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
 
-            _logger = logger;
+            _logger = loger;
         }
 
         public string WriteToken(JwtSecurityToken jwt)
