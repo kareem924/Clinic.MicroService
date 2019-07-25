@@ -15,7 +15,6 @@ namespace Auth.Infrastructure.CoreImplementation
                 _jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
 
             _logger = logger;
-            _logger = logger;
         }
 
         public string WriteToken(JwtSecurityToken jwt)
