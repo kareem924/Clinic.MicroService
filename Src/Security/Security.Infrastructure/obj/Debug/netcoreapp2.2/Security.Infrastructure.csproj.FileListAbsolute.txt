@@ -1,0 +1,14 @@
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Security.Infrastructure.deps.json
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Security.Infrastructure.dll
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.csprojAssemblyReference.cache
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.AssemblyInfoInputs.cache
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.AssemblyInfo.cs
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Security.Infrastructure.pdb
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Common.General.dll
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Security.Core.dll
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Security.Core.pdb
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Common.General.pdb
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.csproj.CopyComplete
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.dll
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.pdb

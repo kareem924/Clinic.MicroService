@@ -1,0 +1,9 @@
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Common\Common.General\bin\Debug\netcoreapp2.2\Common.General.deps.json
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Common\Common.General\bin\Debug\netcoreapp2.2\Common.General.dll
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Common\Common.General\bin\Debug\netcoreapp2.2\Common.General.pdb
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Common\Common.General\obj\Debug\netcoreapp2.2\Common.General.csprojAssemblyReference.cache
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Common\Common.General\obj\Debug\netcoreapp2.2\Common.General.csproj.CoreCompileInputs.cache
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Common\Common.General\obj\Debug\netcoreapp2.2\Common.General.AssemblyInfoInputs.cache
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Common\Common.General\obj\Debug\netcoreapp2.2\Common.General.AssemblyInfo.cs
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Common\Common.General\obj\Debug\netcoreapp2.2\Common.General.dll
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Common\Common.General\obj\Debug\netcoreapp2.2\Common.General.pdb

@@ -1,0 +1,14 @@
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\bin\Debug\netcoreapp2.2\Security.API.deps.json
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\bin\Debug\netcoreapp2.2\Security.API.runtimeconfig.json
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\bin\Debug\netcoreapp2.2\Security.API.runtimeconfig.dev.json
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\bin\Debug\netcoreapp2.2\Security.API.dll
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\bin\Debug\netcoreapp2.2\Security.API.pdb
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.csprojAssemblyReference.cache
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.csproj.CoreCompileInputs.cache
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.RazorAssemblyInfo.cache
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.RazorAssemblyInfo.cs
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.AssemblyInfoInputs.cache
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.AssemblyInfo.cs
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.RazorTargetAssemblyInfo.cache
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.dll
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.pdb
