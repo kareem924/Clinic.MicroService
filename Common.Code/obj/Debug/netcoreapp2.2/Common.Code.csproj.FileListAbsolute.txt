@@ -1,9 +1,0 @@
-D:\Kareem\work\Repos\Clinic.MicroService\Common.Code\bin\Debug\netcoreapp2.2\Common.Code.deps.json
-D:\Kareem\work\Repos\Clinic.MicroService\Common.Code\bin\Debug\netcoreapp2.2\Common.Code.dll
-D:\Kareem\work\Repos\Clinic.MicroService\Common.Code\bin\Debug\netcoreapp2.2\Common.Code.pdb
-D:\Kareem\work\Repos\Clinic.MicroService\Common.Code\obj\Debug\netcoreapp2.2\Common.Code.csprojAssemblyReference.cache
-D:\Kareem\work\Repos\Clinic.MicroService\Common.Code\obj\Debug\netcoreapp2.2\Common.Code.csproj.CoreCompileInputs.cache
-D:\Kareem\work\Repos\Clinic.MicroService\Common.Code\obj\Debug\netcoreapp2.2\Common.Code.AssemblyInfoInputs.cache
-D:\Kareem\work\Repos\Clinic.MicroService\Common.Code\obj\Debug\netcoreapp2.2\Common.Code.AssemblyInfo.cs
-D:\Kareem\work\Repos\Clinic.MicroService\Common.Code\obj\Debug\netcoreapp2.2\Common.Code.dll
-D:\Kareem\work\Repos\Clinic.MicroService\Common.Code\obj\Debug\netcoreapp2.2\Common.Code.pdb
