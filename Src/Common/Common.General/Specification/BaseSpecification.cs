@@ -22,6 +22,7 @@ namespace Common.General.Specification
             Includes.Add(includeExpression);
         }
 
+
         protected virtual void AddInclude(string includeString)
         {
             IncludeStrings.Add(includeString);

@@ -12,3 +12,10 @@ D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\net
 D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.RazorTargetAssemblyInfo.cache
 D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.dll
 D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.pdb
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\bin\Debug\netcoreapp2.2\Common.General.dll
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\bin\Debug\netcoreapp2.2\Security.Core.dll
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\bin\Debug\netcoreapp2.2\Security.Infrastructure.dll
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\bin\Debug\netcoreapp2.2\Security.Infrastructure.pdb
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\bin\Debug\netcoreapp2.2\Common.General.pdb
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\bin\Debug\netcoreapp2.2\Security.Core.pdb
+D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.API\obj\Debug\netcoreapp2.2\Security.API.csproj.CopyComplete

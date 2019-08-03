@@ -4,14 +4,14 @@
     "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\Security.API.csproj": {}
   },
   "projects": {
-    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\Security.API.csproj": {
+    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\Security.API.csproj",
-        "projectName": "Security.API",
-        "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\Security.API.csproj",
+        "projectUniqueName": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj",
+        "projectName": "Common.General",
+        "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj",
         "packagesPath": "C:\\Users\\Essam\\.nuget\\packages\\",
-        "outputPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\obj\\",
+        "outputPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,6 +41,66 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\Security.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\Security.API.csproj",
+        "projectName": "Security.API",
+        "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\Security.API.csproj",
+        "packagesPath": "C:\\Users\\Essam\\.nuget\\packages\\",
+        "outputPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Essam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj": {
+                "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -57,6 +117,146 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\Security.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\Security.Core.csproj",
+        "projectName": "Security.Core",
+        "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\Security.Core.csproj",
+        "packagesPath": "C:\\Users\\Essam\\.nuget\\packages\\",
+        "outputPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Essam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj": {
+                "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj",
+        "projectName": "Security.Infrastructure",
+        "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Essam\\.nuget\\packages\\",
+        "outputPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Essam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\Security.Core.csproj": {
+                "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\Security.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+              "target": "Package",
+              "version": "[1.1.6, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[5.5.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[5.5.0, )"
             }
           },
           "imports": [

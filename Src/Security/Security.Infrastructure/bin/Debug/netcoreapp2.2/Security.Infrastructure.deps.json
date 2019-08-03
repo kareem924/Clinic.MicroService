@@ -1204,6 +1204,9 @@
         }
       },
       "Common.General/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "2.2.6"
+        },
         "runtime": {
           "Common.General.dll": {}
         }

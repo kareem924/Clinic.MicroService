@@ -13,11 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{38
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.General", "Src\Common\Common.General\Common.General.csproj", "{B57DCAF5-0EE6-4D24-B728-FD8C8D6F2ED0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.Infrastructure", "Src\Security\Security.Infrastructure\Security.Infrastructure.csproj", "{55BD2B98-12E5-455F-9801-8C7FB5FBD538}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security.Infrastructure", "Src\Security\Security.Infrastructure\Security.Infrastructure.csproj", "{55BD2B98-12E5-455F-9801-8C7FB5FBD538}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.Core", "Src\Security\Security.Core\Security.Core.csproj", "{4608B289-72A4-4E42-93FF-6371D30A2AA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security.Core", "Src\Security\Security.Core\Security.Core.csproj", "{4608B289-72A4-4E42-93FF-6371D30A2AA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.API", "Src\Security\Security.API\Security.API.csproj", "{82D6808A-F7C2-4595-A28B-6E619CA10F08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security.API", "Src\Security\Security.API\Security.API.csproj", "{82D6808A-F7C2-4595-A28B-6E619CA10F08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Extension", "Common.Extension\Common.Extension.csproj", "{F9050B98-F7A5-44D9-A15A-54EFAE4B1CCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{82D6808A-F7C2-4595-A28B-6E619CA10F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82D6808A-F7C2-4595-A28B-6E619CA10F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82D6808A-F7C2-4595-A28B-6E619CA10F08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9050B98-F7A5-44D9-A15A-54EFAE4B1CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9050B98-F7A5-44D9-A15A-54EFAE4B1CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9050B98-F7A5-44D9-A15A-54EFAE4B1CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9050B98-F7A5-44D9-A15A-54EFAE4B1CCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{55BD2B98-12E5-455F-9801-8C7FB5FBD538} = {3843F126-235D-4CB9-BE05-766F2411CBD1}
 		{4608B289-72A4-4E42-93FF-6371D30A2AA7} = {3843F126-235D-4CB9-BE05-766F2411CBD1}
 		{82D6808A-F7C2-4595-A28B-6E619CA10F08} = {3843F126-235D-4CB9-BE05-766F2411CBD1}
+		{F9050B98-F7A5-44D9-A15A-54EFAE4B1CCB} = {B71148A3-EAEC-496D-A2D5-BA9578E80A9D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE637489-325D-411B-9178-14A37E5FA3D8}
