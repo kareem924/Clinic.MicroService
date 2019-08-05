@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Common.General.Entity;
 using Microsoft.AspNetCore.Identity;
@@ -8,8 +9,7 @@ namespace Security.Core.Entities
 {
     public sealed class User : IdentityUser<Guid>, IFullTrackInfoEntity<Guid>
     {
-
-
+       
         public string FirstName { get; private set; }
 
         public string LastName { get; private set; }
@@ -46,7 +46,7 @@ namespace Security.Core.Entities
             return _refreshTokens.Any(rt => rt.Token == refreshToken && rt.Active);
         }
 
-        public void AddRefreshToken(string token, int userId, string remoteIpAddress, double daysToExpire = 5)
+        public void AddRefreshToken(string token, Guid userId, string remoteIpAddress, double daysToExpire = 5)
         {
             _refreshTokens.Add(new RefreshToken(token, DateTime.UtcNow.AddDays(daysToExpire), userId, remoteIpAddress));
         }

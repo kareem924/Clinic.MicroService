@@ -13,7 +13,7 @@ namespace Security.Core.Entities
 
         public DateTime Expires { get; private set; }
 
-        public int UserId { get; private set; }
+        public Guid UserId { get; private set; }
 
         public bool Active => DateTime.UtcNow <= Expires;
 
@@ -29,7 +29,7 @@ namespace Security.Core.Entities
 
         public DateTime UpdatingDate { get; set; }
 
-        public RefreshToken(string token, DateTime expires, int userId, string remoteIpAddress)
+        public RefreshToken(string token, DateTime expires, Guid userId, string remoteIpAddress)
         {
             Token = token;
             Expires = expires;

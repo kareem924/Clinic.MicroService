@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
+using Common.General.Dto.Result;
+using Security.Core.Dto;
+using Security.Core.Repositories;
 using Security.Core.Services;
 
-
-
-namespace Web.Api.Core.UseCases
+namespace Security.Core.UseCases
 {
     public sealed class LoginUseCase : ILoginUseCase
     {
@@ -18,30 +19,31 @@ namespace Web.Api.Core.UseCases
             _tokenFactory = tokenFactory;
         }
 
-        public async Task<bool> Handle(LoginRequest message, IOutputPort<LoginResponse> outputPort)
+        public async Task<LoginResponse> Handle(LoginDto loginRequest)
         {
-            if (!string.IsNullOrEmpty(message.UserName) && !string.IsNullOrEmpty(message.Password))
+            if (!string.IsNullOrEmpty(loginRequest.UserName) && !string.IsNullOrEmpty(loginRequest.Password))
             {
                 // ensure we have a user with the given user name
-                var user = await _userRepository.FindByName(message.UserName);
+                var user = await _userRepository.FindByName(loginRequest.UserName);
                 if (user != null)
                 {
                     // validate password
-                    if (await _userRepository.CheckPassword(user, message.Password))
+                    if (await _userRepository.CheckPassword(user, loginRequest.Password))
                     {
                         // generate refresh token
                         var refreshToken = _tokenFactory.GenerateToken();
-                        user.AddRefreshToken(refreshToken, user.Id, message.RemoteIpAddress);
-                        await _userRepository.Update(user);
+                        user.AddRefreshToken(refreshToken, user.Id, loginRequest.RemoteIpAddress);
+                        await _userRepository.UpdateAsync(user,user.Id);
 
                         // generate access token
-                        outputPort.Handle(new LoginResponse(await _jwtFactory.GenerateEncodedToken(user.IdentityId, user.UserName), refreshToken, true));
-                        return true;
+                        return new LoginResponse(
+                            await _jwtFactory.GenerateEncodedToken(user.Id.ToString(), user.UserName),
+                            refreshToken,
+                            success: true);
                     }
                 }
             }
-            outputPort.Handle(new LoginResponse(new[] { new Error("login_failure", "Invalid username or password.") }));
-            return false;
+            return new LoginResponse(new Result("Invalid E-mail or Password"), false);
         }
     }
 }

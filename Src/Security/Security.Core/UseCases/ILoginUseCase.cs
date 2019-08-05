@@ -1,9 +1,10 @@
-﻿using Web.Api.Core.Dto.UseCaseRequests;
-using Web.Api.Core.Dto.UseCaseResponses;
+﻿using System.Threading.Tasks;
+using Security.Core.Dto;
 
-namespace Web.Api.Core.Interfaces.UseCases
+namespace Security.Core.UseCases
 {
-    public interface ILoginUseCase : IUseCaseRequestHandler<LoginRequest, LoginResponse>
+    public interface ILoginUseCase
     {
+        Task<LoginResponse> Handle(LoginDto loginRequest);
     }
 }
