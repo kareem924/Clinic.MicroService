@@ -1,18 +1,18 @@
 ﻿namespace Common.General.Dto.Result
 {
-   public class ValidationError
+   public class Error
     {
         public string Message { get; set; }
 
         public string MessageType { get; set; }
        
 
-        public ValidationError(string message)
+        public Error(string message)
         {
             Message = message;
         }
        
-        public ValidationError(string message, string messageType)
+        public Error(string message, string messageType)
         {
             Message = message;
             MessageType = messageType;

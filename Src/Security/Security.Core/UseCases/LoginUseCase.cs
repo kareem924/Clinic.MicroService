@@ -43,7 +43,7 @@ namespace Security.Core.UseCases
                     }
                 }
             }
-            return new LoginResponse(new Result("Invalid E-mail or Password"), false);
+            return new LoginResponse(new [] {new Error("Invalid Password Or Email")}, false);
         }
     }
 }

@@ -5,20 +5,24 @@ using Common.General.Dto.Result;
 
 namespace Security.Core.Dto
 {
-    public class LoginResponse
+    public class LoginResponse : Result
     {
         public AccessToken AccessToken { get; }
 
         public string RefreshToken { get; }
 
-        public Result Errors { get; }
 
-        public LoginResponse(Result errors, bool success = false, string message = null)
+
+        public LoginResponse(IEnumerable<Error> errors, bool success = false, string message = null) :
+            base(success, new[] { message }, errors)
         {
-            Errors = errors;
         }
 
-        public LoginResponse(AccessToken accessToken, string refreshToken, bool success = false, string message = null)
+        public LoginResponse(
+            AccessToken accessToken,
+            string refreshToken,
+            bool success = true,
+            string message = null)
         {
             AccessToken = accessToken;
             RefreshToken = refreshToken;
