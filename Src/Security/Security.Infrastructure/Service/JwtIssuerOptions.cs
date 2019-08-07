@@ -39,7 +39,7 @@ namespace Security.Infrastructure.Service
         /// <summary>
         /// Set the timespan the token will be valid for (default is 120 min)
         /// </summary>
-        public TimeSpan ValidFor { get; set; } = TimeSpan.FromMinutes(120);
+        public TimeSpan ValidFor { get; set; } = TimeSpan.FromDays(1);
 
         /// <summary>
         /// "jti" (JWT ID) Claim (default ID is a GUID)

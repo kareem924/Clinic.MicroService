@@ -34,11 +34,11 @@ namespace Security.Core.UseCases
 
         public async Task<ExchangeRefreshTokenResponse> Handle(ExchangeRefreshTokenDto message)
         {
-            var cp = _jwtTokenValidator.GetPrincipalFromToken(message.AccessToken, message.SigningKey);
+            var claimPrincipalFromToken = _jwtTokenValidator.GetPrincipalFromToken(message.AccessToken, message.SigningKey);
 
-            if (cp != null)
+            if (claimPrincipalFromToken != null)
             {
-                var id = cp.Claims.First(c => c.Type == "id");
+                var id = claimPrincipalFromToken.Claims.First(c => c.Type == "id");
                 var user = await _userRepository.GetAsync(id.Value);
                 if (user.HasValidRefreshToken(message.RefreshToken))
                 {
@@ -50,7 +50,6 @@ namespace Security.Core.UseCases
                     return new ExchangeRefreshTokenResponse(jwtToken, refreshToken, success: true);
                 }
             }
-
             return new ExchangeRefreshTokenResponse(success: false, errors: new[] { new Error("Invalid token.") });
         }
 

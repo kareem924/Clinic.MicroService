@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Common.Extension.String
+namespace Common.Extensions.String
 {
     public static class StringExtensions
     {

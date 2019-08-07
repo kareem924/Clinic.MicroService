@@ -25,7 +25,12 @@ namespace Security.Core.Entities
         public DateTime UpdatingDate { get; set; }
 
         private readonly List<RefreshToken> _refreshTokens = new List<RefreshToken>();
+
         public IReadOnlyCollection<RefreshToken> RefreshTokens => _refreshTokens.AsReadOnly();
+
+        private readonly List<UserRole> _roles = new List<UserRole>();
+
+        public IReadOnlyCollection<UserRole> Roles => _roles.AsReadOnly();
 
         internal User() { }
 
@@ -56,6 +61,9 @@ namespace Security.Core.Entities
             _refreshTokens.Remove(_refreshTokens.First(t => t.Token == refreshToken));
         }
 
-
+        public bool HasRole(Role role)
+        {
+            return _roles.Any(rt => rt.Role == role);
+        }
     }
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj": {}
+    "F:\\personal\\New folder\\Src\\Common\\Common.General\\Common.General.csproj": {}
   },
   "projects": {
-    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj": {
+    "F:\\personal\\New folder\\Src\\Common\\Common.General\\Common.General.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj",
+        "projectUniqueName": "F:\\personal\\New folder\\Src\\Common\\Common.General\\Common.General.csproj",
         "projectName": "Common.General",
-        "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj",
-        "packagesPath": "C:\\Users\\Essam\\.nuget\\packages\\",
-        "outputPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\obj\\",
+        "projectPath": "F:\\personal\\New folder\\Src\\Common\\Common.General\\Common.General.csproj",
+        "packagesPath": "C:\\Users\\kmuhammad\\.nuget\\packages\\",
+        "outputPath": "F:\\personal\\New folder\\Src\\Common\\Common.General\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Essam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kmuhammad\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

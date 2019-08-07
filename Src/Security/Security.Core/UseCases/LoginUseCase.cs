@@ -11,12 +11,16 @@ namespace Security.Core.UseCases
         private readonly IUserRepository _userRepository;
         private readonly IJwtFactory _jwtFactory;
         private readonly ITokenFactory _tokenFactory;
-
-        public LoginUseCase(IUserRepository userRepository, IJwtFactory jwtFactory, ITokenFactory tokenFactory)
+        public LoginUseCase(
+            IUserRepository userRepository,
+            IJwtFactory jwtFactory,
+            ITokenFactory tokenFactory,
+            IJwtTokenValidator jwtTokenValidator)
         {
             _userRepository = userRepository;
             _jwtFactory = jwtFactory;
             _tokenFactory = tokenFactory;
+
         }
 
         public async Task<LoginResponse> Handle(LoginDto loginRequest)
