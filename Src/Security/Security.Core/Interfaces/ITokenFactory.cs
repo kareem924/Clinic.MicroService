@@ -1,5 +1,5 @@
 ﻿
-namespace Security.Core.Services
+namespace Security.Core.Interfaces
 {
     public interface ITokenFactory
     {

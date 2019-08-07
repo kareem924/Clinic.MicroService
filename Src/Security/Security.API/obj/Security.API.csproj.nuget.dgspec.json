@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\personal\\New folder\\Src\\Security\\Security.API\\Security.API.csproj": {}
+    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\Security.API.csproj": {}
   },
   "projects": {
-    "F:\\personal\\New folder\\Src\\Common\\Common.General\\Common.General.csproj": {
+    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\personal\\New folder\\Src\\Common\\Common.General\\Common.General.csproj",
+        "projectUniqueName": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj",
         "projectName": "Common.General",
-        "projectPath": "F:\\personal\\New folder\\Src\\Common\\Common.General\\Common.General.csproj",
-        "packagesPath": "C:\\Users\\kmuhammad\\.nuget\\packages\\",
-        "outputPath": "F:\\personal\\New folder\\Src\\Common\\Common.General\\obj\\",
+        "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj",
+        "packagesPath": "C:\\Users\\Essam\\.nuget\\packages\\",
+        "outputPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\kmuhammad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Essam\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,20 +60,20 @@
         }
       }
     },
-    "F:\\personal\\New folder\\Src\\Security\\Security.API\\Security.API.csproj": {
+    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\Security.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\personal\\New folder\\Src\\Security\\Security.API\\Security.API.csproj",
+        "projectUniqueName": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\Security.API.csproj",
         "projectName": "Security.API",
-        "projectPath": "F:\\personal\\New folder\\Src\\Security\\Security.API\\Security.API.csproj",
-        "packagesPath": "C:\\Users\\kmuhammad\\.nuget\\packages\\",
-        "outputPath": "F:\\personal\\New folder\\Src\\Security\\Security.API\\obj\\",
+        "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\Security.API.csproj",
+        "packagesPath": "C:\\Users\\Essam\\.nuget\\packages\\",
+        "outputPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\kmuhammad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Essam\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -86,8 +86,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "F:\\personal\\New folder\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj": {
-                "projectPath": "F:\\personal\\New folder\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj"
+              "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj": {
+                "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj"
               }
             }
           }
@@ -135,20 +135,20 @@
         }
       }
     },
-    "F:\\personal\\New folder\\Src\\Security\\Security.Core\\Security.Core.csproj": {
+    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\Security.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\personal\\New folder\\Src\\Security\\Security.Core\\Security.Core.csproj",
+        "projectUniqueName": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\Security.Core.csproj",
         "projectName": "Security.Core",
-        "projectPath": "F:\\personal\\New folder\\Src\\Security\\Security.Core\\Security.Core.csproj",
-        "packagesPath": "C:\\Users\\kmuhammad\\.nuget\\packages\\",
-        "outputPath": "F:\\personal\\New folder\\Src\\Security\\Security.Core\\obj\\",
+        "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\Security.Core.csproj",
+        "packagesPath": "C:\\Users\\Essam\\.nuget\\packages\\",
+        "outputPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\kmuhammad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Essam\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -161,8 +161,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "F:\\personal\\New folder\\Src\\Common\\Common.General\\Common.General.csproj": {
-                "projectPath": "F:\\personal\\New folder\\Src\\Common\\Common.General\\Common.General.csproj"
+              "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj": {
+                "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.General\\Common.General.csproj"
               }
             }
           }
@@ -195,20 +195,20 @@
         }
       }
     },
-    "F:\\personal\\New folder\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj": {
+    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\personal\\New folder\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj",
+        "projectUniqueName": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj",
         "projectName": "Security.Infrastructure",
-        "projectPath": "F:\\personal\\New folder\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\kmuhammad\\.nuget\\packages\\",
-        "outputPath": "F:\\personal\\New folder\\Src\\Security\\Security.Infrastructure\\obj\\",
+        "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\Security.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Essam\\.nuget\\packages\\",
+        "outputPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\kmuhammad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Essam\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -221,8 +221,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "F:\\personal\\New folder\\Src\\Security\\Security.Core\\Security.Core.csproj": {
-                "projectPath": "F:\\personal\\New folder\\Src\\Security\\Security.Core\\Security.Core.csproj"
+              "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\Security.Core.csproj": {
+                "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Security\\Security.Core\\Security.Core.csproj"
               }
             }
           }

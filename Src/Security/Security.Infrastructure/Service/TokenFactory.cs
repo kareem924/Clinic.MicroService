@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
-using Security.Core.Services;
+using Security.Core.Interfaces;
 
 namespace Security.Infrastructure.Service
 {

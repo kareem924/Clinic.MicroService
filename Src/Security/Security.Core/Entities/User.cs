@@ -4,12 +4,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Common.General.Entity;
+using Common.General.Interfaces;
 using Microsoft.AspNetCore.Identity;
 namespace Security.Core.Entities
 {
-    public sealed class User : IdentityUser<Guid>, IFullTrackInfoEntity<Guid>
+    public sealed class User : IdentityUser<Guid>,IAggregateRoot,IEntity
     {
-       
         public string FirstName { get; private set; }
 
         public string LastName { get; private set; }
@@ -32,9 +32,9 @@ namespace Security.Core.Entities
 
         public IReadOnlyCollection<UserRole> Roles => _roles.AsReadOnly();
 
-        internal User() { }
+        public User() { }
 
-        internal User(
+        public User(
             string firstName,
             string lastName,
             string userName,
@@ -65,5 +65,7 @@ namespace Security.Core.Entities
         {
             return _roles.Any(rt => rt.Role == role);
         }
+
+      
     }
 }

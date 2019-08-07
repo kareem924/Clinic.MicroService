@@ -1,58 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Common.General.Entity;
+using Common.General.Interfaces;
 using Common.General.Repository;
 using Common.General.Specification;
 using Common.General.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Security.Infrastructure.Data.Repositories
 {
-    public abstract class EfRepository<T> : ISpecificationRepository<T> where T : class
+    public abstract class EfRepository<T> : ISpecificationRepository<T> where T : class, IEntity, IAggregateRoot
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public EfRepository(IUnitOfWork unitOfWork)
+        protected EfRepository(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-
-        public T Get(object id)
+        public T GetById(object id)
         {
             return _unitOfWork.Context.Set<T>().Find(id);
 
         }
 
-
-        public async Task<T> GetAsync(object id)
+        public async Task<T> GetByIdAsync(object id)
         {
             return await _unitOfWork.Context.Set<T>().FindAsync(id);
         }
 
         public T Find(ISpecification<T> spec)
         {
-            throw new NotImplementedException();
+            return ApplySpecification(spec).SingleOrDefault();
         }
 
         public async Task<T> FindAsync(ISpecification<T> spec)
         {
-            var result = await (List(spec));
-            return result.FirstOrDefault();
+            return await ApplySpecification(spec).SingleOrDefaultAsync();
         }
 
         public ICollection<T> FindAll(ISpecification<T> spec)
         {
-            throw new NotImplementedException();
+            return ApplySpecification(spec).ToList();
         }
 
         public async Task<ICollection<T>> FindAllAsync(ISpecification<T> spec)
         {
-            return await (List(spec));
+            return await ApplySpecification(spec).ToListAsync();
         }
 
         public T Add(T entity)
@@ -111,25 +106,17 @@ namespace Security.Infrastructure.Data.Repositories
 
         public int Count(ISpecification<T> spec)
         {
-            throw new NotImplementedException();
+            return ApplySpecification(spec).Count();
         }
 
         public async Task<int> CountAsync(ISpecification<T> spec)
         {
-            var result = await (List(spec));
-            return result.Count;
+            return await ApplySpecification(spec).CountAsync();
         }
-        private async Task<List<T>> List(ISpecification<T> spec)
-        {
-            // fetch a Queryable that includes all expression-based includes
-            var queryableResultWithIncludes = spec.Includes
-                .Aggregate(_unitOfWork.Context.Set<T>().AsQueryable(),
-                    (current, include) => current.Include(include));
 
-            // return the result of the query using the specification's criteria expression
-            return await queryableResultWithIncludes
-                .Where(spec.Criteria)
-                .ToListAsync();
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+        {
+            return SpecificationEvaluator<T>.GetQuery(_unitOfWork.Context.Set<T>().AsQueryable(), spec);
         }
     }
 }
