@@ -12,3 +12,17 @@ D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Core\bin\Debug\ne
 D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Core\obj\Debug\netcoreapp2.2\Security.Core.csproj.CopyComplete
 D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Core\obj\Debug\netcoreapp2.2\Security.Core.dll
 D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Core\obj\Debug\netcoreapp2.2\Security.Core.pdb
+F:\personal\New folder\Src\Security\Security.Core\bin\Debug\netcoreapp2.2\Security.Core.deps.json
+F:\personal\New folder\Src\Security\Security.Core\bin\Debug\netcoreapp2.2\Security.Core.dll
+F:\personal\New folder\Src\Security\Security.Core\bin\Debug\netcoreapp2.2\Security.Core.pdb
+F:\personal\New folder\Src\Security\Security.Core\bin\Debug\netcoreapp2.2\Common.General.dll
+F:\personal\New folder\Src\Security\Security.Core\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Stores.dll
+F:\personal\New folder\Src\Security\Security.Core\bin\Debug\netcoreapp2.2\Common.General.pdb
+F:\personal\New folder\Src\Security\Security.Core\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Stores.xml
+F:\personal\New folder\Src\Security\Security.Core\obj\Debug\netcoreapp2.2\Security.Core.csprojAssemblyReference.cache
+F:\personal\New folder\Src\Security\Security.Core\obj\Debug\netcoreapp2.2\Security.Core.csproj.CoreCompileInputs.cache
+F:\personal\New folder\Src\Security\Security.Core\obj\Debug\netcoreapp2.2\Security.Core.AssemblyInfoInputs.cache
+F:\personal\New folder\Src\Security\Security.Core\obj\Debug\netcoreapp2.2\Security.Core.AssemblyInfo.cs
+F:\personal\New folder\Src\Security\Security.Core\obj\Debug\netcoreapp2.2\Security.Core.csproj.CopyComplete
+F:\personal\New folder\Src\Security\Security.Core\obj\Debug\netcoreapp2.2\Security.Core.dll
+F:\personal\New folder\Src\Security\Security.Core\obj\Debug\netcoreapp2.2\Security.Core.pdb

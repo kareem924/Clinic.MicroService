@@ -12,3 +12,17 @@ D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\bi
 D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.csproj.CopyComplete
 D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.dll
 D:\Kareem\work\Repos\Clinic.MicroService\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.pdb
+F:\personal\New folder\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Security.Infrastructure.deps.json
+F:\personal\New folder\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Security.Infrastructure.dll
+F:\personal\New folder\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Security.Infrastructure.pdb
+F:\personal\New folder\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Common.General.dll
+F:\personal\New folder\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Security.Core.dll
+F:\personal\New folder\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Security.Core.pdb
+F:\personal\New folder\Src\Security\Security.Infrastructure\bin\Debug\netcoreapp2.2\Common.General.pdb
+F:\personal\New folder\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.csprojAssemblyReference.cache
+F:\personal\New folder\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.csproj.CoreCompileInputs.cache
+F:\personal\New folder\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.AssemblyInfoInputs.cache
+F:\personal\New folder\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.AssemblyInfo.cs
+F:\personal\New folder\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.csproj.CopyComplete
+F:\personal\New folder\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.dll
+F:\personal\New folder\Src\Security\Security.Infrastructure\obj\Debug\netcoreapp2.2\Security.Infrastructure.pdb
