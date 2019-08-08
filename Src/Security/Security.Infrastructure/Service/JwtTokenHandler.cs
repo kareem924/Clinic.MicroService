@@ -11,14 +11,14 @@ namespace Security.Infrastructure.Service
     internal sealed class JwtTokenHandler : IJwtTokenHandler
     {
         private readonly JwtSecurityTokenHandler _jwtSecurityTokenHandler;
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger;
 
-        internal JwtTokenHandler(ILogger logger)
+        public JwtTokenHandler()
         {
             if (_jwtSecurityTokenHandler == null)
                 _jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
 
-            _logger = logger;
+            //_logger = logger;
         }
 
         public string WriteToken(JwtSecurityToken jwt)
@@ -39,7 +39,7 @@ namespace Security.Infrastructure.Service
             }
             catch (Exception e)
             {
-                _logger.LogError($"Token validation failed: {e.Message}");
+                //_logger.LogError($"Token validation failed: {e.Message}");
                 return null;
             }
         }

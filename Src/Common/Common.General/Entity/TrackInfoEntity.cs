@@ -4,7 +4,7 @@ namespace Common.General.Entity
 {
     public class TrackInfoEntity<T> : BaseEntity<T>
     {
-        Guid CreatedBy { get; set; }
-        DateTime CreationDate { get; set; }
+        public T CreatedBy { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }

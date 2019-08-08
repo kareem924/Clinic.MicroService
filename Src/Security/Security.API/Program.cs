@@ -23,7 +23,7 @@ namespace Security.API
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+                //var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
                     var userManager = services.GetRequiredService<UserManager<User>>();
@@ -31,8 +31,8 @@ namespace Security.API
                 }
                 catch (Exception ex)
                 {
-                    var logger = loggerFactory.CreateLogger<Program>();
-                    logger.LogError(ex, "An error occurred seeding the DB.");
+                    //var logger = loggerFactory.CreateLogger<Program>();
+                    //logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
               host.Run();

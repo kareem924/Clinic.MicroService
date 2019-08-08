@@ -26,6 +26,7 @@ namespace Security.Core.Entities
             Expires = expires;
             UserId = userId;
             RemoteIpAddress = remoteIpAddress;
+
         }
 
 

@@ -12,7 +12,7 @@ namespace Security.Infrastructure.Service
     {
         private readonly IJwtTokenHandler _jwtTokenHandler;
 
-        internal JwtTokenValidator(IJwtTokenHandler jwtTokenHandler)
+        public JwtTokenValidator(IJwtTokenHandler jwtTokenHandler)
         {
             _jwtTokenHandler = jwtTokenHandler;
         }

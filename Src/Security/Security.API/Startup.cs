@@ -36,16 +36,14 @@ namespace Security.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            Security.Infrastructure.Configure.ConfigureServices(services, Configuration.GetConnectionString("DefaultConnection"));
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<SecurityDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddDefaultIdentity<User>()
+                .AddEntityFrameworkStores<SecurityDbContext>();
             var authSettings = Configuration.GetSection(nameof(AuthSettings));
             services.Configure<AuthSettings>(authSettings);
 
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(authSettings[nameof(AuthSettings.SecretKey)]));
 
-
+            Security.Infrastructure.Configure.ConfigureServices(services, Configuration.GetConnectionString("DefaultConnection"));
             // jwt wire up
             // Get options from app settings
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));

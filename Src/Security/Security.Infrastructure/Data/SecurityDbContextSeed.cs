@@ -11,7 +11,11 @@ namespace Security.Infrastructure.Data
     {
         public static async Task SeedAsync(UserManager<User> userManager)
         {
-            var defaultUser = new User("demoFirst", "DemoLast", "demouser@microsoft.com", "demouser@microsoft.com");
+            var defaultUser = new User(
+                "demoFirst",
+                "DemoLast",
+                "demouser@microsoft.com",
+                "demouser@microsoft.com");
             await userManager.CreateAsync(defaultUser, "Pass@word1");
         }
     }
