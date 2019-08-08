@@ -2,7 +2,7 @@
 
 namespace Common.General.Entity
 {
-    public interface ITrackInfoEntity<T> : IEntity<T>
+    public class TrackInfoEntity<T> : BaseEntity<T>
     {
         Guid CreatedBy { get; set; }
         DateTime CreationDate { get; set; }

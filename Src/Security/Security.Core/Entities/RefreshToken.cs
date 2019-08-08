@@ -5,9 +5,8 @@ using Common.General.Entity;
 
 namespace Security.Core.Entities
 {
-    public class RefreshToken : IFullTrackInfoEntity<Guid>
+    public class RefreshToken : FullTrackInfoEntity<Guid>
     {
-        public Guid Id { get; set; }
 
         public string Token { get; private set; }
 
@@ -20,14 +19,6 @@ namespace Security.Core.Entities
         public string RemoteIpAddress { get; private set; }
 
         public bool IsDeleted { get; set; }
-
-        public Guid CreatedBy { get; set; }
-
-        public DateTime CreationDate { get; set; }
-
-        public Guid UpdateBy { get; set; }
-
-        public DateTime UpdatingDate { get; set; }
 
         public RefreshToken(string token, DateTime expires, Guid userId, string remoteIpAddress)
         {

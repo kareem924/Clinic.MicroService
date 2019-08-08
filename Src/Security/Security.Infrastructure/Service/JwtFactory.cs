@@ -5,7 +5,8 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Security.Core.Dto;
-using Security.Core.Services;
+using Security.Core.Interfaces;
+using Security.Infrastructure.Interfaces;
 
 namespace Security.Infrastructure.Service
 {

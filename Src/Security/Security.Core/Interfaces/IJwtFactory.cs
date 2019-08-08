@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Security.Core.Dto;
 
-namespace Security.Core.Services
+namespace Security.Core.Interfaces
 {
     public interface IJwtFactory
     {

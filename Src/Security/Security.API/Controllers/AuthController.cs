@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Security.API.Models;
 using Security.Core.Dto;
-using Security.Core.UseCases;
+using Security.Core.Interfaces;
 
 namespace Security.API.Controllers
 {
@@ -16,17 +16,15 @@ namespace Security.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly ILoginUseCase _loginUseCase;
-        private readonly IExchangeRefreshTokenUseCase _exchangeRefreshTokenUseCase;
+        private readonly ITokenService _tokenService;
+
         private readonly AuthSettings _authSettings;
 
         public AuthController(
-            ILoginUseCase loginUseCase,
-            IExchangeRefreshTokenUseCase exchangeRefreshTokenUseCase,
+            ITokenService loginUseCase,
             IOptions<AuthSettings> authSettings)
         {
-            _loginUseCase = loginUseCase;
-            _exchangeRefreshTokenUseCase = exchangeRefreshTokenUseCase;
+            _tokenService = loginUseCase;
             _authSettings = authSettings.Value;
         }
 
@@ -34,7 +32,7 @@ namespace Security.API.Controllers
         public async Task<ActionResult> Login([FromBody] LoginDto request)
         {
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
-            var token = await _loginUseCase.Handle(
+            var token = await _tokenService.GetToken(
                 new LoginDto(
                     request.UserName,
                     request.Password,
@@ -46,7 +44,7 @@ namespace Security.API.Controllers
         public async Task<ActionResult> RefreshToken([FromBody] ExchangeRefreshTokenDto request)
         {
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
-            var refreshToken = await _exchangeRefreshTokenUseCase.Handle(
+            var refreshToken = await _tokenService.GenerateRefreshToken(
                 new ExchangeRefreshTokenDto(request.AccessToken, request.RefreshToken, _authSettings.SecretKey));
             return Ok(refreshToken);
         }

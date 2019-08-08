@@ -37,7 +37,9 @@ namespace Security.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             Security.Infrastructure.Configure.ConfigureServices(services, Configuration.GetConnectionString("DefaultConnection"));
-
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<SecurityDbContext>()
+                .AddDefaultTokenProviders();
             var authSettings = Configuration.GetSection(nameof(AuthSettings));
             services.Configure<AuthSettings>(authSettings);
 
@@ -116,7 +118,7 @@ namespace Security.API
             });
 
             identityBuilder = new IdentityBuilder(identityBuilder.UserType, typeof(IdentityRole), identityBuilder.Services);
-            identityBuilder.AddEntityFrameworkStores<SecurityDbContext>().AddDefaultTokenProviders();
+            //identityBuilder.AddEntityFrameworkStores<SecurityDbContext>().AddDefaultTokenProviders();
 
 
             

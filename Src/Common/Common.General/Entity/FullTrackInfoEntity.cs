@@ -2,10 +2,11 @@
 
 namespace Common.General.Entity
 {
-    public interface IFullTrackInfoEntity<T> : ITrackInfoEntity<T>
+    public class FullTrackInfoEntity<T> : TrackInfoEntity<T>
     {
         Guid UpdateBy { get; set; }
 
         DateTime UpdatingDate { get; set; }
     }
+
 }

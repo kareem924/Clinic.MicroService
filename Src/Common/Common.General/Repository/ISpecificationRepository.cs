@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.General.Entity;
+using Common.General.Interfaces;
 using Common.General.Specification;
 
 namespace Common.General.Repository
 {
-    public interface ISpecificationRepository<T> 
+    public interface ISpecificationRepository<T> where T : IAggregateRoot
 
     {
-        T Get(object id);
+        T GetById(object id);
 
-        Task<T> GetAsync(object id);
+        Task<T> GetByIdAsync(object id);
 
         T Find(ISpecification<T> spec);
      

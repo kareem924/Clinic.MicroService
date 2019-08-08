@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\personal\\New folder\\Src\\Common\\Common.Extensions\\Common.Extensions.csproj": {}
+    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.Extensions\\Common.Extensions.csproj": {}
   },
   "projects": {
-    "F:\\personal\\New folder\\Src\\Common\\Common.Extensions\\Common.Extensions.csproj": {
+    "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.Extensions\\Common.Extensions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\personal\\New folder\\Src\\Common\\Common.Extensions\\Common.Extensions.csproj",
+        "projectUniqueName": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.Extensions\\Common.Extensions.csproj",
         "projectName": "Common.Extensions",
-        "projectPath": "F:\\personal\\New folder\\Src\\Common\\Common.Extensions\\Common.Extensions.csproj",
-        "packagesPath": "C:\\Users\\kmuhammad\\.nuget\\packages\\",
-        "outputPath": "F:\\personal\\New folder\\Src\\Common\\Common.Extensions\\obj\\",
+        "projectPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.Extensions\\Common.Extensions.csproj",
+        "packagesPath": "C:\\Users\\Essam\\.nuget\\packages\\",
+        "outputPath": "D:\\Kareem\\work\\Repos\\Clinic.MicroService\\Src\\Common\\Common.Extensions\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\kmuhammad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Essam\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

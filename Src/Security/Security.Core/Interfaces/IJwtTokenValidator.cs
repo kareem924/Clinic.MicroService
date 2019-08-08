@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text;
+﻿using System.Security.Claims;
 
-namespace Security.Core.Services
+namespace Security.Core.Interfaces
 {
     public interface IJwtTokenValidator
     {

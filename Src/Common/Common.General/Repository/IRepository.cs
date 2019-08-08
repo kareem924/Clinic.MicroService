@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Common.General.Entity;
+using Common.General.Interfaces;
 
 namespace Common.General.Repository
 {
-    public interface IRepository<T> where T : IEntity<T>
+
+    public interface IRepository<T> where T : IAggregateRoot
 
     {        
         T Get(object id);

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using Security.Core.Services;
+using Security.Core.Interfaces;
+using Security.Infrastructure.Interfaces;
 
 namespace Security.Infrastructure.Service
 {
