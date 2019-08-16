@@ -6,7 +6,7 @@ namespace Common.General.Entity
     public class BaseEntity<T>:IEntity
     {
         [Key]
-        T Id { get; set; }
-        bool IsDeleted { get; set; }
+        public T Id { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
