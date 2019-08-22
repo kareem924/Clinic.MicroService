@@ -3,11 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Security.Core.Interfaces;
 using Security.Core.Repositories;
-using Security.Core.Services;
 using Security.Infrastructure.Data;
 using Security.Infrastructure.Data.Repositories;
-using Security.Infrastructure.Interfaces;
-using Security.Infrastructure.Service;
 
 namespace Security.Infrastructure
 {
@@ -20,11 +17,7 @@ namespace Security.Infrastructure
             
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<ITokenService, TokenService>();
-            services.AddTransient<IJwtFactory, JwtFactory>();
-            services.AddTransient<IJwtTokenHandler, JwtTokenHandler>();
-            services.AddTransient<IJwtTokenValidator, JwtTokenValidator>();
-            services.AddTransient<ITokenFactory, TokenFactory>();
+           
 
         }
 

@@ -24,9 +24,7 @@ namespace Security.Core.Entities
 
         public DateTime UpdatingDate { get; set; }
 
-        private readonly List<RefreshToken> _refreshTokens = new List<RefreshToken>();
-
-        public IReadOnlyCollection<RefreshToken> RefreshTokens => _refreshTokens.AsReadOnly();
+     
 
         private readonly List<UserRole> _roles = new List<UserRole>();
 
@@ -46,20 +44,7 @@ namespace Security.Core.Entities
             Email = email;
         }
 
-        public bool HasValidRefreshToken(string refreshToken)
-        {
-            return _refreshTokens.Any(rt => rt.Token == refreshToken && rt.Active);
-        }
-
-        public void AddRefreshToken(string token, Guid userId, string remoteIpAddress, double daysToExpire = 5)
-        {
-            _refreshTokens.Add(new RefreshToken(token, DateTime.UtcNow.AddDays(daysToExpire), userId, remoteIpAddress));
-        }
-
-        public void RemoveRefreshToken(string refreshToken)
-        {
-            _refreshTokens.Remove(_refreshTokens.First(t => t.Token == refreshToken));
-        }
+       
 
         public bool HasRole(Role role)
         {

@@ -8,7 +8,6 @@ namespace Security.Core.Specification
     {
         public UserSpecification(Guid id) : base(u => u.Id == id)
         {
-            AddInclude(u => u.RefreshTokens);
             AddInclude(u => u.Roles);
         }
     }
