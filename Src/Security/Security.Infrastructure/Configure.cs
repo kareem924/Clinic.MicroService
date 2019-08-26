@@ -1,10 +1,11 @@
-﻿using Common.General.UnitOfWork;
+﻿using Common.Email;
+using Common.General.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Security.Core.Interfaces;
 using Security.Core.Repositories;
 using Security.Infrastructure.Data;
 using Security.Infrastructure.Data.Repositories;
+using Security.Infrastructure.Service;
 
 namespace Security.Infrastructure
 {
@@ -17,7 +18,7 @@ namespace Security.Infrastructure
             
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IUserRepository, UserRepository>();
-           
+            services.AddTransient<IEmailSender, EmailSenderService>();
 
         }
 

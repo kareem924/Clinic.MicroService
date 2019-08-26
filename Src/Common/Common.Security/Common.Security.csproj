@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Certificate\clinic.development.crt" />
+    <None Remove="Certificate\clinic.pfx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Certificate\clinic.pfx" />
+  </ItemGroup>
+
+</Project>

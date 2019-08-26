@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Email;
+using Common.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,17 +42,24 @@ namespace Security.API
 
             var authSettings = Configuration.GetSection(nameof(AuthSettings));
             services.Configure<AuthSettings>(authSettings);
+            var sendGridKey = Configuration.GetSection("SendGrid");
+            services.Configure<AuthMessageSenderOptions>(sendGridKey);
 
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(authSettings[nameof(AuthSettings.SecretKey)]));
 
+
             Security.Infrastructure.Configure.ConfigureServices(services, Configuration.GetConnectionString("DefaultConnection"));
 
-            services.AddIdentity<User, Role>()
+            services.AddIdentity<User, Role>(config =>
+            {
+                config.SignIn.RequireConfirmedEmail = true;
+                config.SignIn.RequireConfirmedPhoneNumber = true;
+            })
                 .AddEntityFrameworkStores<SecurityDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
+                .AddSigningCredential(Certificate.Get())
                 .AddInMemoryPersistedGrants()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
