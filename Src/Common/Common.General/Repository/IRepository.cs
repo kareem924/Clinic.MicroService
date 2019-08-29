@@ -31,21 +31,21 @@ namespace Common.General.Repository
         
         Task<T> AddAsync(T t);
 
-        IEnumerable<T> AddAll(IEnumerable<T> tList);
+        IEnumerable<T> AddRange(IReadOnlyCollection<T> tList);
      
-        Task<IEnumerable<T>> AddAllAsync(IEnumerable<T> tList);
+        Task<IEnumerable<T>> AddRangeAsync(IReadOnlyCollection<T> tList);
 
-        T Update(T updated, object key);
+        T Update(T updated,object id);
 
-        Task<T> UpdateAsync(T updated, object key);
+        Task<T> UpdateAsync(T updated, object id);
 
        void Delete(T t);
        
         void Attach(T t);
 
-        int Count(Expression<Func<T, bool>> match);
+        long Count(Expression<Func<T, bool>> match);
 
-        Task<int> CountAsync(Expression<Func<T, bool>> match);
+        Task<long> CountAsync(Expression<Func<T, bool>> match);
 
     }
 }

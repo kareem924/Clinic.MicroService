@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.General.Dto;
 using IdentityServer4;
 using IdentityServer4.Models;
 
@@ -25,7 +26,7 @@ namespace Security.API.Configuration
         {
             return new List<ApiResource>
             {
-                new ApiResource("api1", "My API")
+                new ApiResource(nameof(ServiceHost.SecurityAPI),nameof(ServiceHost.SecurityAPI))
             };
         }
 
@@ -53,7 +54,7 @@ namespace Security.API.Configuration
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.Address,
                         IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "api1",
+                        nameof(ServiceHost.SecurityAPI),
              
                     }
                 }

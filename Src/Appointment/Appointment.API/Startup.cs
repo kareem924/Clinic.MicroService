@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Appointment.Infrastructure.Dto;
+using Common.General.Dto;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +29,21 @@ namespace Appointment.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            var mongoDbConfig = Configuration.GetSection(nameof(MongoDbConfig));
+            services.Configure<MongoDbConfig>(mongoDbConfig);
+
+            var serviceHost = Configuration.GetSection(nameof(ServiceHost));
+            services.Configure<ServiceHost>(serviceHost);
+
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                   .AddIdentityServerAuthentication(options =>
+                   {
+                       options.Authority = serviceHost[nameof(ServiceHost.SecurityAPI)];
+                       options.RequireHttpsMetadata = false;
+                       options.ApiName = nameof(ServiceHost.SecurityAPI);
+                       options.ApiSecret = "secret";
+                   });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

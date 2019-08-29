@@ -10,6 +10,10 @@ namespace Appointment.API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        public ValuesController()
+        {
+
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
