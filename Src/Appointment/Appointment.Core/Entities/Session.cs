@@ -11,9 +11,11 @@ namespace Appointment.Core.Entities
 {
     public class Session : FullTrackInfoEntity<ObjectId>, IAggregateRoot
     {
-        public Session()
+        public Session(SessionStatus status, DateTime dateTime, TimeSpan duration)
         {
-
+            Status = status;
+            DateTime = dateTime;
+            Duration = duration;
         }
 
         private readonly List<Appointment> _appointments = new List<Appointment>();
@@ -26,9 +28,9 @@ namespace Appointment.Core.Entities
 
         public TimeSpan Duration { get; private set; }
 
-        public IReadOnlyCollection<Appointment> Appointments => _appointments.AsReadOnly();
+        //public IReadOnlyCollection<Appointment> Appointments => _appointments.AsReadOnly();
 
-        public IReadOnlyCollection<Appointment> NotCanceledAppointments =>
-            _appointments.Where(appointment => appointment.Status != AppointmentStatus.Canceled).ToArray();
+        //public IReadOnlyCollection<Appointment> NotCanceledAppointments =>
+        //    _appointments.Where(appointment => appointment.Status != AppointmentStatus.Canceled).ToArray();
     }
 }

@@ -2,23 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Appointment.Core.Entities;
+using Appointment.Core.Enums;
+using Appointment.Core.Repositories;
+using Common.General.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Appointment.API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        public ValuesController()
+        private readonly IRepository<Session> _sessionRepositry;
+        public ValuesController(IRepository<Session> sessionRepositry)
         {
-
+            _sessionRepositry = sessionRepositry;
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<Session>>> Get()
         {
-            return new string[] { "value1", "value2" };
+            await _sessionRepositry.AddAsync(new Session(SessionStatus.Canceled, DateTime.Today, TimeSpan.FromHours(1)));
+           var sessions =  await _sessionRepositry.GetAllAsync();
+            return sessions.ToArray();
         }
 
         // GET api/values/5

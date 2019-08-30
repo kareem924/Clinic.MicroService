@@ -7,17 +7,19 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-namespace Appointment.Infrastructure.Data.Repositries
+namespace Appointment.Infrastructure.Data.Repositories
 {
-    public class SessionRepositry : IRepository<Session>
+    public class SessionRepository : IRepository<Session>
     {
         private readonly IAppointmentDbContext _dbContext;
 
-        public SessionRepositry(IAppointmentDbContext dbContext)
+        public SessionRepository(IAppointmentDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -72,6 +74,11 @@ namespace Appointment.Infrastructure.Data.Repositries
         }
 
 
+        public async Task<IEnumerable<Session>> GetAllAsync()
+        {
+            return await(await _dbContext.Session.FindAsync(_ => true)).ToListAsync();
+        }
+
         public Session Find(Expression<Func<Session, bool>> match, string[] includes = null)
         {
             return _dbContext.Session.Find(match).FirstOrDefault();
@@ -113,6 +120,11 @@ namespace Appointment.Infrastructure.Data.Repositries
         {
             return await (await _dbContext.Session.FindAsync(session => session.Id == (ObjectId)id))
                 .FirstOrDefaultAsync();
+        }
+
+        public IEnumerable<Session> GetAll()
+        {
+           return _dbContext.Session.Find(_ => true).ToList();
         }
 
         public Session Update(Session updated, object id)

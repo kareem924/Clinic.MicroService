@@ -26,7 +26,10 @@ namespace Security.API.Configuration
         {
             return new List<ApiResource>
             {
-                new ApiResource(nameof(ServiceHost.SecurityAPI),nameof(ServiceHost.SecurityAPI))
+                new ApiResource(nameof(ServiceHost.AppointmentsAPI))
+                {
+                    ApiSecrets = {new Secret("secret".Sha256())}
+                }
             };
         }
 
@@ -54,8 +57,9 @@ namespace Security.API.Configuration
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.Address,
                         IdentityServerConstants.StandardScopes.OfflineAccess,
-                        nameof(ServiceHost.SecurityAPI),
-             
+                        nameof(ServiceHost.AppointmentsAPI),
+                        nameof(ServiceHost.SecurityAPI)
+
                     }
                 }
             };

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Email;
+using Common.General.Dto;
 using Common.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -64,6 +65,7 @@ namespace Security.API
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
+
                 .AddAspNetIdentity<User>();
 
 
@@ -77,8 +79,7 @@ namespace Security.API
                     // base-address of your identityserver
                     options.Authority = "http://localhost:5000/";
 
-                    // name of the API resource
-                    options.Audience = "api1";
+                    
 
                     options.RequireHttpsMetadata = false;
                 });

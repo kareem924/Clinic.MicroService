@@ -14,7 +14,8 @@ namespace Common.General.Repository
         T Get(object id);
      
         Task<T> GetAsync(object id);
-
+        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAllAsync();
         T Find(Expression<Func<T, bool>> match, string[] includes = null);
     
         Task<T> FindAsync(Expression<Func<T, bool>> match, string[] includes = null);
