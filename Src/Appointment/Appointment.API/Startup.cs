@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Common.General.Dto;
 using Common.MongoDb;
 using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -35,14 +37,23 @@ namespace Appointment.API
             var serviceHost = Configuration.GetSection(nameof(ServiceHost));
             services.Configure<ServiceHost>(serviceHost);
 
+            Appointment.Infrastructure.Configure.ConfigureServices(services);
+
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                   .AddIdentityServerAuthentication(options =>
-                   {
-                       options.Authority = serviceHost[nameof(ServiceHost.SecurityAPI)];
-                       options.RequireHttpsMetadata = false;
-                       options.ApiName = nameof(ServiceHost.SecurityAPI);
-                       options.ApiSecret = "secret";
-                   });
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.JwtBearerEvents = new JwtBearerEvents
+                    {
+                        OnChallenge = context =>
+                        {
+                            context.Response.StatusCode = 401;
+                            return Task.CompletedTask;
+                        }
+                    };
+                    options.Authority = serviceHost[nameof(ServiceHost.SecurityAPI)];
+                    options.RequireHttpsMetadata = false;
+                });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +68,7 @@ namespace Appointment.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseMvc();

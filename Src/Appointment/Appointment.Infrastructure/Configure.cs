@@ -4,6 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Appointment.Core.Entities;
+using Appointment.Infrastructure.Data.Repositories;
+using Common.General.Repository;
 
 namespace Appointment.Infrastructure
 {
@@ -12,6 +15,8 @@ namespace Appointment.Infrastructure
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IAppointmentDbContext, AppointmentDbContext>();
+            services.AddTransient<IRepository<Session>, SessionRepository>();
+            services.AddTransient<IRepository<Core.Entities.Appointment>, AppointmentRepository>();
 
         }
 
