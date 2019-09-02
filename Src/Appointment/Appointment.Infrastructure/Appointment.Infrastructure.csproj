@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Dto\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Services\" />
   </ItemGroup>
@@ -15,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.MongoDb\Common.MongoDb.csproj" />
     <ProjectReference Include="..\Appointment.Core\Appointment.Core.csproj" />
   </ItemGroup>
 

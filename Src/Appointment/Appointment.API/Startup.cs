@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Appointment.Infrastructure.Dto;
 using Common.General.Dto;
+using Common.MongoDb;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,8 +30,7 @@ namespace Appointment.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            var mongoDbConfig = Configuration.GetSection(nameof(MongoDbConfig));
-            services.Configure<MongoDbConfig>(mongoDbConfig);
+            services.AddMongoDB(Configuration);
 
             var serviceHost = Configuration.GetSection(nameof(ServiceHost));
             services.Configure<ServiceHost>(serviceHost);

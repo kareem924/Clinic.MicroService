@@ -1,6 +1,6 @@
 ﻿using Appointment.Core.Entities;
-using Appointment.Infrastructure.Dto;
 using Appointment.Infrastructure.Interfaces;
+using Common.MongoDb;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System;
@@ -15,10 +15,9 @@ namespace Appointment.Infrastructure.Data
         private readonly IMongoDatabase database;
 
 
-        public AppointmentDbContext(IOptions<MongoDbConfig> dbConfig)
+        public AppointmentDbContext()
         {
-            mongoClient = new MongoClient(dbConfig.Value.ConnectionString);
-            database = mongoClient.GetDatabase(dbConfig.Value.Database);
+          
         }
 
         public IMongoCollection<Session> Session
