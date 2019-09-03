@@ -13,36 +13,36 @@ namespace Appointment.Infrastructure.Data.Repositories
 {
     public class AppointmentRepository : IRepository<Core.Entities.Appointment>
     {
-        private readonly IAppointmentDbContext _dbContext;
+        private readonly IMongoDatabase _db;
 
-        public AppointmentRepository(IAppointmentDbContext dbContext)
+        public AppointmentRepository(IMongoDatabase dbContext)
         {
-            _dbContext = dbContext;
+            _db = dbContext;
         }
 
         public Core.Entities.Appointment Add(Core.Entities.Appointment entity)
         {
-            _dbContext.Appointment.InsertOne(entity);
+            Collection.InsertOne(entity);
             return entity;
         }
 
 
         public async Task<Core.Entities.Appointment> AddAsync(Core.Entities.Appointment entity)
         {
-            await _dbContext.Appointment.InsertOneAsync(entity);
+            await Collection.InsertOneAsync(entity);
             return entity;
         }
 
         public IEnumerable<Core.Entities.Appointment> AddRange(IReadOnlyCollection<Core.Entities.Appointment> entityList)
         {
-            _dbContext.Appointment.InsertMany(entityList);
+            Collection.InsertMany(entityList);
             return entityList;
         }
 
 
         public async Task<IEnumerable<Core.Entities.Appointment>> AddRangeAsync(IReadOnlyCollection<Core.Entities.Appointment> entityList)
         {
-            await _dbContext.Appointment.InsertManyAsync(entityList);
+            await Collection.InsertManyAsync(entityList);
             return entityList;
         }
 
@@ -56,33 +56,33 @@ namespace Appointment.Infrastructure.Data.Repositories
 
         public long Count(Expression<Func<Core.Entities.Appointment, bool>> match)
         {
-            return _dbContext.Appointment.CountDocuments(match);
+            return Collection.CountDocuments(match);
         }
 
         public async Task<long> CountAsync(Expression<Func<Core.Entities.Appointment, bool>> match)
         {
-            return await _dbContext.Appointment.CountDocumentsAsync(match);
+            return await Collection.CountDocumentsAsync(match);
         }
 
         public void Delete(Core.Entities.Appointment entity)
         {
-            _dbContext.Appointment.DeleteOne(appointment => appointment.Id == entity.Id);
+            Collection.DeleteOne(appointment => appointment.Id == entity.Id);
         }
 
 
         public async Task<IEnumerable<Core.Entities.Appointment>> GetAllAsync()
         {
-            return await _dbContext.Appointment.AsQueryable().ToArrayAsync();
+            return await Collection.AsQueryable().ToArrayAsync();
         }
 
         public Core.Entities.Appointment Find(Expression<Func<Core.Entities.Appointment, bool>> match, string[] includes = null)
         {
-            return _dbContext.Appointment.Find(match).FirstOrDefault();
+            return Collection.Find(match).FirstOrDefault();
         }
 
         public ICollection<Core.Entities.Appointment> FindAll(Expression<Func<Core.Entities.Appointment, bool>> match, string[] includes = null)
         {
-            return _dbContext.Appointment.Find(match).ToList();
+            return Collection.Find(match).ToList();
         }
 
         public ICollection<Core.Entities.Appointment> FindAll<TKey>(Expression<Func<Core.Entities.Appointment, bool>> match, int take, int skip, Expression<Func<Core.Entities.Appointment, TKey>> orderBy, string[] includes = null)
@@ -92,7 +92,7 @@ namespace Appointment.Infrastructure.Data.Repositories
 
         public async Task<ICollection<Core.Entities.Appointment>> FindAllAsync(Expression<Func<Core.Entities.Appointment, bool>> match, string[] includes = null)
         {
-            return await (await _dbContext.Appointment.FindAsync(match)).ToListAsync();
+            return await (await Collection.FindAsync(match)).ToListAsync();
         }
 
         public Task<ICollection<Core.Entities.Appointment>> FindAllAsync<TKey>(Expression<Func<Core.Entities.Appointment, bool>> match, int take, int skip, Expression<Func<Core.Entities.Appointment, TKey>> orderBy, string[] includes = null)
@@ -104,35 +104,37 @@ namespace Appointment.Infrastructure.Data.Repositories
 
         public async Task<Core.Entities.Appointment> FindAsync(Expression<Func<Core.Entities.Appointment, bool>> match, string[] includes = null)
         {
-            return await (await _dbContext.Appointment.FindAsync(match)).FirstOrDefaultAsync();
+            return await (await Collection.FindAsync(match)).FirstOrDefaultAsync();
         }
 
         public Core.Entities.Appointment Get(object id)
         {
-            return _dbContext.Appointment.Find(appointment => appointment.Id == (ObjectId)id).FirstOrDefault();
+            return Collection.Find(appointment => appointment.Id == (ObjectId)id).FirstOrDefault();
         }
 
         public async Task<Core.Entities.Appointment> GetAsync(object id)
         {
-            return await (await _dbContext.Appointment.FindAsync(appointment => appointment.Id == (ObjectId)id))
+            return await (await Collection.FindAsync(appointment => appointment.Id == (ObjectId)id))
                 .FirstOrDefaultAsync();
         }
 
         public IEnumerable<Core.Entities.Appointment> GetAll()
         {
-            return _dbContext.Appointment.AsQueryable().ToArray();
+            return Collection.AsQueryable().ToArray();
         }
 
         public Core.Entities.Appointment Update(Core.Entities.Appointment updated, object id)
         {
-            _dbContext.Appointment.ReplaceOne(appointment => appointment.Id == (ObjectId)id, updated);
+            Collection.ReplaceOne(appointment => appointment.Id == (ObjectId)id, updated);
             return updated;
         }
 
         public async Task<Core.Entities.Appointment> UpdateAsync(Core.Entities.Appointment updated, object id)
         {
-            await _dbContext.Appointment.ReplaceOneAsync(appointment => appointment.Id == (ObjectId)id, updated);
+            await Collection.ReplaceOneAsync(appointment => appointment.Id == (ObjectId)id, updated);
             return updated;
         }
+        private IMongoCollection<Core.Entities.Appointment> Collection
+           => _db.GetCollection<Core.Entities.Appointment>("Appointment");
     }
 }

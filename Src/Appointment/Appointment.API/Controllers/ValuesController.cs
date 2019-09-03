@@ -26,7 +26,8 @@ namespace Appointment.API.Controllers
         public async Task<ActionResult<IEnumerable<Session>>> Get()
         {
             await _sessionRepositry.AddAsync(new Session(SessionStatus.Canceled, DateTime.Today, TimeSpan.FromHours(1)));
-           var sessions =  await _sessionRepositry.GetAllAsync();
+            var sessions = await _sessionRepositry.GetAllAsync();
+            var user = User.Claims.Select(x => new { x.Type, x.Value });
             return sessions.ToArray();
         }
 

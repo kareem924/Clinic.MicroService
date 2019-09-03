@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Email;
 using Common.General.Dto;
+using Common.RabbitMq;
 using Common.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -50,7 +51,7 @@ namespace Security.API
 
 
             Security.Infrastructure.Configure.ConfigureServices(services, Configuration.GetConnectionString("DefaultConnection"));
-
+            services.AddRabbitMq(Configuration);
             services.AddIdentity<User, Role>(config =>
             {
                 config.SignIn.RequireConfirmedEmail = true;

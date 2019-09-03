@@ -14,11 +14,8 @@ namespace Appointment.Infrastructure
     {
         public static void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IAppointmentDbContext, AppointmentDbContext>();
             services.AddTransient<IRepository<Session>, SessionRepository>();
             services.AddTransient<IRepository<Core.Entities.Appointment>, AppointmentRepository>();
-
         }
-
     }
 }

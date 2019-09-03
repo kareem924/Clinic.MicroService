@@ -17,36 +17,36 @@ namespace Appointment.Infrastructure.Data.Repositories
 {
     public class SessionRepository : IRepository<Session>
     {
-        private readonly IAppointmentDbContext _dbContext;
+        private readonly IMongoDatabase _db;
 
-        public SessionRepository(IAppointmentDbContext dbContext)
+        public SessionRepository(IMongoDatabase dbContext)
         {
-            _dbContext = dbContext;
+            _db = dbContext;
         }
 
         public Session Add(Session entity)
         {
-            _dbContext.Session.InsertOne(entity);
+            Collection.InsertOne(entity);
             return entity;
         }
 
 
         public async Task<Session> AddAsync(Session entity)
         {
-            await _dbContext.Session.InsertOneAsync(entity);
+            await Collection.InsertOneAsync(entity);
             return entity;
         }
 
         public IEnumerable<Session> AddRange(IReadOnlyCollection<Session> entityList)
         {
-            _dbContext.Session.InsertMany(entityList);
+            Collection.InsertMany(entityList);
             return entityList;
         }
 
 
         public async Task<IEnumerable<Session>> AddRangeAsync(IReadOnlyCollection<Session> entityList)
         {
-            await _dbContext.Session.InsertManyAsync(entityList);
+            await Collection.InsertManyAsync(entityList);
             return entityList;
         }
 
@@ -60,33 +60,33 @@ namespace Appointment.Infrastructure.Data.Repositories
 
         public long Count(Expression<Func<Session, bool>> match)
         {
-            return _dbContext.Session.CountDocuments(match);
+            return Collection.CountDocuments(match);
         }
 
         public async Task<long> CountAsync(Expression<Func<Session, bool>> match)
         {
-            return await _dbContext.Session.CountDocumentsAsync(match);
+            return await Collection.CountDocumentsAsync(match);
         }
 
         public void Delete(Session entity)
         {
-            _dbContext.Session.DeleteOne(session => session.Id == entity.Id);
+            Collection.DeleteOne(session => session.Id == entity.Id);
         }
 
 
         public async Task<IEnumerable<Session>> GetAllAsync()
         {
-            return await(await _dbContext.Session.FindAsync(_ => true)).ToListAsync();
+            return await(await Collection.FindAsync(_ => true)).ToListAsync();
         }
 
         public Session Find(Expression<Func<Session, bool>> match, string[] includes = null)
         {
-            return _dbContext.Session.Find(match).FirstOrDefault();
+            return Collection.Find(match).FirstOrDefault();
         }
 
         public ICollection<Session> FindAll(Expression<Func<Session, bool>> match, string[] includes = null)
         {
-            return _dbContext.Session.Find(match).ToList();
+            return Collection.Find(match).ToList();
         }
 
         public ICollection<Session> FindAll<TKey>(Expression<Func<Session, bool>> match, int take, int skip, Expression<Func<Session, TKey>> orderBy, string[] includes = null)
@@ -96,7 +96,7 @@ namespace Appointment.Infrastructure.Data.Repositories
 
         public async Task<ICollection<Session>> FindAllAsync(Expression<Func<Session, bool>> match, string[] includes = null)
         {
-            return await (await _dbContext.Session.FindAsync(match)).ToListAsync();
+            return await (await Collection.FindAsync(match)).ToListAsync();
         }
 
         public Task<ICollection<Session>> FindAllAsync<TKey>(Expression<Func<Session, bool>> match, int take, int skip, Expression<Func<Session, TKey>> orderBy, string[] includes = null)
@@ -108,35 +108,38 @@ namespace Appointment.Infrastructure.Data.Repositories
 
         public async Task<Session> FindAsync(Expression<Func<Session, bool>> match, string[] includes = null)
         {
-            return await (await _dbContext.Session.FindAsync(match)).FirstOrDefaultAsync();
+            return await (await Collection.FindAsync(match)).FirstOrDefaultAsync();
         }
 
         public Session Get(object id)
         {
-            return _dbContext.Session.Find(session => session.Id == (ObjectId)id).FirstOrDefault();
+            return Collection.Find(session => session.Id == (ObjectId)id).FirstOrDefault();
         }
 
         public async Task<Session> GetAsync(object id)
         {
-            return await (await _dbContext.Session.FindAsync(session => session.Id == (ObjectId)id))
+            return await (await Collection.FindAsync(session => session.Id == (ObjectId)id))
                 .FirstOrDefaultAsync();
         }
 
         public IEnumerable<Session> GetAll()
         {
-           return _dbContext.Session.Find(_ => true).ToList();
+           return Collection.Find(_ => true).ToList();
         }
 
         public Session Update(Session updated, object id)
         {
-            _dbContext.Session.ReplaceOne(session => session.Id == (ObjectId)id, updated);
+            Collection.ReplaceOne(session => session.Id == (ObjectId)id, updated);
             return updated;
         }
 
         public async Task<Session> UpdateAsync(Session updated, object id)
         {
-           await _dbContext.Session.ReplaceOneAsync(session => session.Id == (ObjectId)id, updated);
+           await Collection.ReplaceOneAsync(session => session.Id == (ObjectId)id, updated);
             return updated;
         }
+
+        private IMongoCollection<Session> Collection
+          => _db.GetCollection<Session>("Session");
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Common.General.Dto;
 using Common.MongoDb;
+using Common.RabbitMq;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -33,12 +34,13 @@ namespace Appointment.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddMongoDB(Configuration);
+            services.AddRabbitMq(Configuration);
 
-            var serviceHost = Configuration.GetSection(nameof(ServiceHost));
-            services.Configure<ServiceHost>(serviceHost);
 
             Appointment.Infrastructure.Configure.ConfigureServices(services);
 
+            var serviceHost = Configuration.GetSection(nameof(ServiceHost));
+            services.Configure<ServiceHost>(serviceHost);
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
