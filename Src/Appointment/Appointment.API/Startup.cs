@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.General.Dto;
@@ -16,6 +17,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using RawRabbit.Configuration;
+using RawRabbit.Extensions.Client;
 
 namespace Appointment.API
 {
@@ -35,8 +38,7 @@ namespace Appointment.API
 
             services.AddMongoDB(Configuration);
             services.AddRabbitMq(Configuration);
-
-
+          
             Appointment.Infrastructure.Configure.ConfigureServices(services);
 
             var serviceHost = Configuration.GetSection(nameof(ServiceHost));
@@ -71,7 +73,6 @@ namespace Appointment.API
                 app.UseHsts();
             }
             app.UseAuthentication();
-
             app.UseHttpsRedirection();
             app.UseMvc();
         }

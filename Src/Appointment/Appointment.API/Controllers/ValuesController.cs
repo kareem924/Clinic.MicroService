@@ -8,6 +8,7 @@ using Appointment.Core.Repositories;
 using Common.General.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RawRabbit;
 
 namespace Appointment.API.Controllers
 {
@@ -17,6 +18,7 @@ namespace Appointment.API.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly IRepository<Session> _sessionRepositry;
+        private readonly IBusClient _busClint;
         public ValuesController(IRepository<Session> sessionRepositry)
         {
             _sessionRepositry = sessionRepositry;
@@ -28,6 +30,7 @@ namespace Appointment.API.Controllers
             await _sessionRepositry.AddAsync(new Session(SessionStatus.Canceled, DateTime.Today, TimeSpan.FromHours(1)));
             var sessions = await _sessionRepositry.GetAllAsync();
             var user = User.Claims.Select(x => new { x.Type, x.Value });
+            await _busClint.PublishAsync(new { test = "test" });
             return sessions.ToArray();
         }
 
