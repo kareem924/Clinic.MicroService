@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Appointment.Core.Enums
+﻿namespace Appointment.Core.Enums
 {
     public enum PrimaryServiceType
     {

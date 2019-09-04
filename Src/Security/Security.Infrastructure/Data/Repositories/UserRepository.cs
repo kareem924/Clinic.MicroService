@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Common.General.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Security.Core.Entities;
 using Security.Core.Repositories;
-using Security.Core.Specification;
 
 namespace Security.Infrastructure.Data.Repositories
 {

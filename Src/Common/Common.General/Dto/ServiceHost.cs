@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Common.General.Dto
+﻿namespace Common.General.Dto
 {
    public class ServiceHost
     {

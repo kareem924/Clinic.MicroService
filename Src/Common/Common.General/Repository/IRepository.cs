@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Common.General.Entity;
 using Common.General.Interfaces;
 
 namespace Common.General.Repository

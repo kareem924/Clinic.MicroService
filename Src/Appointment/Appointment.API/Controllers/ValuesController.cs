@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Appointment.Core.Entities;
 using Appointment.Core.Enums;
-using Appointment.Core.Repositories;
 using Common.General.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Common.Email
+﻿namespace Common.Email
 {
     public class AuthMessageSenderOptions
     {

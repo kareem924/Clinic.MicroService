@@ -1,11 +1,6 @@
 ﻿using Appointment.Core.Entities;
 using Appointment.Infrastructure.Interfaces;
-using Common.MongoDb;
-using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Appointment.Infrastructure.Data
 {

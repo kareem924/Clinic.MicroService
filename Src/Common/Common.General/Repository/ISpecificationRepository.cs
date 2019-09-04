@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Common.General.Entity;
 using Common.General.Interfaces;
 using Common.General.Specification;
 

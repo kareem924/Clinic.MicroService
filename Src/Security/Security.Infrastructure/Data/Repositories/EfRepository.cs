@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.General.Entity;
 using Common.General.Interfaces;
 using Common.General.Repository;
 using Common.General.Specification;

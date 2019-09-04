@@ -4,8 +4,6 @@ using Common.General.Interfaces;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Appointment.Core.Entities
 {

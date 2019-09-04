@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Appointment.Infrastructure.Interfaces;
 using Common.General.Repository;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
