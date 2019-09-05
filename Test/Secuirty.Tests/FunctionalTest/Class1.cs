@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Events
+namespace FunctionalTest
 {
     public class Class1
     {
