@@ -17,4 +17,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ApplicationCore\Entities\" />
+    <Folder Include="ApplicationCore\Specifications\" />
+    <Folder Include="ApplicationCore\Services\" />
+    <Folder Include="Builders\" />
+  </ItemGroup>
 </Project>

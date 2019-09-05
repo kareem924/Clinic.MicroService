@@ -15,4 +15,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.3" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\" />
+  </ItemGroup>
 </Project>
