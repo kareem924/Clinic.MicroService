@@ -8,7 +8,7 @@ using Security.Infrastructure.Helper;
 
 namespace Security.Infrastructure.Data
 {
-    public class SecurityDbContextSeed
+    public static class SecurityDbContextSeed
     {
         public static async Task SeedAsync(UserManager<User> userManager)
         {
@@ -16,7 +16,8 @@ namespace Security.Infrastructure.Data
                 "demoFirst",
                 "DemoLast",
                 "demouser@microsoft.com",
-                "demouser@microsoft.com");
+                "demouser@microsoft.com",
+                true);
             await userManager.CreateAsync(defaultUser, "Pass@word1");
         }
         public static async Task SeedRolesAsync(RoleManager<Role> roleManager)
