@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Security.API.Controllers
 {
-    [Authorize()]
-
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase

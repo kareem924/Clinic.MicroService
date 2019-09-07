@@ -41,7 +41,7 @@ namespace Security.API
 
 
             Security.Infrastructure.Configure.ConfigureServices(services, Configuration.GetConnectionString("DefaultConnection"));
-            services.AddRabbitMq(Configuration);
+            //services.AddRabbitMq(Configuration);
             services.AddIdentity<User, Role>(config =>
             {
                 config.SignIn.RequireConfirmedEmail = true;
@@ -56,7 +56,6 @@ namespace Security.API
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
-
                 .AddAspNetIdentity<User>();
 
 

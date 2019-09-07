@@ -37,7 +37,7 @@ namespace Appointment.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddMongoDB(Configuration);
-            services.AddRabbitMq(Configuration);
+            //services.AddRabbitMq(Configuration);
           
             Appointment.Infrastructure.Configure.ConfigureServices(services);
 

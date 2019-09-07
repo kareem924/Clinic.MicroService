@@ -23,6 +23,8 @@ namespace Security.API
                 {
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     await SecurityDbContextSeed.SeedAsync(userManager);
+                    var roleManager = services.GetRequiredService<RoleManager<Role>>();
+                    await SecurityDbContextSeed.SeedRolesAsync(roleManager);
                 }
                 catch (Exception ex)
                 {
