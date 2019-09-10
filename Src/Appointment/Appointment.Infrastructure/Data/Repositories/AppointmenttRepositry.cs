@@ -108,12 +108,12 @@ namespace Appointment.Infrastructure.Data.Repositories
 
         public Core.Entities.Appointment Get(object id)
         {
-            return Collection.Find(appointment => appointment.Id == (ObjectId)id).FirstOrDefault();
+            return Collection.Find(appointment => appointment.Id == (Guid)id).FirstOrDefault();
         }
 
         public async Task<Core.Entities.Appointment> GetAsync(object id)
         {
-            return await (await Collection.FindAsync(appointment => appointment.Id == (ObjectId)id))
+            return await (await Collection.FindAsync(appointment => appointment.Id == (Guid)id))
                 .FirstOrDefaultAsync();
         }
 
@@ -124,13 +124,13 @@ namespace Appointment.Infrastructure.Data.Repositories
 
         public Core.Entities.Appointment Update(Core.Entities.Appointment updated, object id)
         {
-            Collection.ReplaceOne(appointment => appointment.Id == (ObjectId)id, updated);
+            Collection.ReplaceOne(appointment => appointment.Id == (Guid)id, updated);
             return updated;
         }
 
         public async Task<Core.Entities.Appointment> UpdateAsync(Core.Entities.Appointment updated, object id)
         {
-            await Collection.ReplaceOneAsync(appointment => appointment.Id == (ObjectId)id, updated);
+            await Collection.ReplaceOneAsync(appointment => appointment.Id == (Guid)id, updated);
             return updated;
         }
         private IMongoCollection<Core.Entities.Appointment> Collection

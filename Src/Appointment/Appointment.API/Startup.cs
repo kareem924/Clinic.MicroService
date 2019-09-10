@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Common.General.Dto;
+using Common.General.Interfaces;
+using Common.Loggings;
 using Common.MongoDb;
+using Common.RegisterContainers;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -56,10 +60,11 @@ namespace Appointment.API
                     options.RequireHttpsMetadata = false;
                 });
 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -70,8 +75,11 @@ namespace Appointment.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            loggerFactory.AddProvider(new MicroservicesLoggerProvider(serviceProvider.GetService<IMessageBus>(), Configuration));
             app.UseAuthentication();
             app.UseHttpsRedirection();
+            var logger = serviceProvider.GetService<ILogger<Startup>>();
+            app.UseErrorLogging(logger);
             app.UseMvc();
         }
     }

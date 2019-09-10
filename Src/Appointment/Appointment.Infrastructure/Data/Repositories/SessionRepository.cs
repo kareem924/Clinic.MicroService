@@ -107,12 +107,12 @@ namespace Appointment.Infrastructure.Data.Repositories
 
         public Session Get(object id)
         {
-            return Collection.Find(session => session.Id == (ObjectId)id).FirstOrDefault();
+            return Collection.Find(session => session.Id == (Guid)id).FirstOrDefault();
         }
 
         public async Task<Session> GetAsync(object id)
         {
-            return await (await Collection.FindAsync(session => session.Id == (ObjectId)id))
+            return await (await Collection.FindAsync(session => session.Id == (Guid)id))
                 .FirstOrDefaultAsync();
         }
 
@@ -123,13 +123,13 @@ namespace Appointment.Infrastructure.Data.Repositories
 
         public Session Update(Session updated, object id)
         {
-            Collection.ReplaceOne(session => session.Id == (ObjectId)id, updated);
+            Collection.ReplaceOne(session => session.Id == (Guid)id, updated);
             return updated;
         }
 
         public async Task<Session> UpdateAsync(Session updated, object id)
         {
-           await Collection.ReplaceOneAsync(session => session.Id == (ObjectId)id, updated);
+           await Collection.ReplaceOneAsync(session => session.Id == (Guid)id, updated);
             return updated;
         }
 

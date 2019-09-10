@@ -1,13 +1,12 @@
 ﻿using Appointment.Core.Enums;
 using Common.General.Entity;
 using Common.General.Interfaces;
-using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 
 namespace Appointment.Core.Entities
 {
-    public class Session : FullTrackInfoEntity<ObjectId>, IAggregateRoot
+    public class Session : GuidIdEntity, IAggregateRoot
     {
         public Session(SessionStatus status, DateTime dateTime, TimeSpan duration)
         {

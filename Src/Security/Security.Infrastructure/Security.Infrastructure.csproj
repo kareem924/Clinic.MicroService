@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.Email\Common.Communication.csproj" />
     <ProjectReference Include="..\..\Common\Common.Extensions\Common.Extensions.csproj" />
+    <ProjectReference Include="..\..\Common\Common.RegisterContainers\Common.RegisterContainers.csproj" />
     <ProjectReference Include="..\Security.Core\Security.Core.csproj" />
   </ItemGroup>
 

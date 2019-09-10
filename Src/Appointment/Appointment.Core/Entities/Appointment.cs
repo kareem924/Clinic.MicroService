@@ -1,14 +1,13 @@
 ﻿using Appointment.Core.Enums;
 using Common.General.Entity;
 using Common.General.Interfaces;
-using MongoDB.Bson;
 using System;
 
 
 namespace Appointment.Core.Entities
 {
 
-    public class Appointment : FullTrackInfoEntity<ObjectId>, IAggregateRoot
+    public class Appointment : GuidIdEntity, IAggregateRoot
     {
         public Appointment()
         {
@@ -22,7 +21,7 @@ namespace Appointment.Core.Entities
 
         public Guid PatientId { get; protected set; }
 
-        public ObjectId SessionId { get; protected set; }
+        public Guid SessionId { get; protected set; }
        
 
     }
