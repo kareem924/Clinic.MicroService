@@ -97,7 +97,7 @@ namespace Common.Extensions.String
                                     cryptoStream.Close();
                                     return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
                                 }
-                                catch (System.Exception)
+                                catch (Exception ex)
                                 {
 
                                     throw new CryptographicException();

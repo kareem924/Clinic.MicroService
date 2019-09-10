@@ -8,4 +8,8 @@
     <PackageReference Include="RawRabbit" Version="1.10.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Common.General\Common.General.csproj" />
+  </ItemGroup>
+
 </Project>

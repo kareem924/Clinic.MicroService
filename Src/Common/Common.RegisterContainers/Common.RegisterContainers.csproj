@@ -5,15 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MassTransit.RabbitMQ" Version="5.5.5" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Common.Commands\Common.Commands.csproj" />
     <ProjectReference Include="..\Common.Events\Common.Events.csproj" />
-    <ProjectReference Include="..\Common.General\Common.General.csproj" />
+    <ProjectReference Include="..\Common.Extensions\Common.Extensions.csproj" />
   </ItemGroup>
 
 </Project>
