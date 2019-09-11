@@ -29,7 +29,7 @@ namespace Common.Commands
             if (handler == null)
                 throw new CommandHandlerNotFoundException();
 
-            return (handler as ICommandHandler<TCommand>).HandleAsync(command);
+            return (handler as ICommandHandler<TCommand>)?.HandleAsync(command);
         }
     }
 }
