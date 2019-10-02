@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 using Appointment.Core.Entities;
 using Appointment.Core.Enums;
 using Common.General.Repository;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RawRabbit;
 
 namespace Appointment.API.Controllers
 {

@@ -23,9 +23,9 @@ namespace Common.RegisterContainers
             {
                 var allInterfaces = type.GetInterfaces();
                 var mainInterfaces = allInterfaces.Where(t => t.IsAssignableToGenericType(typeof(ICommandHandler<>)));
-                foreach (var itype in mainInterfaces)
+                foreach (var serviceType in mainInterfaces)
                 {
-                    services.AddScoped(itype, type);
+                    services.AddScoped(serviceType, type);
                 }
             }
 

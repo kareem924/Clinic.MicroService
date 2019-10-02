@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Common.Events;
 using Common.RabbitMq;
 using Logging.BackgroundProcess.Consumers;
@@ -11,15 +8,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace Logging.BackgroundProcess
 {
-    public class ComsummerService : ComsumerService
+    public class ConsumerLoggingService : ConsumerService
     {
-        private readonly IConfiguration _configuration;
 
-        public ComsummerService(IConfiguration configuration) : base(configuration, EventRouteConstants.LoggingService)
+        public ConsumerLoggingService(IConfiguration configuration) : 
+            base(configuration, EventRouteConstants.LoggingService)
         {
-            _configuration = configuration;
         }
-
 
         public override Action<IRabbitMqReceiveEndpointConfigurator> Configure()
         {

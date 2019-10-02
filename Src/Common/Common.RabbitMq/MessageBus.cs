@@ -29,7 +29,7 @@ namespace Common.RabbitMq
         {
             var sendEndPoint = _busControl.GetSendEndpoint(
                 new Uri($"{_configuration.GetConnectionString(ApplicationConstants.MessageBusHost)}/{channel}")).Result;
-            sendEndPoint.Send(message, messageType);
+            sendEndPoint.Send(message, messageType, cancellationToken);
 
             return Task.CompletedTask;
         }
@@ -42,7 +42,7 @@ namespace Common.RabbitMq
         {
             var sendEndPoint = _busControl.GetSendEndpoint(
                 new Uri($"{_configuration.GetConnectionString(ApplicationConstants.MessageBusHost)}/{channel}")).Result;
-            await sendEndPoint.Send(message, messageType);
+            await sendEndPoint.Send(message, messageType, cancellationToken);
         }
 
         public Task Send<T>(
@@ -52,7 +52,7 @@ namespace Common.RabbitMq
         {
             var sendEndPoint = _busControl.GetSendEndpoint(
                 new Uri($"{_configuration.GetConnectionString(ApplicationConstants.MessageBusHost)}/{channel}")).Result;
-            sendEndPoint.Send(message);
+            sendEndPoint.Send(message, cancellationToken);
 
             return Task.CompletedTask;
         }
@@ -64,7 +64,7 @@ namespace Common.RabbitMq
         {
             var sendEndPoint = _busControl.GetSendEndpoint(
                 new Uri($"{_configuration.GetConnectionString(ApplicationConstants.MessageBusHost)}/{channel}")).Result;
-            await sendEndPoint.Send(message);
+            await sendEndPoint.Send(message, cancellationToken);
         }
 
         public Task Publish<T>(
@@ -72,7 +72,7 @@ namespace Common.RabbitMq
             Type messageType, 
             CancellationToken cancellationToken = default(CancellationToken)) where T : class
         {
-            _busControl.Publish(message, messageType);
+            _busControl.Publish(message, messageType, cancellationToken);
             return Task.CompletedTask;
         }
 
@@ -81,7 +81,7 @@ namespace Common.RabbitMq
             Type messageType, 
             CancellationToken cancellationToken = default(CancellationToken)) where T : class
         {
-            await _busControl.Publish(message, messageType);
+            await _busControl.Publish(message, messageType, cancellationToken);
         }
     }
 }

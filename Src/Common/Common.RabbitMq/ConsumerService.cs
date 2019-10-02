@@ -9,13 +9,13 @@ using System.Text;
 
 namespace Common.RabbitMq
 {
-    public abstract class ComsumerService
+    public abstract class ConsumerService
     {
         private IBusControl _busControl;
         private readonly string _serviceQueueName;
         private readonly IConfiguration _configuration;
 
-        protected ComsumerService(IConfiguration configuration, string serviceQueueName)
+        protected ConsumerService(IConfiguration configuration, string serviceQueueName)
         {
             _serviceQueueName = serviceQueueName;
             _configuration = configuration;
@@ -43,7 +43,6 @@ namespace Common.RabbitMq
             });
 
             TaskUtil.Await(() => _busControl.StartAsync());
-
             return true;
         }
 

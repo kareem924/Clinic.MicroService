@@ -6,5 +6,6 @@ namespace Security.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+
     }
 }
