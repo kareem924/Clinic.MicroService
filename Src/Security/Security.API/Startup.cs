@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Security.API.Configuration;
 using Security.API.Models;
 using Security.Core.Entities;
 using Security.Infrastructure.Data;
@@ -48,17 +47,9 @@ namespace Security.API
                 config.SignIn.RequireConfirmedEmail = true;
                 //config.SignIn.RequireConfirmedPhoneNumber = true;
             })
-                .AddEntityFrameworkStores<SecurityDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddIdentityServer()
-                .AddSigningCredential(Certificate.Get())
-                .AddInMemoryPersistedGrants()
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients())
-                .AddAspNetIdentity<User>();
-
+          
 
             services.AddAuthentication(options =>
                 {
@@ -110,7 +101,6 @@ namespace Security.API
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
             app.UseCors("AllowAll");
-            app.UseIdentityServer();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

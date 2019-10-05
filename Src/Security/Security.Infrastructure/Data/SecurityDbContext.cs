@@ -9,8 +9,15 @@ using Security.Infrastructure.Data.Configurations;
 
 namespace Security.Infrastructure.Data
 {
-    public class SecurityDbContext : IdentityDbContext<User, Role, Guid, IdentityUserClaim<Guid>,
-        UserRole, IdentityUserLogin<Guid>, IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
+    public class SecurityDbContext :
+        IdentityDbContext<User, 
+            Role,
+            Guid, 
+            IdentityUserClaim<Guid>,
+            UserRole, 
+            IdentityUserLogin<Guid>, 
+            IdentityRoleClaim<Guid>, 
+            IdentityUserToken<Guid>>
     {
         public SecurityDbContext(DbContextOptions<SecurityDbContext> options)
             : base(options)
@@ -29,6 +36,9 @@ namespace Security.Infrastructure.Data
         public SecurityDbContext()
         {
         }
+
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

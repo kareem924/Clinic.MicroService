@@ -23,10 +23,13 @@ namespace Security.Core.Entities
 
         public Address Address { get; private set; }
 
-
         private readonly List<UserRole> _roles = new List<UserRole>();
 
         public IReadOnlyCollection<UserRole> Roles => _roles.AsReadOnly();
+
+        private readonly List<RefreshToken> _refreshTokens = new List<RefreshToken>();
+
+        public IReadOnlyCollection<RefreshToken> RefreshTokens => _refreshTokens.AsReadOnly();
 
         public User() { }
 
@@ -73,6 +76,23 @@ namespace Security.Core.Entities
             return _roles.Any(rt => rt.Role == role);
         }
 
+        public bool HasValidRefreshToken(string refreshToken)
+        {
+            return _refreshTokens.Any(userRefreshToken =>
+                userRefreshToken.Token == refreshToken &&
+                userRefreshToken.Active);
+        }
 
+        public void AddRefreshToken(string token, int userId, string remoteIpAddress, double daysToExpire = 5)
+        {
+            _refreshTokens.Add(new RefreshToken(
+                token,
+                DateTime.UtcNow.AddDays(daysToExpire), userId, remoteIpAddress));
+        }
+
+        public void RemoveRefreshToken(string refreshToken)
+        {
+            _refreshTokens.Remove(_refreshTokens.First(t => t.Token == refreshToken));
+        }
     }
 }
