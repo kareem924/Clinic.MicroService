@@ -11,14 +11,13 @@ namespace Logging.BackgroundProcess
     public class ConsumerLoggingService : ConsumerService
     {
 
-        public ConsumerLoggingService(IConfiguration configuration) : 
+        public ConsumerLoggingService(IConfiguration configuration) :
             base(configuration, EventRouteConstants.LoggingService)
         {
         }
 
         public override Action<IRabbitMqReceiveEndpointConfigurator> Configure()
         {
-           
             return e =>
             {
                 e.Consumer(() => new LoggingConsumer());

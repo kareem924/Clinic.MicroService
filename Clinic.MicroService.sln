@@ -59,19 +59,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTest", "Test\Sec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalTest", "Test\Secuirty.Tests\FunctionalTest\FunctionalTest.csproj", "{550C2028-C037-4A51-96A4-BB29685C2EE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Loggings", "Src\Common\Common.Loggings\Common.Loggings.csproj", "{9271BD9B-B86A-4E26-A414-2E946351A2F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Loggings", "Src\Common\Common.Loggings\Common.Loggings.csproj", "{9271BD9B-B86A-4E26-A414-2E946351A2F8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{ADB72E6C-70A9-4E69-BF0E-A8B89DE10175}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging.API", "Src\Logging\Logging.API\Logging.API.csproj", "{265FFD3A-6906-4DF8-9D29-EA8DA81CA60A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging.API", "Src\Logging\Logging.API\Logging.API.csproj", "{265FFD3A-6906-4DF8-9D29-EA8DA81CA60A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging.Core", "Src\Logging\Logging.Core\Logging.Core.csproj", "{5756F27B-5216-4CCA-B353-3DE9C75F4C98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging.Core", "Src\Logging\Logging.Core\Logging.Core.csproj", "{5756F27B-5216-4CCA-B353-3DE9C75F4C98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging.Infrastructure", "Src\Logging\Logging.Infrastructure\Logging.Infrastructure.csproj", "{316A9D5B-5FB3-4C02-89F0-BDF375331DCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging.Infrastructure", "Src\Logging\Logging.Infrastructure\Logging.Infrastructure.csproj", "{316A9D5B-5FB3-4C02-89F0-BDF375331DCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging.BackgroundProcess", "Src\Logging\Logging.BackgroundProcess\Logging.BackgroundProcess.csproj", "{9C3B4881-0C64-4DB4-9EFB-BBAC1BBF1C95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging.BackgroundProcess", "Src\Logging\Logging.BackgroundProcess\Logging.BackgroundProcess.csproj", "{9C3B4881-0C64-4DB4-9EFB-BBAC1BBF1C95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.RegisterContainers", "Src\Common\Common.RegisterContainers\Common.RegisterContainers.csproj", "{969D8A61-3E00-4BFB-963A-B0FB64C48464}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.RegisterContainers", "Src\Common\Common.RegisterContainers\Common.RegisterContainers.csproj", "{969D8A61-3E00-4BFB-963A-B0FB64C48464}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

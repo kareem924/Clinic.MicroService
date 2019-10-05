@@ -9,7 +9,7 @@ namespace Common.Loggings
 {
     public static class MiddlewareExtensions
     {
-        public static void UseErrorLogging<T>(this IApplicationBuilder builder, ILogger<T> logger)
+        public static void UseErrorLogging(this IApplicationBuilder builder, ILogger logger)
         {
             builder.UseExceptionHandler(appError =>
             {

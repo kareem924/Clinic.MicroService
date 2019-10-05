@@ -8,27 +8,27 @@ using System;
 
 namespace Common.RabbitMq
 {
-    public class BaseConsumer
+    public abstract class BaseConsumer
     {
-        protected void WriteErrorLog<T>(ConsumeContext<T> context, IConfiguration Configuration, string message, object data) where T : class
+        protected void WriteErrorLog<T>(ConsumeContext<T> context, IConfiguration configuration, string message, object data) where T : class
         {
-            WriteLog(context, Configuration, LogLevel.Error, message, data);
+            WriteLog(context, configuration, LogLevel.Error, message, data);
         }
 
-        protected void WriteInformationLog<T>(ConsumeContext<T> context, IConfiguration Configuration, string message) where T : class
+        protected  void WriteInformationLog<T>(ConsumeContext<T> context, IConfiguration configuration, string message) where T : class
         {
-            WriteLog(context, Configuration, LogLevel.Information, message);
+            WriteLog(context, configuration, LogLevel.Information, message);
         }
 
         private void WriteLog<T>(
             ConsumeContext<T> context,
-            IConfiguration Configuration,
+            IConfiguration configuration,
             LogLevel logLevel,
             string message,
             object data = null) where T : class
         {
             var sendEndPoint = context.GetSendEndpoint(
-                new Uri($"{Configuration.GetConnectionString(ApplicationConstants.MessageBusHost)}/" +
+                new Uri($"{configuration.GetConnectionString(ApplicationConstants.MessageBusHost)}/" +
                 $"logging_service")).Result;
             sendEndPoint.Send(new WriteLogEvent()
             {

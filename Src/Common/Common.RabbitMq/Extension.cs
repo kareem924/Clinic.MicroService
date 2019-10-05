@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text;
+using Common.Commands;
+using Common.Events;
+using Common.Extensions.System;
 using Common.General.Interfaces;
 using Common.General.SharedKernel;
 using MassTransit;
@@ -12,8 +17,38 @@ namespace Common.RabbitMq
 {
     public static class Extension
     {
-        public static void AddRabbitMqMessageBus(this IServiceCollection services, IConfiguration configuration)
+        public static void AddRabbitMqMessageBus(this IServiceCollection services, IConfiguration configuration, Assembly assembly)
         {
+            services.AddScoped<ICommandBus, CommandBus>();
+            services.AddScoped<IEventBus, EventBus>();
+
+            var allCommandHandler = assembly.GetTypes().Where(t =>
+                t.IsClass &&
+                !t.IsAbstract &&
+                t.IsAssignableToGenericType(typeof(ICommandHandler<>)));
+            foreach (var type in allCommandHandler)
+            {
+                var allInterfaces = type.GetInterfaces();
+                var mainInterfaces = allInterfaces.Where(t => t.IsAssignableToGenericType(typeof(ICommandHandler<>)));
+                foreach (var serviceType in mainInterfaces)
+                {
+                    services.AddScoped(serviceType, type);
+                }
+            }
+
+            var allEventHandlers = assembly.GetTypes().Where(t =>
+                t.IsClass &&
+                !t.IsAbstract &&
+                t.IsAssignableToGenericType(typeof(IEventHandler<>)));
+            foreach (var type in allEventHandlers)
+            {
+                var allInterfaces = type.GetInterfaces();
+                var mainInterfaces = allInterfaces.Where(t => t.IsAssignableToGenericType(typeof(IEventHandler<>)));
+                foreach (var itype in mainInterfaces)
+                {
+                    services.AddScoped(itype, type);
+                }
+            }
             IBusControl bus = null;
             services.AddScoped(i =>
                 {

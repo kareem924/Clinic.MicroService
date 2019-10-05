@@ -1,9 +1,16 @@
-﻿using Common.Commands;
+﻿using System;
+using Common.Commands;
 using Common.Events;
 using Common.Extensions.System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Reflection;
+using Common.General.Interfaces;
+using MediatR;
+using Microsoft.AspNetCore.Builder;
+using Common.Loggings;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace Common.RegisterContainers
 {
@@ -11,37 +18,19 @@ namespace Common.RegisterContainers
     {
         public static void Register(Assembly assembly, IServiceCollection services)
         {
+            services.AddMediatR(assembly);
+        }
 
-            services.AddScoped<ICommandBus, CommandBus>();
-            services.AddScoped<IEventBus, EventBus>();
-
-            var allCommandHandler = assembly.GetTypes().Where(t =>
-                t.IsClass &&
-                !t.IsAbstract &&
-                t.IsAssignableToGenericType(typeof(ICommandHandler<>)));
-            foreach (var type in allCommandHandler)
-            {
-                var allInterfaces = type.GetInterfaces();
-                var mainInterfaces = allInterfaces.Where(t => t.IsAssignableToGenericType(typeof(ICommandHandler<>)));
-                foreach (var serviceType in mainInterfaces)
-                {
-                    services.AddScoped(serviceType, type);
-                }
-            }
-
-            var allEventHandlers = assembly.GetTypes().Where(t =>
-               t.IsClass &&
-               !t.IsAbstract &&
-               t.IsAssignableToGenericType(typeof(IEventHandler<>)));
-            foreach (var type in allEventHandlers)
-            {
-                var allInterfaces = type.GetInterfaces();
-                var mainInterfaces = allInterfaces.Where(t => t.IsAssignableToGenericType(typeof(IEventHandler<>)));
-                foreach (var itype in mainInterfaces)
-                {
-                    services.AddScoped(itype, type);
-                }
-            }
+        public static IApplicationBuilder ConfigureAppBuilder(this IApplicationBuilder app, 
+            ILoggerFactory loggerFactory, 
+            IServiceProvider serviceProvider,
+            IConfiguration configuration)
+        {
+            loggerFactory.AddProvider(new MicroservicesLoggerProvider(serviceProvider.GetService<IMessageBus>(), configuration));
+            var logger = serviceProvider.GetService<ILogger>();
+            app.UseErrorLogging(logger);
+            return app;
+           
         }
     }
 }
