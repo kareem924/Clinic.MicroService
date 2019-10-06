@@ -27,8 +27,4 @@
     <ProjectReference Include="..\Security.Core\Security.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Common.General.Entity;
 
 namespace Security.Core.Entities
