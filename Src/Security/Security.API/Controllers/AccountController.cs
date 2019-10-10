@@ -19,10 +19,10 @@ namespace Security.API.Controllers
 
 
         [HttpGet("token")]
-        public async Task<ActionResult<TokenResponseDto>> GenerateToken()
+        public async Task<ActionResult<TokenResponseDto>> GenerateToken([FromQuery]TokenRequestDto request)
         {
-            var user = await _mediator.Send(new GetLoginUserQuery("", ""));
-            return Ok(new TokenResponseDto(null));
+            var user = await _mediator.Send(new GetLoginUserQuery(request.UserName, request.Password));
+            return Ok(user);
         }
     }
 }

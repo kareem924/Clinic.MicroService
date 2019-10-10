@@ -4,7 +4,6 @@ using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Polly;
-using Polly.Retry;
 using RabbitMQ.Client.Exceptions;
 using System;
 using System.Net.Sockets;
@@ -32,7 +31,7 @@ namespace Common.RabbitMq
             Type messageType,
             CancellationToken cancellationToken = default(CancellationToken)) where T : class
         {
-            var policy = RetryPolicy.Handle<SocketException>()
+            var policy = Policy.Handle<SocketException>()
                   .Or<BrokerUnreachableException>()
                   .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(
                       Math.Pow(2, retryAttempt)), (ex, time) =>
@@ -59,7 +58,7 @@ namespace Common.RabbitMq
             Type messageType,
             CancellationToken cancellationToken = default(CancellationToken)) where T : class
         {
-            var policy = RetryPolicy.Handle<SocketException>()
+            var policy = Policy.Handle<SocketException>()
                    .Or<BrokerUnreachableException>()
                    .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(
                        Math.Pow(2, retryAttempt)), (ex, time) =>
@@ -83,7 +82,7 @@ namespace Common.RabbitMq
             T message,
             CancellationToken cancellationToken = default(CancellationToken)) where T : class
         {
-            var policy = RetryPolicy.Handle<SocketException>()
+            var policy = Policy.Handle<SocketException>()
                  .Or<BrokerUnreachableException>()
                  .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(
                      Math.Pow(2, retryAttempt)), (ex, time) =>
@@ -110,7 +109,7 @@ namespace Common.RabbitMq
             T message,
             CancellationToken cancellationToken = default(CancellationToken)) where T : class
         {
-            var policy = RetryPolicy.Handle<SocketException>()
+            var policy = Policy.Handle<SocketException>()
                     .Or<BrokerUnreachableException>()
                     .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(
                         Math.Pow(2, retryAttempt)), (ex, time) =>
@@ -136,7 +135,7 @@ namespace Common.RabbitMq
             CancellationToken cancellationToken = default(CancellationToken)) where T : class
         {
 
-            var policy = RetryPolicy.Handle<SocketException>()
+            var policy = Policy.Handle<SocketException>()
                     .Or<BrokerUnreachableException>()
                     .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(
                         Math.Pow(2, retryAttempt)), (ex, time) =>
@@ -160,7 +159,7 @@ namespace Common.RabbitMq
             Type messageType,
             CancellationToken cancellationToken = default(CancellationToken)) where T : class
         {
-            var policy = RetryPolicy.Handle<SocketException>()
+            var policy = Policy.Handle<SocketException>()
                    .Or<BrokerUnreachableException>()
                    .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(
                        Math.Pow(2, retryAttempt)), (ex, time) =>

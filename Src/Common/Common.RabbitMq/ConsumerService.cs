@@ -46,7 +46,7 @@ namespace Common.RabbitMq
 
                 x.ReceiveEndpoint(host, _serviceQueueName, Configure());
             });
-            var policy = RetryPolicy.Handle<SocketException>()
+            var policy = Policy.Handle<SocketException>()
                   .Or<BrokerUnreachableException>()
                   .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(
                       Math.Pow(2, retryAttempt)), (ex, time) =>

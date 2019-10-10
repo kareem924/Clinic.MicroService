@@ -7,6 +7,9 @@ using Security.Infrastructure.Data;
 using Security.Infrastructure.Data.Repositories;
 using Security.Infrastructure.Service;
 using System.Reflection;
+using Common.General.Repository;
+using Security.Core.Entities;
+using Security.Core.Repositories;
 
 namespace Security.Infrastructure
 {
@@ -19,6 +22,7 @@ namespace Security.Infrastructure
             
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IEmailSender, EmailSenderService>();
+            services.AddTransient<IUserRepository, UserRepository>();
             HandlerRegister.Register(assembly, services);
         }
 

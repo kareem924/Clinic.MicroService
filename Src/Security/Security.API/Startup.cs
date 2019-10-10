@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Security.API.Models;
+using Security.API.Quries.GetUserByUserName;
 using Security.Core.Entities;
 using Security.Infrastructure.Data;
 //using Swashbuckle.AspNetCore.Swagger;
@@ -38,7 +39,7 @@ namespace Security.API
 
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(authSettings[nameof(AuthSettings.SecretKey)]));
 
-
+            services.AddTransient<IMapperService, MapperService>();
             Security.Infrastructure.Configure.ConfigureServices(
                 services, 
                 Configuration.GetConnectionString("DefaultConnection"),
