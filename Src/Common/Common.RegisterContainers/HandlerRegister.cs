@@ -1,9 +1,5 @@
 ﻿using System;
-using Common.Commands;
-using Common.Events;
-using Common.Extensions.System;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
 using System.Reflection;
 using Common.General.Interfaces;
 using MediatR;

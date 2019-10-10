@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RestEase;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Linq;
 using System.Reflection;
 namespace Common.RestEase

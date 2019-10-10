@@ -2,10 +2,8 @@
 using Microsoft.IdentityModel.Tokens;
 using Security.Infrastructure.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 
 namespace Security.Infrastructure.Service
 {

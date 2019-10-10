@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Common.General.SharedKernel
+﻿namespace Common.General.SharedKernel
 {
     public static class ApplicationConstants
     {

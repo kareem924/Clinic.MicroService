@@ -2,11 +2,9 @@
 using Security.Core.Dto;
 using Security.Infrastructure.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Security.Infrastructure.Service

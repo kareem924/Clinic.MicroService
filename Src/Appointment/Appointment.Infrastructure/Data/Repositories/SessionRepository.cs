@@ -1,6 +1,5 @@
 ﻿using Appointment.Core.Entities;
 using Common.General.Repository;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;

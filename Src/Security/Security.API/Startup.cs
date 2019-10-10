@@ -1,8 +1,6 @@
 ﻿using System.Reflection;
 using System.Text;
 using Common.Email;
-using Common.RabbitMq;
-using Common.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

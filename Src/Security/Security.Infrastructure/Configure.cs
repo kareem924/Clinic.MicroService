@@ -3,7 +3,6 @@ using Common.General.UnitOfWork;
 using Common.RegisterContainers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Security.Core.Repositories;
 using Security.Infrastructure.Data;
 using Security.Infrastructure.Data.Repositories;
 using Security.Infrastructure.Service;

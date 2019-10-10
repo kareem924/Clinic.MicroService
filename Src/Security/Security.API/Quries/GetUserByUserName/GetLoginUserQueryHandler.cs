@@ -3,9 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Security.Core.Entities;
 using Security.Core.Repositories;
 using Security.Core.Specification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

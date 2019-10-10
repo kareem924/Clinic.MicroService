@@ -2,10 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Security.Core.Entities;
-using Security.Infrastructure.Data;
 
 namespace Security.API
 {

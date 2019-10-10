@@ -8,9 +8,7 @@ using Polly;
 using Polly.Retry;
 using RabbitMQ.Client.Exceptions;
 using System;
-using System.Collections.Generic;
 using System.Net.Sockets;
-using System.Text;
 
 namespace Common.RabbitMq
 {
