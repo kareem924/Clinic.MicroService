@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Text;
 using Common.Email;
 using Common.RabbitMq;
 using Common.Security;
@@ -13,7 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using Security.API.Models;
 using Security.Core.Entities;
 using Security.Infrastructure.Data;
-using Swashbuckle.AspNetCore.Swagger;
+//using Swashbuckle.AspNetCore.Swagger;
 
 namespace Security.API
 {
@@ -40,7 +41,11 @@ namespace Security.API
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(authSettings[nameof(AuthSettings.SecretKey)]));
 
 
-            Security.Infrastructure.Configure.ConfigureServices(services, Configuration.GetConnectionString("DefaultConnection"));
+            Security.Infrastructure.Configure.ConfigureServices(
+                services, 
+                Configuration.GetConnectionString("DefaultConnection"),
+                Assembly.GetExecutingAssembly());
+
             //services.AddRabbitMq(Configuration);
             services.AddIdentity<User, Role>(config =>
             {
@@ -49,30 +54,27 @@ namespace Security.API
             })
                 .AddDefaultTokenProviders();
 
-          
+            services.AddIdentity<User, Role>(options =>
+            {
+                options.User.RequireUniqueEmail = false;
+            })
+    .AddEntityFrameworkStores<SecurityDbContext>()
+    .AddDefaultTokenProviders();
 
             services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(options =>
-                {
-                    // base-address of your identityserver
-                    options.Authority = "http://localhost:5000/";
-
-                    
-
-                    options.RequireHttpsMetadata = false;
                 });
+                
 
 
-            // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "AspNetCoreApiStarter", Version = "v1" });
-                // Swagger 2.+ support
-            });
+            //// Register the Swagger generator, defining 1 or more Swagger documents
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new Info { Title = "AspNetCoreApiStarter", Version = "v1" });
+            //    // Swagger 2.+ support
+            //});
 
 
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
@@ -93,13 +95,13 @@ namespace Security.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Security Clinic V1");
-            });
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Security Clinic V1");
+            //});
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
+            //// Enable middleware to serve generated Swagger as a JSON endpoint.
+            //app.UseSwagger();
             app.UseCors("AllowAll");
             app.UseHttpsRedirection();
             app.UseMvc();

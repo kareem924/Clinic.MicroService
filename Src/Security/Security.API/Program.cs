@@ -21,10 +21,10 @@ namespace Security.API
                 //var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
-                    var userManager = services.GetRequiredService<UserManager<User>>();
-                    await SecurityDbContextSeed.SeedAsync(userManager);
-                    var roleManager = services.GetRequiredService<RoleManager<Role>>();
-                    await SecurityDbContextSeed.SeedRolesAsync(roleManager);
+                    //var userManager = services.GetRequiredService<UserManager<User>>();
+                    //await SecurityDbContextSeed.SeedAsync(userManager);
+                    //var roleManager = services.GetRequiredService<RoleManager<Role>>();
+                    //await SecurityDbContextSeed.SeedRolesAsync(roleManager);
                 }
                 catch (Exception ex)
                 {

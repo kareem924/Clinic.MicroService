@@ -6,7 +6,6 @@ namespace Security.Core.Repositories
 {
     public interface IUserRepository : ISpecificationRepository<User>
     {
-        Task<User> FindByName(string userName);
-        Task<bool> CheckPassword(User user, string password);
+      
     }
 }

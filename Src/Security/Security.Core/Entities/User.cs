@@ -38,24 +38,7 @@ namespace Security.Core.Entities
             string lastName,
             string userName,
             string email,
-            bool emailConfirmed)
-        {
-            if (string.IsNullOrWhiteSpace(firstName))
-                throw new ArgumentNullException(nameof(firstName));
-            if (string.IsNullOrWhiteSpace(email))
-                throw new ArgumentNullException(nameof(email));
-            FirstName = firstName;
-            LastName = lastName;
-            UserName = userName;
-            Email = email;
-            EmailConfirmed = emailConfirmed;
-        }
-
-        public User(
-            string firstName,
-            string lastName,
-            string userName,
-            string email,
+            bool emailConfirmed,
             Address address,
             DateTime birthDate)
         {
@@ -67,10 +50,11 @@ namespace Security.Core.Entities
             LastName = lastName;
             UserName = userName;
             Email = email;
+            EmailConfirmed = emailConfirmed;
             Address = address;
             BirthDate = birthDate;
         }
-
+        
         public bool HasRole(Role role)
         {
             return _roles.Any(rt => rt.Role == role);

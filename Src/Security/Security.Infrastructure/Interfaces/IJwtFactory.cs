@@ -3,7 +3,7 @@ using Security.Core.Dto;
 
 namespace Security.Infrastructure.Interfaces
 {
-    public interface IJwtFactory
+    internal interface IJwtFactory
     {
         Task<AccessTokenDto> GenerateEncodedToken(string id, string userName);
     }

@@ -13,15 +13,14 @@ namespace Security.Infrastructure
 {
     public static class Configure
     {
-        public static void ConfigureServices(IServiceCollection services, string connectionString)
+        public static void ConfigureServices(IServiceCollection services, string connectionString, Assembly assembly)
         {
             //Context lifetime defaults to "scoped"
             services.AddDbContext<SecurityDbContext>(options => options.UseSqlServer(connectionString));
             
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IEmailSender, EmailSenderService>();
-            HandlerRegister.Register(Assembly.GetExecutingAssembly(), services);
+            HandlerRegister.Register(assembly, services);
         }
 
     }
