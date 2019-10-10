@@ -3,8 +3,13 @@ using MassTransit;
 using MassTransit.RabbitMqTransport;
 using MassTransit.Util;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Polly;
+using Polly.Retry;
+using RabbitMQ.Client.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Text;
 
 namespace Common.RabbitMq
@@ -14,11 +19,13 @@ namespace Common.RabbitMq
         private IBusControl _busControl;
         private readonly string _serviceQueueName;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<ConsumerService> _logger;
 
-        protected ConsumerService(IConfiguration configuration, string serviceQueueName)
+        protected ConsumerService(IConfiguration configuration, string serviceQueueName, ILoggerFactory logger)
         {
             _serviceQueueName = serviceQueueName;
             _configuration = configuration;
+            _logger = logger.CreateLogger<ConsumerService>();
         }
 
         public bool Start()
@@ -41,8 +48,22 @@ namespace Common.RabbitMq
 
                 x.ReceiveEndpoint(host, _serviceQueueName, Configure());
             });
-
-            TaskUtil.Await(() => _busControl.StartAsync());
+            var policy = RetryPolicy.Handle<SocketException>()
+                  .Or<BrokerUnreachableException>()
+                  .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(
+                      Math.Pow(2, retryAttempt)), (ex, time) =>
+                      {
+                          _logger.LogWarning(
+                                ex,
+                                "RabbitMQ Client could not connect after {TimeOut}s ({ExceptionMessage})",
+                                $"{time.TotalSeconds:n1}", ex.Message);
+                      }
+              );
+            policy.Execute(() =>
+            {
+                TaskUtil.Await(() => _busControl.StartAsync());
+            });
+            
             return true;
         }
 
