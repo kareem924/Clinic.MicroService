@@ -2,7 +2,11 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Security.Core.Entities;
+using Security.Infrastructure.Data;
 
 namespace Security.API
 {
@@ -15,18 +19,18 @@ namespace Security.API
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                //var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+                var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
-                    //var userManager = services.GetRequiredService<UserManager<User>>();
-                    //await SecurityDbContextSeed.SeedAsync(userManager);
-                    //var roleManager = services.GetRequiredService<RoleManager<Role>>();
-                    //await SecurityDbContextSeed.SeedRolesAsync(roleManager);
+                    var userManager = services.GetRequiredService<UserManager<User>>();
+                    await SecurityDbContextSeed.SeedAsync(userManager);
+                    var roleManager = services.GetRequiredService<RoleManager<Role>>();
+                    await SecurityDbContextSeed.SeedRolesAsync(roleManager);
                 }
                 catch (Exception ex)
                 {
-                    //var logger = loggerFactory.CreateLogger<Program>();
-                    //logger.LogError(ex, "An error occurred seeding the DB.");
+                    var logger = loggerFactory.CreateLogger<Program>();
+                    logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
               host.Run();

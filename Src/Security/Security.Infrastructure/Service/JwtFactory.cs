@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Security.Infrastructure.Service
 {
-    internal sealed class JwtFactory : IJwtFactory
+    public sealed class JwtFactory : IJwtFactory
     {
         private readonly IJwtTokenHandler _jwtTokenHandler;
         private readonly JwtIssuerOptions _jwtOptions;
 
-        internal JwtFactory(IJwtTokenHandler jwtTokenHandler, IOptions<JwtIssuerOptions> jwtOptions)
+        public JwtFactory(IJwtTokenHandler jwtTokenHandler, IOptions<JwtIssuerOptions> jwtOptions)
         {
             _jwtTokenHandler = jwtTokenHandler;
             _jwtOptions = jwtOptions.Value;

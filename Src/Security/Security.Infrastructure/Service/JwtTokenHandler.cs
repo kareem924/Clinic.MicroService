@@ -7,12 +7,12 @@ using System.Security.Claims;
 
 namespace Security.Infrastructure.Service
 {
-    internal sealed class JwtTokenHandler : IJwtTokenHandler
+    public sealed class JwtTokenHandler : IJwtTokenHandler
     {
         private readonly JwtSecurityTokenHandler _jwtSecurityTokenHandler;
-        private readonly ILogger _logger;
+        private readonly ILogger<JwtTokenHandler> _logger;
 
-        internal JwtTokenHandler(ILogger logger)
+        public JwtTokenHandler(ILogger<JwtTokenHandler> logger)
         {
             if (_jwtSecurityTokenHandler == null)
                 _jwtSecurityTokenHandler = new JwtSecurityTokenHandler();

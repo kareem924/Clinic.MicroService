@@ -10,16 +10,16 @@ namespace Security.Infrastructure.Data
 {
     public static class SecurityDbContextSeed
     {
-        //public static async Task SeedAsync(UserManager<User> userManager)
-        //{
-        //    //var defaultUser = new User(
-        //    //    "demoFirst",
-        //    //    "DemoLast",
-        //    //    "demouser@microsoft.com",
-        //    //    "demouser@microsoft.com",
-        //    //    true);
-        //    //await userManager.CreateAsync(defaultUser, "Pass@word1");
-        //}
+        public static async Task SeedAsync(UserManager<User> userManager)
+        {
+            var defaultUser = new User(
+                "demoFirst",
+                "DemoLast",
+                "demouser@microsoft.com",
+                "demouser@microsoft.com",
+                true,null,DateTime.MaxValue);
+            await userManager.CreateAsync(defaultUser, "Pass@word1");
+        }
         public static async Task SeedRolesAsync(RoleManager<Role> roleManager)
         {
             var values = typeof(Roles).GetFields(BindingFlags.Static | BindingFlags.Public)

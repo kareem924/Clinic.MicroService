@@ -1,6 +1,6 @@
 ﻿using Security.Core.Entities;
 
-namespace Security.API.Quries.GetUserByUserName
+namespace Security.API.Queries.GetUserByUserName
 {
     public class MapperService : IMapperService
     {

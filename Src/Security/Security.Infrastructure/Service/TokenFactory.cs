@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 
 namespace Security.Infrastructure.Service
 {
-    internal sealed class TokenFactory : ITokenFactory
+    public sealed class TokenFactory : ITokenFactory
     {
         public string GenerateToken(int size = 32)
         {

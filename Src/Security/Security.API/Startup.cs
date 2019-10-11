@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Security.API.Models;
-using Security.API.Quries.GetUserByUserName;
+using Security.API.Queries.GetUserByUserName;
 using Security.Core.Entities;
 using Security.Infrastructure.Data;
 //using Swashbuckle.AspNetCore.Swagger;
@@ -32,12 +32,11 @@ namespace Security.API
             services.AddMvc(option => option.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-            var authSettings = Configuration.GetSection(nameof(AuthSettings));
-            services.Configure<AuthSettings>(authSettings);
+           
             var sendGridKey = Configuration.GetSection("SendGrid");
             services.Configure<AuthMessageSenderOptions>(sendGridKey);
 
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(authSettings[nameof(AuthSettings.SecretKey)]));
+            
 
             services.AddTransient<IMapperService, MapperService>();
             Security.Infrastructure.Configure.ConfigureServices(
@@ -65,9 +64,9 @@ namespace Security.API
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 });
-                
 
 
+            services.AddJwt(Configuration);
             //// Register the Swagger generator, defining 1 or more Swagger documents
             //services.AddSwaggerGen(c =>
             //{

@@ -10,6 +10,7 @@ using System.Reflection;
 using Common.General.Repository;
 using Security.Core.Entities;
 using Security.Core.Repositories;
+using Security.Infrastructure.Interfaces;
 
 namespace Security.Infrastructure
 {
@@ -23,6 +24,9 @@ namespace Security.Infrastructure
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IEmailSender, EmailSenderService>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IJwtFactory, JwtFactory>();
+            services.AddTransient<ITokenFactory, TokenFactory>();
+            services.AddTransient<IJwtTokenHandler, JwtTokenHandler>();
             HandlerRegister.Register(assembly, services);
         }
 

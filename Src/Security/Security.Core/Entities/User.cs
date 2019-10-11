@@ -67,7 +67,7 @@ namespace Security.Core.Entities
                 userRefreshToken.Active);
         }
 
-        public void AddRefreshToken(string token, int userId, string remoteIpAddress, double daysToExpire = 5)
+        public void AddRefreshToken(string token, Guid userId, string remoteIpAddress, double daysToExpire = 5)
         {
             _refreshTokens.Add(new RefreshToken(
                 token,

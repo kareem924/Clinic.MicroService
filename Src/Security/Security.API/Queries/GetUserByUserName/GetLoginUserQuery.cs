@@ -1,6 +1,6 @@
 ﻿using Common.CQRS;
 
-namespace Security.API.Quries.GetUserByUserName
+namespace Security.API.Queries.GetUserByUserName
 {
     public class GetLoginUserQuery: IQuery<LoginUserDto>
     {

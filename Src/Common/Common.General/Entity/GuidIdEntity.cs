@@ -6,6 +6,7 @@ namespace Common.General.Entity
     {
         public GuidIdEntity()
         {
+
             Id  = Guid.NewGuid();
         }
     }

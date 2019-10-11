@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+
     <!--<PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc2" />-->
   </ItemGroup>
 
@@ -21,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Configuration\" />
-    <Folder Include="Commands\" />
   </ItemGroup>
 
 </Project>

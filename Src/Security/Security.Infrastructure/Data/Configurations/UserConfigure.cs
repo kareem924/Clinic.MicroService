@@ -11,6 +11,9 @@ namespace Security.Infrastructure.Data.Configurations
             builder.HasMany(r => r.Roles)
                 .WithOne(ur => ur.User)
                 .HasForeignKey(ur => ur.UserId);
+            builder.HasMany(r => r.RefreshTokens)
+                .WithOne(ur => ur.User)
+                .HasForeignKey(ur => ur.UserId);
 
             builder.OwnsOne(m => m.Address, a =>
             {

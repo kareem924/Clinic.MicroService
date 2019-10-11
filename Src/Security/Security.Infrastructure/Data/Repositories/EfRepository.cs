@@ -83,14 +83,12 @@ namespace Security.Infrastructure.Data.Repositories
             return existing;
         }
 
-        public async Task<T> UpdateAsync(T updated, object key)
+        public Task<T> UpdateAsync(T updated, object key)
         {
-            T existing = await _unitOfWork.Context.Set<T>().FindAsync(key);
-            if (existing != null)
-            {
-                _unitOfWork.Context.Entry(existing).CurrentValues.SetValues(updated);
-            }
-            return existing;
+
+            _unitOfWork.Context.Entry(updated).State = EntityState.Modified;
+
+            return Task.FromResult(updated);
         }
 
         public void Delete(T entity)
