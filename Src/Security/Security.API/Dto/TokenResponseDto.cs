@@ -25,7 +25,5 @@ namespace Security.API.Dto
 
         public IEnumerable<Error> Errors { get; }
 
-
-
     }
 }

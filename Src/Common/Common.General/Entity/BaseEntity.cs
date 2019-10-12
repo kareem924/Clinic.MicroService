@@ -10,6 +10,7 @@ namespace Common.General.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
 
         public T Id { get; set; }
+
         public bool IsDeleted { get; set; }
     }
 }

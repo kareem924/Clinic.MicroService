@@ -27,6 +27,7 @@ namespace Security.Infrastructure
             services.AddTransient<IJwtFactory, JwtFactory>();
             services.AddTransient<ITokenFactory, TokenFactory>();
             services.AddTransient<IJwtTokenHandler, JwtTokenHandler>();
+            services.AddTransient<IJwtTokenValidator, JwtTokenValidator>();
             HandlerRegister.Register(assembly, services);
         }
 
