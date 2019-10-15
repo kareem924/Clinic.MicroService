@@ -100,7 +100,7 @@ namespace Common.Extensions.String
                                 catch (Exception ex)
                                 {
 
-                                    throw new CryptographicException();
+                                    throw new CryptographicException(ex.Message);
                                 }
 
                             }

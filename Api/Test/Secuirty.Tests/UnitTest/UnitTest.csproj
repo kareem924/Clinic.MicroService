@@ -7,6 +7,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="Moq" Version="4.10.1" />
+    <PackageReference Include="Shouldly" Version="3.0.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
@@ -18,9 +19,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ApplicationCore\Entities\" />
-    <Folder Include="ApplicationCore\Specifications\" />
     <Folder Include="ApplicationCore\Services\" />
     <Folder Include="Builders\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Src\1-Service\Security\Security.Core\Security.Core.csproj" />
   </ItemGroup>
 </Project>

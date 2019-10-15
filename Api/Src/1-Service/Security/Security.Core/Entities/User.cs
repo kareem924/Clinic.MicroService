@@ -54,7 +54,12 @@ namespace Security.Core.Entities
             Address = address;
             BirthDate = birthDate;
         }
-        
+
+        public void AddRole(Role role, Guid userId)
+        {
+            _roles.Add(new UserRole(){Role = role ,UserId = userId });
+        }
+
         public bool HasRole(Role role)
         {
             return _roles.Any(rt => rt.Role == role);
