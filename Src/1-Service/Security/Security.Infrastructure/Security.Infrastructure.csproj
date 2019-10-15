@@ -21,10 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.Email\Common.Communication.csproj" />
-    <ProjectReference Include="..\..\Common\Common.Extensions\Common.Extensions.csproj" />
-    <ProjectReference Include="..\..\Common\Common.RegisterContainers\Common.RegisterContainers.csproj" />
+    <ProjectReference Include="..\..\..\0-Common\Common.Email\Common.Communication.csproj" />
+    <ProjectReference Include="..\..\..\0-Common\Common.General\Common.General.csproj" />
+    <ProjectReference Include="..\..\..\0-Common\Common.RegisterContainers\Common.RegisterContainers.csproj" />
     <ProjectReference Include="..\Security.Core\Security.Core.csproj" />
   </ItemGroup>
+
+ 
 
 </Project>

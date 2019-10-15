@@ -23,9 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.MongoDb\Common.MongoDb.csproj" />
-    <ProjectReference Include="..\..\Common\Common.RegisterContainers\Common.RegisterContainers.csproj" />
+    <ProjectReference Include="..\..\..\0-Common\Common.General\Common.General.csproj" />
     <ProjectReference Include="..\Appointment.Core\Appointment.Core.csproj" />
   </ItemGroup>
+
+  
 
 </Project>

@@ -13,15 +13,18 @@
     <!--<PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc2" />-->
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.CQRS\Common.CQRS.csproj" />
-    <ProjectReference Include="..\..\Common\Common.RabbitMq\Common.RabbitMq.csproj" />
-    <ProjectReference Include="..\..\Common\Common.Security\Common.Security.csproj" />
-    <ProjectReference Include="..\Security.Infrastructure\Security.Infrastructure.csproj" />
-  </ItemGroup>
+ 
 
   <ItemGroup>
     <Folder Include="Configuration\" />
+  </ItemGroup>
+
+ 
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\0-Common\Common.CQRS\Common.CQRS.csproj" />
+    <ProjectReference Include="..\..\..\0-Common\Common.General\Common.General.csproj" />
+    <ProjectReference Include="..\Security.Core\Security.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Common.General.Repository;
-using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 
 namespace Appointment.Infrastructure.Data.Repositories

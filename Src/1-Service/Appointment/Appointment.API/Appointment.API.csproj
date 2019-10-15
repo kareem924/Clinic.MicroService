@@ -11,11 +11,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common.General\Common.General.csproj" />
-    <ProjectReference Include="..\..\Common\Common.Loggings\Common.Loggings.csproj" />
-    <ProjectReference Include="..\..\Common\Common.RabbitMq\Common.RabbitMq.csproj" />
-    <ProjectReference Include="..\Appointment.Infrastructure\Appointment.Infrastructure.csproj" />
-  </ItemGroup>
+ 
 
 </Project>
