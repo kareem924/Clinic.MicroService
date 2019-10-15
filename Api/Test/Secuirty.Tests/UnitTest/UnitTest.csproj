@@ -20,9 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApplicationCore\Services\" />
-    <Folder Include="Builders\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Src\1-Service\Security\Security.Core\Security.Core.csproj" />
   </ItemGroup>
+  
 </Project>
