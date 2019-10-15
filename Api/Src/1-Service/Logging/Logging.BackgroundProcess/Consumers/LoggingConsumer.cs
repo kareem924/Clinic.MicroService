@@ -1,0 +1,16 @@
+﻿using System.Threading.Tasks;
+using Common.Events;
+using Common.RabbitMq;
+using MassTransit;
+
+namespace Logging.BackgroundProcess.Consumers
+{
+    public class LoggingConsumer : BaseConsumer, IConsumer<WriteLogEvent>
+    {
+        public Task Consume(ConsumeContext<WriteLogEvent> context)
+        {
+            context.Respond(new { Status = true });
+            return Task.CompletedTask;
+        }
+    }
+}

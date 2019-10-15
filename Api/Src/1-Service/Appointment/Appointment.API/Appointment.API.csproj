@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IdentityServer4" Version="2.5.2" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.7.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\0-Common\Common.General\Common.General.csproj" />
+    <ProjectReference Include="..\..\..\0-Common\Common.MongoDb\Common.MongoDb.csproj" />
+    <ProjectReference Include="..\..\..\0-Common\Common.RabbitMq\Common.RabbitMq.csproj" />
+    <ProjectReference Include="..\..\..\0-Common\Common.RegisterContainers\Common.RegisterContainers.csproj" />
+    <ProjectReference Include="..\Appointment.Core\Appointment.Core.csproj" />
+    <ProjectReference Include="..\Appointment.Infrastructure\Appointment.Infrastructure.csproj" />
+  </ItemGroup>
+
+ 
+
+</Project>
