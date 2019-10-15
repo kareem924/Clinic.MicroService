@@ -22,7 +22,7 @@ namespace UnitTest.ApplicationCore.Specifications
                 .FirstOrDefault(spec.Criteria);
 
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(_userId);
+            result.Id.ShouldBeNull();
 
         }
 
