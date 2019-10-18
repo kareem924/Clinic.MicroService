@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Security.Core.Entities;
 
-namespace UnitTest.Builders
+namespace IntegrationTest.Builders
 {
    public class UserBuilder
    {

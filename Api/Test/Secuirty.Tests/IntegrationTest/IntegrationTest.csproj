@@ -15,9 +15,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Src\1-Service\Security\Security.Core\Security.Core.csproj" />
     <ProjectReference Include="..\..\..\Src\1-Service\Security\Security.Infrastructure\Security.Infrastructure.csproj" />
   </ItemGroup>
