@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.General.UnitOfWork;
 using IntegrationTest.Builders;
 using Microsoft.EntityFrameworkCore;
 using Security.API.Commands.ExchangeRefreshToken;
-using Security.Core.Entities;
 using Security.Infrastructure.Data;
 using Security.Infrastructure.Data.Repositories;
 using Shouldly;
