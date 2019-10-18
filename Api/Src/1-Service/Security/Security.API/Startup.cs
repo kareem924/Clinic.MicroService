@@ -45,12 +45,7 @@ namespace Security.API
                 Assembly.GetExecutingAssembly());
 
             //services.AddRabbitMq(Configuration);
-            services.AddIdentity<User, Role>(config =>
-            {
-                config.SignIn.RequireConfirmedEmail = true;
-                //config.SignIn.RequireConfirmedPhoneNumber = true;
-            })
-                .AddDefaultTokenProviders();
+          
 
             services.AddIdentity<User, Role>(options =>
             {
