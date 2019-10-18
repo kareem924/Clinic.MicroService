@@ -5,7 +5,6 @@ using Security.Core.Repositories;
 using Security.Core.Specification;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.General.Repository;
 
 namespace Security.API.Queries.GetUserByUserName
 {

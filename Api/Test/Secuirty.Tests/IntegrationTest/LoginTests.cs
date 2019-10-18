@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Security.Core.Entities;
 using Security.Infrastructure.Data;
+using Shouldly;
 using Xunit;
 
 namespace IntegrationTest
@@ -47,12 +48,12 @@ namespace IntegrationTest
                         true, null, DateTime.MaxValue);
                     await userManager.CreateAsync(defaultUser, "Pass@word1");
                     var result = await userManager.CheckPasswordAsync(defaultUser, "Pass@word1");
-                    Assert.True(result);
+                    result.ShouldBeTrue();
 
                 }
                 catch (Exception ex)
                 {
-                    Assert.True(string.IsNullOrEmpty(ex.Message));
+                   string.IsNullOrEmpty(ex.Message).ShouldBeTrue();
                 }
             }
 

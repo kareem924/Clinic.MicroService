@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Security.Infrastructure.Data.Repositories
 {
-    internal class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         public DbContext Context { get; }
 

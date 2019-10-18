@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Common.CQRS;
 using Common.General.UnitOfWork;
@@ -23,20 +20,11 @@ namespace Security.API.Commands.UpdateUserRefreshToken
 
         public async Task Handle(UpdateUserRefreshTokenCommand notification, CancellationToken cancellationToken)
         {
-            try
-            {
-                var userSpecification = new UserSpecification(notification.UserId);
-                var user = await _userRepository.FindAsync(userSpecification);
-                user.AddRefreshToken(notification.RefreshToken, notification.UserId, notification.RemoteIpAddress);
-                await _userRepository.UpdateAsync(user, notification.UserId);
-                await _unitOfWork.CommitAsync();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-           
+            var userSpecification = new UserSpecification(notification.UserId);
+            var user = await _userRepository.FindAsync(userSpecification);
+            user.AddRefreshToken(notification.RefreshToken, notification.UserId, notification.RemoteIpAddress);
+            await _userRepository.UpdateAsync(user, notification.UserId);
+            await _unitOfWork.CommitAsync();
         }
     }
 }

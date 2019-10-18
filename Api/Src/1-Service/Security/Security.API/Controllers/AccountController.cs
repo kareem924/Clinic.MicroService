@@ -10,7 +10,6 @@ using Security.API.Commands.ExchangeRefreshToken;
 using Security.API.Commands.UpdateUserRefreshToken;
 using Security.API.Models;
 using Security.API.Queries.GetUserById;
-using Security.Core.Dto;
 using Security.Infrastructure.Interfaces;
 
 namespace Security.API.Controllers

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Text;
 using Common.Email;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -8,8 +7,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using Security.API.Models;
 using Security.API.Queries.GetUserByUserName;
 using Security.Core.Entities;
 using Security.Infrastructure.Data;
