@@ -12,6 +12,10 @@ namespace Security.API.Dto
             Errors = errors;
         }
 
+        public ExchangeRefreshTokenResponseDto()
+        {
+            
+        }
         public ExchangeRefreshTokenResponseDto(
             AccessTokenDto accessToken, 
             string refreshToken, 
@@ -23,11 +27,11 @@ namespace Security.API.Dto
             RefreshToken = refreshToken;
         }
 
-        public AccessTokenDto AccessToken { get; }
+        public AccessTokenDto AccessToken { get; set; }
 
-        public string RefreshToken { get; }
+        public string RefreshToken { get; set; }
 
-        public IEnumerable<Error> Errors { get; }
+        public IEnumerable<Error> Errors { get; set; }
 
     }
 }

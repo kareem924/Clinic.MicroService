@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.0.0" />
 
     <!--<PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc2" />-->
   </ItemGroup>
@@ -24,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\0-Common\Common.CQRS\Common.CQRS.csproj" />
     <ProjectReference Include="..\..\..\0-Common\Common.General\Common.General.csproj" />
+    <ProjectReference Include="..\..\..\0-Common\Common.RabbitMq\Common.RabbitMq.csproj" />
     <ProjectReference Include="..\Security.Core\Security.Core.csproj" />
     <ProjectReference Include="..\Security.Infrastructure\Security.Infrastructure.csproj" />
   </ItemGroup>

@@ -12,7 +12,7 @@ namespace UnitTest.ApplicationCore.Entities
         [Fact]
         public void HasValidRefreshToken_GivenValidToken_ShouldReturnTrue()
         {
-            const string refreshToken = "1234";
+            const string refreshToken = "a2/tXjsnTXOJejN+9M8OD+uwhMcTDoeqkKjCVc5hesQ=";
             var user = new User("firstName", "", "", "email",true,null,DateTime.MaxValue);
             user.AddRefreshToken(refreshToken, Guid.NewGuid(), "127.0.0.1");
 

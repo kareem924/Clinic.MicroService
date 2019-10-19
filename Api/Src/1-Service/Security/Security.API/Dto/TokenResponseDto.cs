@@ -11,7 +11,10 @@ namespace Security.API.Dto
         {
             Errors = errors;
         }
+        public TokenResponseDto()
+        {
 
+        }
         public TokenResponseDto(AccessTokenDto accessToken, string refreshToken, bool success = false, string message = null)
             : base(success, new[] { message })
         {
@@ -19,11 +22,12 @@ namespace Security.API.Dto
             RefreshToken = refreshToken;
         }
 
-        public AccessTokenDto AccessToken { get; }
+        public AccessTokenDto AccessToken { get; set; }
 
-        public string RefreshToken { get; }
+        public string RefreshToken { get; set; }
+        public bool Success { get; set; }
 
-        public IEnumerable<Error> Errors { get; }
+        public IEnumerable<Error> Errors { get; set; }
 
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Security.API.Dto;
 using Security.API.Queries.GetUserByUserName;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Security.API.Commands.ExchangeRefreshToken;
 using Security.API.Commands.UpdateUserRefreshToken;
@@ -23,18 +24,21 @@ namespace Security.API.Controllers
         private readonly ITokenFactory _tokenFactory;
         private readonly IJwtTokenValidator _jwtTokenValidator;
         private readonly AuthSettings _authSettings;
+        private readonly ILogger<AccountController> _logger;
 
         public AccountController(
             IMediator mediator,
             IJwtFactory jwtFactory,
             ITokenFactory tokenFactory,
             IJwtTokenValidator jwtTokenValidator,
-            IOptions<AuthSettings> authSettings)
+            IOptions<AuthSettings> authSettings,
+            ILogger<AccountController> logger)
         {
             _mediator = mediator;
             _jwtFactory = jwtFactory;
             _tokenFactory = tokenFactory;
             _jwtTokenValidator = jwtTokenValidator;
+            _logger = logger;
             _authSettings = authSettings.Value;
         }
 
@@ -45,7 +49,8 @@ namespace Security.API.Controllers
             var user = await _mediator.Send(new GetLoginUserQuery(request.UserName, request.Password));
             if (user == null)
             {
-                return Ok(new TokenResponseDto(null, ""));
+                _logger.LogWarning("User is null");
+                return BadRequest(new TokenResponseDto(null, ""));
             }
             var refreshToken = _tokenFactory.GenerateToken();
             await _mediator.Publish(new UpdateUserRefreshTokenCommand(

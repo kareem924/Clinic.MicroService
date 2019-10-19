@@ -4,12 +4,14 @@ using Common.General.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using Security.Core.Entities;
 using Security.Infrastructure.Data.Configurations;
 
 namespace Security.Infrastructure.Data
 {
-    public class SecurityDbContext :
+    public sealed class SecurityDbContext :
         IdentityDbContext<User, 
             Role,
             Guid, 
@@ -19,10 +21,11 @@ namespace Security.Infrastructure.Data
             IdentityRoleClaim<Guid>, 
             IdentityUserToken<Guid>>
     {
+        public DatabaseFacade db;
         public SecurityDbContext(DbContextOptions<SecurityDbContext> options)
             : base(options)
         {
-
+            db = Database;
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

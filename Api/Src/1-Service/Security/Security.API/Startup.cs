@@ -1,5 +1,10 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using Common.Email;
+using Common.General.Interfaces;
+using Common.Loggings;
+using Common.RabbitMq;
+using Common.RegisterContainers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Security.API.Queries.GetUserByUserName;
 using Security.Core.Entities;
 using Security.Infrastructure.Data;
@@ -57,6 +63,7 @@ namespace Security.API
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 });
 
+            services.AddRabbitMqMessageBus(Configuration, Assembly.GetExecutingAssembly());
 
             services.AddJwt(Configuration);
             //// Register the Swagger generator, defining 1 or more Swagger documents
@@ -74,7 +81,9 @@ namespace Security.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+            ILoggerFactory loggerFactory,
+            IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -94,6 +103,11 @@ namespace Security.API
             //app.UseSwagger();
             app.UseCors("AllowAll");
             app.UseHttpsRedirection();
+            //app.ConfigureAppBuilder(loggerFactory, serviceProvider, Configuration);
+            loggerFactory.AddProvider(new MicroservicesLoggerProvider(serviceProvider.GetService<IMessageBus>(), Configuration));
+            var logger = serviceProvider.GetService<ILogger>();
+            app.UseErrorLogging(logger);
+
             app.UseMvc();
         }
     }
