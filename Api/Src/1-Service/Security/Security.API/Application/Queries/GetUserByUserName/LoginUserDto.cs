@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Security.API.Queries.GetUserByUserName
+namespace Security.API.Application.Queries.GetUserByUserName
 {
     public class LoginUserDto
     {

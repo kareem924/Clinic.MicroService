@@ -1,7 +1,7 @@
 ﻿using System;
 using Common.CQRS;
 
-namespace Security.API.Commands.ExchangeRefreshToken
+namespace Security.API.Application.Commands.ExchangeRefreshToken
 {
     public class ExchangeRefreshTokenCommand : ICommand
     {

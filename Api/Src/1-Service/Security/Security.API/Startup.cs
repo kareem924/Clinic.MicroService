@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Security.API.Queries.GetUserByUserName;
+using Security.API.Application.Queries.GetUserByUserName;
 using Security.Core.Entities;
 using Security.Infrastructure.Data;
 //using Swashbuckle.AspNetCore.Swagger;

@@ -1,7 +1,7 @@
 ﻿using System;
 using Common.CQRS;
 
-namespace Security.API.Commands.UpdateUserRefreshToken
+namespace Security.API.Application.Commands.UpdateUserRefreshToken
 {
     public class UpdateUserRefreshTokenCommand : ICommand
     {

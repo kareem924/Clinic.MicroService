@@ -5,7 +5,7 @@ using Security.Core.Entities;
 using Security.Core.Repositories;
 using Security.Core.Specification;
 
-namespace Security.API.Queries.GetUserById
+namespace Security.API.Application.Queries.GetUserById
 {
     public class GetUserByIdHandler : IQueryHandler<GetUserByIdQuery, User>
     {

@@ -1,12 +1,12 @@
-﻿using Common.CQRS;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Common.CQRS;
 using Microsoft.AspNetCore.Identity;
 using Security.Core.Entities;
 using Security.Core.Repositories;
 using Security.Core.Specification;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Security.API.Queries.GetUserByUserName
+namespace Security.API.Application.Queries.GetUserByUserName
 {
     public class GetLoginUserQueryHandler : IQueryHandler<GetLoginUserQuery, LoginUserDto>
     {

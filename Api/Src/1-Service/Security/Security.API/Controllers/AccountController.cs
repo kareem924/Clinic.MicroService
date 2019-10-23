@@ -3,14 +3,14 @@ using System.Linq;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Security.API.Dto;
-using Security.API.Queries.GetUserByUserName;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Security.API.Commands.ExchangeRefreshToken;
-using Security.API.Commands.UpdateUserRefreshToken;
+using Security.API.Application.Commands.ExchangeRefreshToken;
+using Security.API.Application.Commands.UpdateUserRefreshToken;
+using Security.API.Application.Queries.GetUserById;
+using Security.API.Application.Queries.GetUserByUserName;
 using Security.API.Models;
-using Security.API.Queries.GetUserById;
 using Security.Infrastructure.Interfaces;
 
 namespace Security.API.Controllers

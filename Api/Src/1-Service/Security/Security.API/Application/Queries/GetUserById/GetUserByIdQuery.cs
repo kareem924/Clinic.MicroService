@@ -2,7 +2,7 @@
 using Common.CQRS;
 using Security.Core.Entities;
 
-namespace Security.API.Queries.GetUserById
+namespace Security.API.Application.Queries.GetUserById
 {
     public class GetUserByIdQuery : IQuery<User>
     {
