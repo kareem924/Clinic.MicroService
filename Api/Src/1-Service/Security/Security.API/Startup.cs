@@ -67,7 +67,7 @@ namespace Security.API
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 });
-
+            //test
             services.AddRabbitMqMessageBus(Configuration, Assembly.GetExecutingAssembly());
 
             services.AddJwt(Configuration);
