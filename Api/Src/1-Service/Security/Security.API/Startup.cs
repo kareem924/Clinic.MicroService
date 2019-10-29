@@ -5,6 +5,7 @@ using Common.General.Interfaces;
 using Common.Loggings;
 using Common.RabbitMq;
 using Common.RegisterContainers;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,22 +34,26 @@ namespace Security.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(option => option.EnableEndpointRouting = false)
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddFluentValidation(fv =>
+                {
+                    fv.ImplicitlyValidateChildProperties = false;
+                });
 
-           
+
             var sendGridKey = Configuration.GetSection("SendGrid");
             services.Configure<AuthMessageSenderOptions>(sendGridKey);
 
-            
+
 
             services.AddTransient<IMapperService, MapperService>();
             Security.Infrastructure.Configure.ConfigureServices(
-                services, 
+                services,
                 Configuration.GetConnectionString("DefaultConnection"),
                 Assembly.GetExecutingAssembly());
 
             //services.AddRabbitMq(Configuration);
-          
+
 
             services.AddIdentity<User, Role>(options =>
             {
