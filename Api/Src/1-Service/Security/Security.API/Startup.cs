@@ -5,6 +5,7 @@ using Common.General.Interfaces;
 using Common.Loggings;
 using Common.RabbitMq;
 using Common.RegisterContainers;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Security.API.Application.Queries.GetUserByUserName;
+using Security.API.Dto;
 using Security.Core.Entities;
 using Security.Infrastructure.Data;
 //using Swashbuckle.AspNetCore.Swagger;
@@ -40,6 +42,7 @@ namespace Security.API
                     fv.ImplicitlyValidateChildProperties = false;
                 });
 
+            services.AddTransient<IValidator<TokenRequestDto>, TokenRequestDtoValidator>();
 
             var sendGridKey = Configuration.GetSection("SendGrid");
             services.Configure<AuthMessageSenderOptions>(sendGridKey);
