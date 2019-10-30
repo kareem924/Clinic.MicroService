@@ -13,7 +13,7 @@ using Xunit.Abstractions;
 
 namespace IntegrationTest.CommandHandlers
 {
-   public class UpdateUserRefreshTokenCommandHandlerTests
+    public class UpdateUserRefreshTokenCommandHandlerTests
     {
         private readonly UserRepository _userRepository;
         private readonly SecurityDbContext _dbContext;

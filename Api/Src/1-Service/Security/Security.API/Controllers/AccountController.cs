@@ -12,6 +12,7 @@ using Security.API.Application.Queries.GetUserById;
 using Security.API.Application.Queries.GetUserByUserName;
 using Security.API.Models;
 using Security.Infrastructure.Interfaces;
+using Security.API.Application.Commands.RegisterUser;
 
 namespace Security.API.Controllers
 {
@@ -85,6 +86,23 @@ namespace Security.API.Controllers
                 refreshToken,
                 request.RefreshToken));
             return Ok(new ExchangeRefreshTokenResponseDto(jwtToken, refreshToken, true));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ExchangeRefreshTokenResponseDto>> Register([FromBody]SignUpRequestDto request)
+        {
+            await _mediator.Publish(new RegisterUserCommand(
+                request.FirstName,
+                request.LastName,
+                request.Email,
+                request.Street,
+                request.State,
+                request.City,
+                request.Country,
+                request.BirthDate,
+                request.PhoneNumber,
+                request.Password));
+            return Ok();
         }
     }
 }

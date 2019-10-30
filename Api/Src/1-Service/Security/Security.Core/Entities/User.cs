@@ -40,7 +40,8 @@ namespace Security.Core.Entities
             string email,
             bool emailConfirmed,
             Address address,
-            DateTime birthDate)
+            DateTime birthDate,
+            string phoneNumber)
         {
             if (string.IsNullOrWhiteSpace(firstName))
                 throw new ArgumentNullException(nameof(firstName));
@@ -53,11 +54,12 @@ namespace Security.Core.Entities
             EmailConfirmed = emailConfirmed;
             Address = address;
             BirthDate = birthDate;
+            PhoneNumber = phoneNumber;
         }
 
-        public void AddRole(Role role, Guid userId)
+        public void AddRole(Role role)
         {
-            _roles.Add(new UserRole(){Role = role ,UserId = userId });
+            _roles.Add(new UserRole(){Role = role ,UserId = Id });
         }
 
         public bool HasRole(Role role)
