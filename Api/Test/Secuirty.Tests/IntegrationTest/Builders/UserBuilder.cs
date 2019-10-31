@@ -21,7 +21,7 @@ namespace IntegrationTest.Builders
 
        public User WithOneRefreshToken()
        {
-            _user = new User("firstName", "", "", UserId, true, null, DateTime.MaxValue);
+            _user = new User("firstName", "", "", UserId, true, null, DateTime.MaxValue,string.Empty);
            _user.AddRefreshToken(refreshToken, Guid.NewGuid(), "127.0.0.1");
             return _user;
        }

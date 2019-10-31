@@ -17,7 +17,7 @@ namespace Security.Infrastructure.Data
                 "DemoLast",
                 "demouser@microsoft.com",
                 "demouser@microsoft.com",
-                true,null,DateTime.MaxValue);
+                true, null, DateTime.MaxValue, "");
             await userManager.CreateAsync(defaultUser, "Pass@word1");
         }
         public static async Task SeedRolesAsync(RoleManager<Role> roleManager)
