@@ -11,5 +11,10 @@ namespace Security.Core.Specification
             AddInclude(u => u.Roles);
             AddInclude(u => u.RefreshTokens);
         }
+        public UserSpecification(string email) : base(u => u.Email == email)
+        {
+            AddInclude(u => u.Roles);
+            AddInclude(u => u.RefreshTokens);
+        }
     }
 }

@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Security.Core.Specification;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -21,21 +22,18 @@ namespace IntegrationTest.CommandHandlers
 {
     public class RegisterUserCommandHandlerTests
     {
-        private UserManager<User> _userManager;
         private UserRepository _userRepository;
         private SecurityDbContext _dbContext;
         private UserBuilder UserBuilder { get; } = new UserBuilder();
         private readonly ITestOutputHelper _output;
         private RegisterUserCommandHandler _commandHandler;
         private ILoggerFactory _logging;
-        private IServiceCollection _services;
+        private readonly IServiceCollection _services;
         public RegisterUserCommandHandlerTests(
             ITestOutputHelper output)
         {
             _output = output;
-            var dbOptions = new DbContextOptionsBuilder<SecurityDbContext>()
-                .UseInMemoryDatabase(databaseName: "TestSecurity")
-                .Options;
+
 
             _services = new ServiceCollection()
                 .AddEntityFrameworkInMemoryDatabase();
@@ -69,14 +67,17 @@ namespace IntegrationTest.CommandHandlers
                     // seed sample user data
                     var userManager = scopedServices.GetRequiredService<UserManager<User>>();
                     _logging = scopedServices.GetRequiredService<ILoggerFactory>();
+                    var roleManager = scopedServices.GetRequiredService<RoleManager<Role>>();
+                    await SecurityDbContextSeed.SeedRolesAsync(roleManager);
+
                     _commandHandler = new RegisterUserCommandHandler(userManager, _logging.CreateLogger<RegisterUserCommandHandler>());
 
                     _dbContext = scopedServices.GetRequiredService<SecurityDbContext>();
                     IUnitOfWork unitOfWork = new UnitOfWork(_dbContext);
                     _userRepository = new UserRepository(unitOfWork);
                     await _commandHandler.Handle(new RegisterUserCommand("test", "test2", "test@test.test", "15 sh", "dokki", "giza", "egypt", DateTime.Now, "", "P@ssw0rd"), CancellationToken.None);
-                    true.ShouldBeTrue();
-
+                    var createdUser = await _userRepository.FindAsync(new UserSpecification("test@test.test"));
+                    createdUser.ShouldNotBeNull();
                 }
                 catch (Exception ex)
                 {
