@@ -10,8 +10,8 @@ using Security.Infrastructure.Data;
 namespace Security.Infrastructure.Migrations
 {
     [DbContext(typeof(SecurityDbContext))]
-    [Migration("20191011065302_UpdatedRefreshTokenUserId2")]
-    partial class UpdatedRefreshTokenUserId2
+    [Migration("20191107235214_UpdateUserRoles2")]
+    partial class UpdateUserRoles2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,7 +110,6 @@ namespace Security.Infrastructure.Migrations
             modelBuilder.Entity("Security.Core.Entities.RefreshToken", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Expires")
@@ -261,16 +260,11 @@ namespace Security.Infrastructure.Migrations
                     b.Property<Guid?>("RoleId1")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("UserId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
                     b.HasIndex("RoleId1");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("AspNetUserRoles");
                 });
@@ -372,7 +366,7 @@ namespace Security.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Security.Core.Entities.Role", "Role")
+                    b.HasOne("Security.Core.Entities.Role", null)
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId1");
 
@@ -381,10 +375,6 @@ namespace Security.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Security.Core.Entities.User", "User")
-                        .WithMany("Roles")
-                        .HasForeignKey("UserId1");
                 });
 #pragma warning restore 612, 618
         }

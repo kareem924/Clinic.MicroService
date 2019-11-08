@@ -53,13 +53,13 @@ namespace UnitTest.ApplicationCore.Entities
         {
             var role = new Role("test");
             var user = new User(
-                "firstName", 
-                "", 
-                "", 
-                "email", 
-                true, 
-                null, 
-                DateTime.MaxValue, 
+                "firstName",
+                "",
+                "",
+                "email",
+                true,
+                null,
+                DateTime.MaxValue,
                 string.Empty);
             user.AddRole(role);
 

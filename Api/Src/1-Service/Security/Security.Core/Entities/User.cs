@@ -31,6 +31,7 @@ namespace Security.Core.Entities
 
         public IReadOnlyCollection<RefreshToken> RefreshTokens => _refreshTokens.AsReadOnly();
 
+
         public User() { }
 
         public User(
@@ -64,7 +65,7 @@ namespace Security.Core.Entities
 
         public bool HasRole(Role role)
         {
-            return _roles.Any(rt => rt.Role == role);
+            return _roles.Any(rt => rt.Role== role);
         }
 
         public bool HasValidRefreshToken(string refreshToken)

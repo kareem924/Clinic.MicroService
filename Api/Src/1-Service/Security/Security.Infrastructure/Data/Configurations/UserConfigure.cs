@@ -8,9 +8,12 @@ namespace Security.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasMany(r => r.Roles)
+            builder.ToTable("Users");
+            builder.HasMany(u => u.Roles)
                 .WithOne(ur => ur.User)
-                .HasForeignKey(ur => ur.UserId);
+                .HasForeignKey(ur => ur.UserId)
+                .IsRequired();
+
             builder.HasMany(r => r.RefreshTokens)
                 .WithOne(ur => ur.User)
                 .HasForeignKey(ur => ur.UserId);

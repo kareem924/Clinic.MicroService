@@ -52,9 +52,10 @@ namespace Security.Infrastructure.Data
                 if (typeof(BaseEntity<>).IsAssignableFrom(type.ClrType))
                     modelBuilder.SetSoftDeleteFilter(type.ClrType);
             }
-
-            modelBuilder.ApplyConfiguration(new UserConfigure());
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UserConfigure());
+            modelBuilder.ApplyConfiguration(new RoleConfigure());
+            modelBuilder.ApplyConfiguration(new UserRoleConfigure());
         }
 
         public void SetGlobalQuery<T>(ModelBuilder builder) where T : BaseEntity<Guid>

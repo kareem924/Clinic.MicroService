@@ -7,7 +7,9 @@ namespace Security.Core.Entities
 {
     public class Role : IdentityRole<Guid>, IAggregateRoot
     {
-        public ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
+        private readonly List<UserRole> _users = new List<UserRole>();
+
+        public IReadOnlyCollection<UserRole> Users => _users.AsReadOnly();
 
         public Role()
         {

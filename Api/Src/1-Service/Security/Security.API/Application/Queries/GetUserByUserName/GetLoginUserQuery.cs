@@ -1,8 +1,9 @@
 ﻿using Common.CQRS;
+using Security.Core.Entities;
 
 namespace Security.API.Application.Queries.GetUserByUserName
 {
-    public class GetLoginUserQuery: IQuery<LoginUserDto>
+    public class GetLoginUserQuery: IQuery<User>
     {
         public string UserName { get; private set; }
 

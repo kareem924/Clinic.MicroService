@@ -51,7 +51,7 @@ namespace Security.API.Controllers
             if (user == null)
             {
                 _logger.LogWarning("User is null");
-                return BadRequest(new TokenResponseDto(null, ""));
+                return Unauthorized(new TokenResponseDto(null, ""));
             }
             var refreshToken = _tokenFactory.GenerateToken();
             await _mediator.Publish(new UpdateUserRefreshTokenCommand(
@@ -59,7 +59,7 @@ namespace Security.API.Controllers
                 refreshToken,
                 Request.HttpContext.Connection.RemoteIpAddress?.ToString()));
             return Ok(new TokenResponseDto(
-                await _jwtFactory.GenerateEncodedToken(user.Id.ToString(), user.FirstName),
+                await _jwtFactory.GenerateEncodedToken(user),
                 refreshToken,
                 true));
         }
@@ -79,7 +79,7 @@ namespace Security.API.Controllers
             {
                 return BadRequest();
             }
-            var jwtToken = await _jwtFactory.GenerateEncodedToken(user.Id.ToString(), user.UserName);
+            var jwtToken = await _jwtFactory.GenerateEncodedToken(user);
             var refreshToken = _tokenFactory.GenerateToken();
             await _mediator.Publish(new ExchangeRefreshTokenCommand(
                 user.Id,

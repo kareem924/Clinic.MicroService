@@ -2,10 +2,13 @@
 using Security.Core.Dto;
 using Security.Infrastructure.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using Security.Core.Entities;
 
 namespace Security.Infrastructure.Service
 {
@@ -21,19 +24,22 @@ namespace Security.Infrastructure.Service
             ThrowIfInvalidOptions(_jwtOptions);
         }
 
-        public async Task<AccessTokenDto> GenerateEncodedToken(string id, string userName)
+        public async Task<AccessTokenDto> GenerateEncodedToken(User user)
         {
-            var identity = GenerateClaimsIdentity(id, userName);
+            var identity = GenerateClaimsIdentity(user);
 
-            var claims = new[]
+            var claims = new List<Claim>
             {
-                 new Claim(JwtRegisteredClaimNames.Sub, userName),
+                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                  new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
                  new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
                  identity.FindFirst(Helper.Constants.Strings.JwtClaimIdentifiers.Rol),
                  identity.FindFirst(Helper.Constants.Strings.JwtClaimIdentifiers.Id)
              };
-
+            //user.Roles.ToList()
+            //    .ForEach(role =>
+            //        claims.Add(
+            //            new Claim(Helper.Constants.Strings.JwtClaimIdentifiers.Rol, role.Role.Name)));
             // Create the JWT security token and encode it.
             var jwt = new JwtSecurityToken(
                 _jwtOptions.Issuer,
@@ -46,13 +52,17 @@ namespace Security.Infrastructure.Service
             return new AccessTokenDto(_jwtTokenHandler.WriteToken(jwt), (int)_jwtOptions.ValidFor.TotalSeconds);
         }
 
-        private static ClaimsIdentity GenerateClaimsIdentity(string id, string userName)
+        private static ClaimsIdentity GenerateClaimsIdentity(User user)
         {
-            return new ClaimsIdentity(new GenericIdentity(userName, "Token"), new[]
+            var claimsIdentity = new ClaimsIdentity(new GenericIdentity(user.UserName, "Token"), new[]
             {
-                new Claim(Helper.Constants.Strings.JwtClaimIdentifiers.Id, id),
-                new Claim(Helper.Constants.Strings.JwtClaimIdentifiers.Rol, Helper.Constants.Strings.JwtClaims.ApiAccess)
+                new Claim(Helper.Constants.Strings.JwtClaimIdentifiers.Id, user.Id.ToString()),
+              
             });
+            user.Roles.ToList()
+                .ForEach(role =>
+                    claimsIdentity.AddClaim(new Claim(Helper.Constants.Strings.JwtClaimIdentifiers.Rol, role.Role.Name)));
+            return claimsIdentity;
         }
 
         /// <returns>Date converted to seconds since Unix epoch (Jan 1, 1970, midnight UTC).</returns>

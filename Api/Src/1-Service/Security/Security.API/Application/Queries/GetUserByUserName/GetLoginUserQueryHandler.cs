@@ -8,7 +8,7 @@ using Security.Core.Specification;
 
 namespace Security.API.Application.Queries.GetUserByUserName
 {
-    public class GetLoginUserQueryHandler : IQueryHandler<GetLoginUserQuery, LoginUserDto>
+    public class GetLoginUserQueryHandler : IQueryHandler<GetLoginUserQuery, User>
     {
         private readonly UserManager<User> _userManager;
         private readonly IUserRepository _userRepository;
@@ -22,7 +22,7 @@ namespace Security.API.Application.Queries.GetUserByUserName
             _userRepository = userRepository;
             _mapperService = mapperService;
         }
-        public async Task<LoginUserDto> Handle(GetLoginUserQuery request, CancellationToken cancellationToken)
+        public async Task<User> Handle(GetLoginUserQuery request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
             if (user == null)
@@ -36,7 +36,7 @@ namespace Security.API.Application.Queries.GetUserByUserName
             }
             var userSpecification = new UserSpecification(user.Id);
             var loggedUser = await _userRepository.FindAsync(userSpecification);
-            return _mapperService.MapUserToLoginUserDto(loggedUser);
+            return loggedUser;
         }
     }
 }

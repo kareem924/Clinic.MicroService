@@ -9,11 +9,13 @@ namespace Security.Core.Specification
         public UserSpecification(Guid id) : base(u => u.Id == id)
         {
             AddInclude(u => u.Roles);
+            AddInclude("Roles.Role");
             AddInclude(u => u.RefreshTokens);
         }
         public UserSpecification(string email) : base(u => u.Email == email)
         {
             AddInclude(u => u.Roles);
+            AddInclude("Roles.Role");
             AddInclude(u => u.RefreshTokens);
         }
     }

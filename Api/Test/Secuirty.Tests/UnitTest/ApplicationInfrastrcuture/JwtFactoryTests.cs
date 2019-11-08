@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Moq;
+using Security.Core.Entities;
 using Security.Infrastructure.Interfaces;
 using Security.Infrastructure.Service;
 using Shouldly;
@@ -36,7 +37,7 @@ namespace UnitTest.ApplicationInfrastrcuture
             var jwtFactory = new JwtFactory(mockJwtTokenHandler.Object, Options.Create(jwtIssuerOptions));
 
             // act
-            var result = await jwtFactory.GenerateEncodedToken(id, "userName");
+            var result = await jwtFactory.GenerateEncodedToken(new User());
 
             // assert
             result.Token.ShouldBe(token);

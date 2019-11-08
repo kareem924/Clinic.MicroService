@@ -10,8 +10,8 @@ using Security.Infrastructure.Data;
 namespace Security.Infrastructure.Migrations
 {
     [DbContext(typeof(SecurityDbContext))]
-    [Migration("20191011064244_UpdatedRefreshTokenUserId")]
-    partial class UpdatedRefreshTokenUserId
+    [Migration("20191107235326_UpdateUserRoles3")]
+    partial class UpdateUserRoles3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,7 +110,6 @@ namespace Security.Infrastructure.Migrations
             modelBuilder.Entity("Security.Core.Entities.RefreshToken", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Expires")
@@ -258,19 +257,9 @@ namespace Security.Infrastructure.Migrations
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("RoleId1")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
-
-                    b.HasIndex("RoleId1");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("AspNetUserRoles");
                 });
@@ -313,7 +302,7 @@ namespace Security.Infrastructure.Migrations
 
             modelBuilder.Entity("Security.Core.Entities.RefreshToken", b =>
                 {
-                    b.HasOne("Security.Core.Entities.User", null)
+                    b.HasOne("Security.Core.Entities.User", "User")
                         .WithMany("RefreshTokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -372,19 +361,11 @@ namespace Security.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Security.Core.Entities.Role", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId1");
-
                     b.HasOne("Security.Core.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Security.Core.Entities.User", "User")
-                        .WithMany("Roles")
-                        .HasForeignKey("UserId1");
                 });
 #pragma warning restore 612, 618
         }

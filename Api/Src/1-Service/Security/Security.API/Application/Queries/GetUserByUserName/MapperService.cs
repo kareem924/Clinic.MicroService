@@ -17,6 +17,7 @@ namespace Security.API.Application.Queries.GetUserByUserName
                 CreationDate = user.CreationDate,
                 UpdateBy = user.UpdateBy,
             };
+
             return userDto;
         }
        
