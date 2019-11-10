@@ -2,10 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
+using Microsoft.AspNetCore.Identity;
+using Security.Core.Entities;
+using Security.Infrastructure.Data.Repositories;
 
 namespace Security.API.Dto
 {
-    public class SignUpRequestDtoValidator
+    public class SignUpRequestDtoValidator : AbstractValidator<SignUpRequestDto>
     {
+        private readonly UserManager<User> _userManager;
+        public SignUpRequestDtoValidator(UserManager<User> userManager)
+        {
+            _userManager = userManager;
+            AddRules();
+        }
+        private void AddRules()
+        {
+            RuleFor(input => input.Email).NotNull()
+                .WithMessage("Email is required.");
+            RuleFor(input => input.Email).MustAsync(async (id, cancellation) => await CheckIsValidEmail(id))
+                .WithMessage("This Email is already Taken");
+            RuleFor(input => input.Password)
+                .NotNull().WithMessage("Password is required.")
+                .MinimumLength(6).WithMessage("MinimumLength Should be more than 6 chars");
+        }
+
+        private  async Task<bool> CheckIsValidEmail(string email)
+        {
+            var checkEmail = await _userManager.FindByEmailAsync(email);
+            return checkEmail != null;
+        }
     }
 }

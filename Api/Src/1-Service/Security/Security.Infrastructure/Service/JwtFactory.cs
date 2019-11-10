@@ -36,11 +36,7 @@ namespace Security.Infrastructure.Service
                  identity.FindFirst(Helper.Constants.Strings.JwtClaimIdentifiers.Rol),
                  identity.FindFirst(Helper.Constants.Strings.JwtClaimIdentifiers.Id)
              };
-            //user.Roles.ToList()
-            //    .ForEach(role =>
-            //        claims.Add(
-            //            new Claim(Helper.Constants.Strings.JwtClaimIdentifiers.Rol, role.Role.Name)));
-            // Create the JWT security token and encode it.
+
             var jwt = new JwtSecurityToken(
                 _jwtOptions.Issuer,
                 _jwtOptions.Audience,

@@ -12,16 +12,15 @@ namespace Security.API.Dto
 
         public string LastName { get; set; }
 
-        public string UserName { get; set; }
-
         public string Email { get; set; }
-        public String Street { get; set; }
 
-        public String City { get; set; }
+        public string Street { get; set; }
 
-        public String State { get; set; }
+        public string City { get; set; }
 
-        public String Country { get; set; }
+        public string State { get; set; }
+
+        public string Country { get; set; }
 
         public DateTime BirthDate { get; set; }
 
