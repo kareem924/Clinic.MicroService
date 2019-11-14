@@ -21,7 +21,7 @@ namespace Security.API.Dto
         {
             RuleFor(input => input.Email).NotNull()
                 .WithMessage("Email is required.");
-            RuleFor(input => input.Email).MustAsync(async (id, cancellation) => await CheckIsValidEmail(id))
+            RuleFor(input => input.Email).MustAsync( (email, cancellation) =>  CheckIsValidEmail(email))
                 .WithMessage("This Email is already Taken");
             RuleFor(input => input.Password)
                 .NotNull().WithMessage("Password is required.")

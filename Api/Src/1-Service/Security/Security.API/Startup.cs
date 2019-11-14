@@ -43,6 +43,7 @@ namespace Security.API
                 });
 
             services.AddTransient<IValidator<TokenRequestDto>, TokenRequestDtoValidator>();
+            //services.AddTransient<IValidator<SignUpRequestDto>, SignUpRequestDtoValidator>();
 
             var sendGridKey = Configuration.GetSection("SendGrid");
             services.Configure<AuthMessageSenderOptions>(sendGridKey);

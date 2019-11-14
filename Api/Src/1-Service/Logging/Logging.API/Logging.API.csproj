@@ -9,4 +9,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\0-Common\Common.MongoDb\Common.MongoDb.csproj" />
+    <ProjectReference Include="..\Logging.Infrastructure\Logging.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

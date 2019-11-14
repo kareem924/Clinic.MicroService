@@ -1,8 +1,9 @@
 ﻿using System;
+using Common.General.Interfaces;
 
 namespace Logging.Core.Entities
 {
-    public class LogEntry
+    public class LogEntry : IAggregateRoot
     {
         public DateTime Date => DateTime.Now;
 
