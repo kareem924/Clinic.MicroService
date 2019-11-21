@@ -27,5 +27,7 @@ namespace Common.MongoDb
             services.AddScoped<IDatabaseInitializer, MongoInitializer>();
             services.AddScoped<IDatabaseSeeder, MongoSeeder>();
         }
+
+
     }
 }

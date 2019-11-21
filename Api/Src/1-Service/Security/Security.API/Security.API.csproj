@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\0-Common\Common.CQRS\Common.CQRS.csproj" />
     <ProjectReference Include="..\..\..\0-Common\Common.General\Common.General.csproj" />
+    <ProjectReference Include="..\..\..\0-Common\Common.Mvc\Common.Mvc.csproj" />
     <ProjectReference Include="..\..\..\0-Common\Common.RabbitMq\Common.RabbitMq.csproj" />
     <ProjectReference Include="..\Security.Core\Security.Core.csproj" />
     <ProjectReference Include="..\Security.Infrastructure\Security.Infrastructure.csproj" />

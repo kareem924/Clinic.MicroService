@@ -31,7 +31,7 @@ namespace Security.API.Dto
         private  async Task<bool> CheckIsValidEmail(string email)
         {
             var checkEmail = await _userManager.FindByEmailAsync(email);
-            return checkEmail != null;
+            return checkEmail == null;
         }
     }
 }

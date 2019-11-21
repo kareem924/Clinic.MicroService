@@ -3,8 +3,8 @@ using System.Reflection;
 using Common.Email;
 using Common.General.Interfaces;
 using Common.Loggings;
+using Common.Mvc;
 using Common.RabbitMq;
-using Common.RegisterContainers;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -35,15 +35,19 @@ namespace Security.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(option => option.EnableEndpointRouting = false)
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-                .AddFluentValidation(fv =>
+            services.AddMvc(option =>
                 {
-                    fv.ImplicitlyValidateChildProperties = false;
+                    option.Filters.Add(typeof(InvalidInputActionFilter));
+                    option.EnableEndpointRouting = false;
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddFluentValidation(options =>
+                {
+                    options.ImplicitlyValidateChildProperties = false;
                 });
 
             services.AddTransient<IValidator<TokenRequestDto>, TokenRequestDtoValidator>();
-            //services.AddTransient<IValidator<SignUpRequestDto>, SignUpRequestDtoValidator>();
+            services.AddTransient<IValidator<SignUpRequestDto>, SignUpRequestDtoValidator>();
 
             var sendGridKey = Configuration.GetSection("SendGrid");
             services.Configure<AuthMessageSenderOptions>(sendGridKey);
@@ -51,7 +55,7 @@ namespace Security.API
 
 
             services.AddTransient<IMapperService, MapperService>();
-            Security.Infrastructure.Configure.ConfigureServices(
+            Infrastructure.Configure.ConfigureServices(
                 services,
                 Configuration.GetConnectionString("DefaultConnection"),
                 Assembly.GetExecutingAssembly());
@@ -61,7 +65,12 @@ namespace Security.API
 
             services.AddIdentity<User, Role>(options =>
             {
-                options.User.RequireUniqueEmail = false;
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
             })
     .AddEntityFrameworkStores<SecurityDbContext>()
     .AddDefaultTokenProviders();
