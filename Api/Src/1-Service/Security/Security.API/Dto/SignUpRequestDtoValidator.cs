@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Security.Core.Entities;
-using Security.Infrastructure.Data.Repositories;
 
 namespace Security.API.Dto
 {

@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common.Commands\Common.Commands.csproj" />
-    <ProjectReference Include="..\Common.Events\Common.Events.csproj" />
     <ProjectReference Include="..\Common.Extensions\Common.Extensions.csproj" />
     <ProjectReference Include="..\Common.Loggings\Common.Loggings.csproj" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Common.Email
+namespace Common.Communication
 {
    public interface IEmailSender
     {

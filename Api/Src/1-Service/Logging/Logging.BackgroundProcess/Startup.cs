@@ -1,8 +1,9 @@
 ﻿using System;
-using Common.General.Repository;
+using System.Reflection;
 using Common.MongoDb;
+using Common.RabbitMq;
 using Common.RegisterContainers;
-using Logging.Core.Entities;
+using Logging.BackgroundProcess.Consumers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +25,11 @@ namespace Logging.BackgroundProcess
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMongoDB(Configuration);
-
             Infrastructure.Configure.ConfigureServices(services);
+            services.AddMongoDB(Configuration);
+            services.AddScoped<IIntegrationEventHandler<WriteLogEvent>, WriteLogEventHandler>();
+
+            services.AddIntegrationSupport();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddLogging();
         }
@@ -37,10 +40,7 @@ namespace Logging.BackgroundProcess
             ILoggerFactory loggerFactory,
             IServiceProvider serviceProvider)
         {
-            var requestService = new ConsumerLoggingService(
-                Configuration,
-                app.ApplicationServices.GetRequiredService<ILoggerFactory>(), serviceProvider.GetService<IRepository<LogEntry>>());
-            requestService.Start();
+            app.AddIntegrationSupport(Assembly.GetExecutingAssembly());
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.ConfigureAppBuilder(loggerFactory, serviceProvider, Configuration);

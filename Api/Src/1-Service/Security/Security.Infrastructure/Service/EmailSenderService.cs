@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Common.Email;
+using Common.Communication;
 using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;

@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Common.General.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Common.Loggings;
+using Common.RabbitMq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -22,7 +22,7 @@ namespace Common.RegisterContainers
             IServiceProvider serviceProvider,
             IConfiguration configuration)
         {
-            loggerFactory.AddProvider(new MicroservicesLoggerProvider(serviceProvider.GetService<IMessageBus>(), configuration));
+            loggerFactory.AddProvider(new MicroservicesLoggerProvider(serviceProvider.GetService<IEventBus>(), configuration));
             var logger = serviceProvider.GetService<ILogger>();
             app.UseErrorLogging(logger);
             return app;

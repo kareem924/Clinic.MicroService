@@ -24,7 +24,8 @@ namespace Appointment.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRabbitMqMessageBus(Configuration, Assembly.GetExecutingAssembly());
+            //services.AddRabbitMqMessageBus();
+            services.AddIntegrationSupport();
             services.AddMongoDB(Configuration);
 
             Appointment.Infrastructure.Configure.ConfigureServices(services);
@@ -52,7 +53,8 @@ namespace Appointment.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-           
+
+            app.AddIntegrationSupport(assembly: Assembly.GetExecutingAssembly());
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.ConfigureAppBuilder(loggerFactory, serviceProvider, Configuration);

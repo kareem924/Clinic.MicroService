@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Common.General.Exceptions
+namespace Common.MongoDb.Exceptions
 {
     [Serializable]
     public class ValidationErrorException : Exception

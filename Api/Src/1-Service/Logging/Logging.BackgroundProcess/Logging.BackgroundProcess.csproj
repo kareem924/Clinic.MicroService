@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\0-Common\Common.Events\Common.Events.csproj" />
     <ProjectReference Include="..\..\..\0-Common\Common.MongoDb\Common.MongoDb.csproj" />
     <ProjectReference Include="..\..\..\0-Common\Common.RabbitMq\Common.RabbitMq.csproj" />
     <ProjectReference Include="..\Logging.Infrastructure\Logging.Infrastructure.csproj" />

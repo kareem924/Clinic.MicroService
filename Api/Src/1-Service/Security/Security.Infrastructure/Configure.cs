@@ -1,5 +1,4 @@
-﻿using Common.Email;
-using Common.General.UnitOfWork;
+﻿using Common.General.UnitOfWork;
 using Common.RegisterContainers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,8 +6,7 @@ using Security.Infrastructure.Data;
 using Security.Infrastructure.Data.Repositories;
 using Security.Infrastructure.Service;
 using System.Reflection;
-using Common.General.Repository;
-using Security.Core.Entities;
+using Common.Communication;
 using Security.Core.Repositories;
 using Security.Infrastructure.Interfaces;
 

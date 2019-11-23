@@ -1,4 +1,4 @@
-﻿namespace Common.Email
+﻿namespace Common.Communication
 {
     public class AuthMessageSenderOptions
     {

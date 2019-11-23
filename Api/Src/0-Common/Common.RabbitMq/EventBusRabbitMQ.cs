@@ -21,14 +21,14 @@ namespace Common.RabbitMq
         private readonly IRabbitMQPersistentConnection _persistentConnection;
         private readonly ILogger<EventBusRabbitMQ> _logger;
         private readonly int _retryCount;
-        private readonly IServiceScopeFactory _factory;
+        private readonly IServiceProvider _factory;
         private IModel _consumerChannel;
         private string _queueName;
 
         public EventBusRabbitMQ(
             IRabbitMQPersistentConnection rabbitMQPersistentConnection,
             ILogger<EventBusRabbitMQ> logger,
-            IServiceScopeFactory factory,//TODO: (Kmuhammad) replace with IServiceProvider
+            IServiceProvider factory,//TODO: (Kmuhammad) replace with IServiceProvider
             IConfiguration configuration)
         {
             _persistentConnection = rabbitMQPersistentConnection ?? throw new ArgumentNullException(nameof(rabbitMQPersistentConnection));
@@ -158,7 +158,8 @@ namespace Common.RabbitMq
                     {
                         var integrationEvent = JsonHelper.Deserialize(message, eventType);
                         await Task.Yield();
-                        await (Task)handlerConcreteType.GetMethod("Handle").Invoke(eventHandler, new object[] { integrationEvent });
+                        await (Task)handlerConcreteType.GetMethod("Handle")
+                            .Invoke(eventHandler, new object[] { integrationEvent });
                     }
                 }
             }

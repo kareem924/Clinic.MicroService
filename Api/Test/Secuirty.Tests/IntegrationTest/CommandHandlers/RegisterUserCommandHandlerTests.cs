@@ -10,8 +10,6 @@ using Security.Infrastructure.Data;
 using Security.Infrastructure.Data.Repositories;
 using Shouldly;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Security.Core.Specification;

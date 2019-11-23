@@ -1,7 +1,6 @@
-﻿using Common.Events;
-using Common.General.Exceptions;
-using Common.General.Interfaces;
+﻿using Common.General.Exceptions;
 using Common.General.SharedKernel;
+using Common.RabbitMq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,15 +10,15 @@ namespace Common.Loggings
 {
     public class MicroservicesLogging : ILogger
     {
-        private readonly IMessageBus _messageBus;
-        private readonly string CategoryName;
-        private readonly IConfiguration Configuration;
+        private readonly IEventBus _eventBus;
+        private readonly string _categoryName;
+        private readonly IConfiguration _configuration;
 
-        public MicroservicesLogging(string categoryName, IConfiguration configuration, IMessageBus messageBus)
+        public MicroservicesLogging(string categoryName, IConfiguration configuration, IEventBus eventBus)
         {
-            CategoryName = categoryName;
-            _messageBus = messageBus;
-            Configuration = configuration;
+            _categoryName = categoryName;
+            _eventBus = eventBus;
+            _configuration = configuration;
         }
 
         public IDisposable BeginScope<TState>(TState state)
@@ -29,13 +28,13 @@ namespace Common.Loggings
 
         public bool IsEnabled(LogLevel logLevel)
         {
-            var logNamespaces = Configuration.GetSection(ApplicationConstants.Logging)[ApplicationConstants.LoggingNamespaces];
+            var logNamespaces = _configuration.GetSection(ApplicationConstants.Logging)[ApplicationConstants.LoggingNamespaces];
             if (logNamespaces != null)
             {
                 var logNamespacesArr = logNamespaces.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(i => i + ".")
                     .ToList();
-                return logNamespacesArr.Any(i => CategoryName.StartsWith(i));
+                return logNamespacesArr.Any(i => _categoryName.StartsWith(i));
             }
             return false;
         }
@@ -53,14 +52,14 @@ namespace Common.Loggings
                 message = formatter(state, exception);
             }
 
-            _messageBus.Send(EventRouteConstants.LoggingService, new WriteLogEvent()
+            _eventBus.Publish(new WriteLogEvent()
             {
                 Level = logLevel.ToString(),
-                Logger = CategoryName,
+                Logger = _categoryName,
                 Thread = eventId.ToString(),
                 Message = logLevel != LogLevel.Error ?
                     message :
-                    string.Format(Configuration.GetSection(ApplicationConstants.Notification)[ApplicationConstants.ErrorEmailSubject], exception?.Message),
+                    string.Format(_configuration.GetSection(ApplicationConstants.Notification)[ApplicationConstants.ErrorEmailSubject], exception?.Message),
                 Data = state.ToString(),
                 StackTrace = exception?.StackTrace,
                 ExceptionTypeName = exception?.GetType().Name
@@ -68,13 +67,13 @@ namespace Common.Loggings
 
             if ((logLevel == LogLevel.Error || logLevel == LogLevel.Critical) && exception != null && !(exception is ValidationErrorException))
             {
-                _messageBus.Send(EventRouteConstants.NotificationService, new EmailContentCreated()
-                {
-                    From = Configuration.GetSection(ApplicationConstants.Notification)[ApplicationConstants.SystemEmail],
-                    To = Configuration.GetSection(ApplicationConstants.Notification)[ApplicationConstants.AdminEmail],
-                    Subject = string.Format(Configuration.GetSection(ApplicationConstants.Notification)[ApplicationConstants.ErrorEmailSubject], exception?.Message.Replace("\n", " ")),
-                    Body = $"Data:{message}, Trace:{exception?.StackTrace}",
-                });
+                //_eventBus.Publish(EventRouteConstants.NotificationService, new EmailContentCreated()
+                //{
+                //    From = Configuration.GetSection(ApplicationConstants.Notification)[ApplicationConstants.SystemEmail],
+                //    To = Configuration.GetSection(ApplicationConstants.Notification)[ApplicationConstants.AdminEmail],
+                //    Subject = string.Format(Configuration.GetSection(ApplicationConstants.Notification)[ApplicationConstants.ErrorEmailSubject], exception?.Message.Replace("\n", " ")),
+                //    Body = $"Data:{message}, Trace:{exception?.StackTrace}",
+                //});
             }
         }
 

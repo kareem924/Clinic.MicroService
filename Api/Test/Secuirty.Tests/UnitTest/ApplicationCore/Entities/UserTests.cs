@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Security.Core.Entities;
 using Shouldly;
 using Xunit;

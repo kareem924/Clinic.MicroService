@@ -1,4 +1,4 @@
-﻿using Common.General.Interfaces;
+﻿using Common.RabbitMq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -6,18 +6,18 @@ namespace Common.Loggings
 {
     public class MicroservicesLoggerProvider : ILoggerProvider
     {
-        private readonly IMessageBus _messageBus;
-        private readonly IConfiguration Configuration;
+        private readonly IEventBus _messageBus;
+        private readonly IConfiguration _configuration;
 
-        public MicroservicesLoggerProvider(IMessageBus messageBus, IConfiguration configuration)
+        public MicroservicesLoggerProvider(IEventBus messageBus, IConfiguration configuration)
         {
             _messageBus = messageBus;
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
         public ILogger CreateLogger(string categoryName)
         {
-            return new MicroservicesLogging(categoryName, Configuration, _messageBus);
+            return new MicroservicesLogging(categoryName, _configuration, _messageBus);
         }
 
         protected virtual void Dispose(bool disposing)

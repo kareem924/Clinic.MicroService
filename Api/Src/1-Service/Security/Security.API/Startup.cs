@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
-using Common.Email;
-using Common.General.Interfaces;
+using Common.Communication;
 using Common.Loggings;
 using Common.Mvc;
 using Common.RabbitMq;
+using Common.RegisterContainers;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -81,7 +81,7 @@ namespace Security.API
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 });
             //test
-            services.AddRabbitMqMessageBus(Configuration, Assembly.GetExecutingAssembly());
+            services.AddIntegrationSupport();
 
             services.AddJwt(Configuration);
             //// Register the Swagger generator, defining 1 or more Swagger documents
@@ -119,10 +119,11 @@ namespace Security.API
 
             //// Enable middleware to serve generated Swagger as a JSON endpoint.
             //app.UseSwagger();
+            app.AddIntegrationSupport(Assembly.GetExecutingAssembly());
             app.UseCors("AllowAll");
             app.UseHttpsRedirection();
-            //app.ConfigureAppBuilder(loggerFactory, serviceProvider, Configuration);
-            loggerFactory.AddProvider(new MicroservicesLoggerProvider(serviceProvider.GetService<IMessageBus>(), Configuration));
+            app.ConfigureAppBuilder(loggerFactory, serviceProvider, Configuration);
+            loggerFactory.AddProvider(new MicroservicesLoggerProvider(serviceProvider.GetService<IEventBus>(), Configuration));
             var logger = serviceProvider.GetService<ILogger>();
             app.UseErrorLogging(logger);
 

@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common.Events\Common.Events.csproj" />
     <ProjectReference Include="..\Common.General\Common.General.csproj" />
+    <ProjectReference Include="..\Common.RabbitMq\Common.RabbitMq.csproj" />
   </ItemGroup>
 
 </Project>
