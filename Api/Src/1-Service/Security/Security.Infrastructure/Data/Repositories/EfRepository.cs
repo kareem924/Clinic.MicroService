@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.General.Entity;
 using Common.General.Interfaces;
 using Common.General.Repository;
 using Common.General.Specification;
@@ -34,19 +36,19 @@ namespace Security.Infrastructure.Data.Repositories
             return ApplySpecification(spec).SingleOrDefault();
         }
 
-        public async Task<T> FindAsync(ISpecification<T> spec)
+        public async Task<T> FindAsync(ISpecification<T> specification)
         {
-            return await ApplySpecification(spec).SingleOrDefaultAsync();
+            return await ApplySpecification(specification).SingleOrDefaultAsync();
         }
 
-        public ICollection<T> FindAll(ISpecification<T> spec)
+        public ICollection<T> FindAll(ISpecification<T> specification)
         {
-            return ApplySpecification(spec).ToList();
+            return ApplySpecification(specification).ToList();
         }
 
-        public async Task<ICollection<T>> FindAllAsync(ISpecification<T> spec)
+        public async Task<ICollection<T>> FindAllAsync(ISpecification<T> specification)
         {
-            return await ApplySpecification(spec).ToListAsync();
+            return await ApplySpecification(specification).ToListAsync();
         }
 
         public T Add(T entity)
@@ -114,6 +116,14 @@ namespace Security.Infrastructure.Data.Repositories
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
             return SpecificationEvaluator<T>.GetQuery(_unitOfWork.Context.Set<T>().AsQueryable(), spec);
+        }
+
+        public async Task<PagedResult<T>> GetAllPagedAsync(ISpecification<T> specification, PagedQueryBase query)
+        {
+            var totalResults = await _unitOfWork.Context.Set<T>().CountAsync();
+            var totalPages = (int)Math.Ceiling((decimal)totalResults / query.PageSize);
+            var data =  ApplySpecification(specification).ToList(); ;
+            return PagedResult<T>.Create(data, query.Page, query.PageSize, totalPages, totalResults);            
         }
     }
 }

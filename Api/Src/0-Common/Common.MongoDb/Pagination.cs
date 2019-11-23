@@ -9,7 +9,7 @@ namespace Common.MongoDb
     public static class Pagination
     {
         public static async Task<PagedResult<T>> PaginateAsync<T>(this IMongoQueryable<T> collection, PagedQueryBase query)
-            => await collection.PaginateAsync(query.Page, query.Results);
+            => await collection.PaginateAsync(query.Page, query.PageSize);
 
         public static async Task<PagedResult<T>> PaginateAsync<T>(this IMongoQueryable<T> collection,
             int page = 1, int resultsPerPage = 10)
@@ -35,7 +35,7 @@ namespace Common.MongoDb
         }
 
         public static IMongoQueryable<T> Limit<T>(this IMongoQueryable<T> collection, PagedQueryBase query)
-            => collection.Limit(query.Page, query.Results);
+            => collection.Limit(query.Page, query.PageSize);
 
         public static IMongoQueryable<T> Limit<T>(this IMongoQueryable<T> collection,
             int page = 1, int resultsPerPage = 10)

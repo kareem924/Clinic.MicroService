@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.General.Entity;
 using Common.General.Interfaces;
 using Common.General.Specification;
 
@@ -14,12 +15,14 @@ namespace Common.General.Repository
 
         T Find(ISpecification<T> spec);
      
-        Task<T> FindAsync(ISpecification<T> spec);
+        Task<T> FindAsync(ISpecification<T> specification);
   
-        ICollection<T> FindAll(ISpecification<T> spec);
+        ICollection<T> FindAll(ISpecification<T> specification);
      
-        Task<ICollection<T>> FindAllAsync(ISpecification<T> spec);
-        
+        Task<ICollection<T>> FindAllAsync(ISpecification<T> specification);
+
+        Task<PagedResult<T>> GetAllPagedAsync(ISpecification<T> specification, PagedQueryBase query);
+
         T Add(T entity);
      
         Task<T> AddAsync(T entity);
@@ -39,6 +42,8 @@ namespace Common.General.Repository
         int Count(ISpecification<T> spec);
        
         Task<int> CountAsync(ISpecification<T> spec);
+
+
 
     }
 }

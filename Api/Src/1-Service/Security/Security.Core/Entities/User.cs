@@ -23,6 +23,8 @@ namespace Security.Core.Entities
 
         public Address Address { get; private set; }
 
+        public string FullName => $"{FirstName}  {LastName}";
+
         private readonly List<UserRole> _roles = new List<UserRole>();
 
         public IReadOnlyCollection<UserRole> Roles => _roles.AsReadOnly();

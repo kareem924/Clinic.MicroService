@@ -17,10 +17,13 @@ namespace Common.General.Entity
         }
 
         [JsonConstructor]
-        protected PagedResult(IEnumerable<T> items,
-            int currentPage, int resultsPerPage,
-            int totalPages, long totalResults) :
-                base(currentPage, resultsPerPage, totalPages, totalResults)
+        protected PagedResult(
+            IEnumerable<T> items,
+            int currentPage, 
+            int resultsPerPage,
+            int totalPages, 
+            long totalItems) :
+                base(currentPage, resultsPerPage, totalPages, totalItems)
         {
             Items = items;
         }
@@ -31,8 +34,8 @@ namespace Common.General.Entity
             => new PagedResult<T>(items, currentPage, resultsPerPage, totalPages, totalResults);
 
         public static PagedResult<T> From(PagedResultBase result, IEnumerable<T> items)
-            => new PagedResult<T>(items, result.CurrentPage, result.ResultsPerPage,
-                result.TotalPages, result.TotalResults);
+            => new PagedResult<T>(items, result.CurrentPage, result.PageSize,
+                result.TotalPages, result.TotalItems);
 
         public static PagedResult<T> Empty => new PagedResult<T>();
     }

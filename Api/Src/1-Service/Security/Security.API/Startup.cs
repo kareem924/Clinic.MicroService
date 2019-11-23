@@ -15,7 +15,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Security.API.Application.Queries.GetUserByUserName;
+using Security.API.Application.Queries.GetUserPagedResult;
 using Security.API.Dto;
 using Security.Core.Entities;
 using Security.Infrastructure.Data;
@@ -41,13 +43,15 @@ namespace Security.API
                     option.EnableEndpointRouting = false;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                 .AddFluentValidation(options =>
                 {
-                    options.ImplicitlyValidateChildProperties = false;
+                    options.ImplicitlyValidateChildProperties = true;
                 });
 
             services.AddTransient<IValidator<TokenRequestDto>, TokenRequestDtoValidator>();
             services.AddTransient<IValidator<SignUpRequestDto>, SignUpRequestDtoValidator>();
+            services.AddTransient<IValidator<GetUserPagedResultQuery>, GetUserPagedResultQueryValidator>();
 
             var sendGridKey = Configuration.GetSection("SendGrid");
             services.Configure<AuthMessageSenderOptions>(sendGridKey);

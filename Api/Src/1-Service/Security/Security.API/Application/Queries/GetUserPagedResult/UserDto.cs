@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Security.API.Application.Queries.GetUserByUserName
+namespace Security.API.Application.Queries.GetUserPagedResult
 {
-    public class LoginUserDto
+    public class UserDto
     {
+
         public Guid Id { get; set; }
         public string FirstName { get; set; }
 
@@ -20,28 +23,23 @@ namespace Security.API.Application.Queries.GetUserByUserName
 
         public DateTime BirthDate { get; set; }
 
-        public string FullName => $"{FirstName}  {LastName}";
+        public string Street { get;  set; }
+
+        public string City { get;  set; }
+
+        public string State { get;  set; }
+
+        public string Country { get;  set; }
 
         public IEnumerable<RoleDto> Roles { get; set; }
 
-        public IEnumerable<RefreshTokenDto> RefreshTokens { get; set; }
-
-
     }
-
     public class RoleDto
     {
         public Guid Id { get; set; }
 
         public string Name { get; set; }
-    }
 
-    public class RefreshTokenDto
-    {
-        public Guid Id { get; set; }
 
-        public string Token { get; set; }
-        public bool Active { get; set; }
-        public string RemoteIpAddress { get; set; }
     }
 }
