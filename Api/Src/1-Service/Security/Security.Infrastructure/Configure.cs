@@ -7,6 +7,7 @@ using Security.Infrastructure.Data.Repositories;
 using Security.Infrastructure.Service;
 using System.Reflection;
 using Common.Communication;
+using Microsoft.Extensions.Configuration;
 using Security.Core.Repositories;
 using Security.Infrastructure.Interfaces;
 
@@ -14,7 +15,7 @@ namespace Security.Infrastructure
 {
     public static class Configure
     {
-        public static void ConfigureServices(IServiceCollection services, string connectionString, Assembly assembly)
+        public static void ConfigureServices(IServiceCollection services, string connectionString, Assembly assembly,IConfiguration configuration)
         {
             //Context lifetime defaults to "scoped"
             services.AddDbContext<SecurityDbContext>(options => options.UseSqlServer(connectionString));
@@ -26,7 +27,7 @@ namespace Security.Infrastructure
             services.AddTransient<ITokenFactory, TokenFactory>();
             services.AddTransient<IJwtTokenHandler, JwtTokenHandler>();
             services.AddTransient<IJwtTokenValidator, JwtTokenValidator>();
-            HandlerRegister.Register(assembly, services);
+            HandlerRegister.Register(assembly, services, configuration);
         }
 
     }

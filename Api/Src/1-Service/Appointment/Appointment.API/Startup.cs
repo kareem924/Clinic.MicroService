@@ -27,8 +27,9 @@ namespace Appointment.API
             //services.AddRabbitMqMessageBus();
             services.AddIntegrationSupport();
             services.AddMongoDB(Configuration);
+            HandlerRegister.Register(Assembly.GetExecutingAssembly(), services,Configuration);
 
-            Appointment.Infrastructure.Configure.ConfigureServices(services);
+            Appointment.Infrastructure.Configure.ConfigureServices(services, Configuration);
             services.AddMvc(option => option.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
            
@@ -54,10 +55,10 @@ namespace Appointment.API
                 app.UseHsts();
             }
 
-            app.AddIntegrationSupport(assembly: Assembly.GetExecutingAssembly());
             app.UseAuthentication();
             app.UseHttpsRedirection();
-            app.ConfigureAppBuilder(loggerFactory, serviceProvider, Configuration);
+            app.ConfigureAppBuilderExt(loggerFactory, serviceProvider, Configuration, Assembly.GetExecutingAssembly());
+
             app.UseMvc();
         }
     }

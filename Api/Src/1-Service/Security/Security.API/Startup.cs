@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Reflection;
+using System.Text;
 using Common.Communication;
-using Common.Loggings;
 using Common.Mvc;
 using Common.RabbitMq;
 using Common.RegisterContainers;
 using FluentValidation;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using Microsoft.IdentityModel.Tokens;
 using Security.API.Application.Queries.GetUserByUserName;
 using Security.API.Application.Queries.GetUserPagedResult;
 using Security.API.Dto;
@@ -42,12 +41,7 @@ namespace Security.API
                     option.Filters.Add(typeof(InvalidInputActionFilter));
                     option.EnableEndpointRouting = false;
                 })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
-                .AddFluentValidation(options =>
-                {
-                    options.ImplicitlyValidateChildProperties = true;
-                });
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddTransient<IValidator<TokenRequestDto>, TokenRequestDtoValidator>();
             services.AddTransient<IValidator<SignUpRequestDto>, SignUpRequestDtoValidator>();
@@ -62,7 +56,7 @@ namespace Security.API
             Infrastructure.Configure.ConfigureServices(
                 services,
                 Configuration.GetConnectionString("DefaultConnection"),
-                Assembly.GetExecutingAssembly());
+                Assembly.GetExecutingAssembly(), Configuration);
 
             //services.AddRabbitMq(Configuration);
 
@@ -78,12 +72,25 @@ namespace Security.API
             })
     .AddEntityFrameworkStores<SecurityDbContext>()
     .AddDefaultTokenProviders();
-
-            services.AddAuthentication(options =>
-                {
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                });
+            //var authKey = Configuration.GetValue<string>("AuthSettings:SecretKey");
+            //services.Configure<AuthSettings>(sendGridKey);
+            //services.AddAuthentication(x =>
+            //    {
+            //        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    })
+            //    .AddJwtBearer(x =>
+            //    {
+            //        x.RequireHttpsMetadata = false;
+            //        x.SaveToken = true;
+            //        x.TokenValidationParameters = new TokenValidationParameters
+            //        {
+            //            ValidateIssuerSigningKey = true,
+            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(authKey)),
+            //            ValidateIssuer = false,
+            //            ValidateAudience = false
+            //        };
+            //    });
             //test
             services.AddIntegrationSupport();
 
@@ -96,9 +103,7 @@ namespace Security.API
             //});
 
 
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()));
+
 
         }
 
@@ -123,14 +128,11 @@ namespace Security.API
 
             //// Enable middleware to serve generated Swagger as a JSON endpoint.
             //app.UseSwagger();
-            app.AddIntegrationSupport(Assembly.GetExecutingAssembly());
-            app.UseCors("AllowAll");
-            app.UseHttpsRedirection();
-            app.ConfigureAppBuilder(loggerFactory, serviceProvider, Configuration);
-            loggerFactory.AddProvider(new MicroservicesLoggerProvider(serviceProvider.GetService<IEventBus>(), Configuration));
-            var logger = serviceProvider.GetService<ILogger>();
-            app.UseErrorLogging(logger);
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseHttpsRedirection();
+            app.ConfigureAppBuilderExt(loggerFactory, serviceProvider, Configuration, Assembly.GetExecutingAssembly());
             app.UseMvc();
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace Security.API.Models
+﻿namespace Common.RegisterContainers
 {
     public class AuthSettings
     {

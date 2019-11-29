@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Common.MongoDb;
 using Common.RegisterContainers;
 using Microsoft.AspNetCore.Builder;
@@ -24,7 +25,7 @@ namespace Logging.API
         {
             services.AddMongoDB(Configuration);
 
-            Infrastructure.Configure.ConfigureServices(services);
+            Infrastructure.Configure.ConfigureServices(services, Configuration);
 
             services.AddMvc(option => option.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0); 
@@ -49,7 +50,7 @@ namespace Logging.API
 
             app.UseAuthentication();
             app.UseHttpsRedirection();
-            app.ConfigureAppBuilder(loggerFactory, serviceProvider, Configuration);
+            app.ConfigureAppBuilderExt(loggerFactory, serviceProvider, Configuration, Assembly.GetExecutingAssembly());
             app.UseMvc();
         }
     }

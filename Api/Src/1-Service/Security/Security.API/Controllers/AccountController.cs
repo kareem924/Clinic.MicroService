@@ -4,13 +4,14 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Security.API.Dto;
 using System.Threading.Tasks;
+using Common.RegisterContainers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Security.API.Application.Commands.ExchangeRefreshToken;
 using Security.API.Application.Commands.UpdateUserRefreshToken;
 using Security.API.Application.Queries.GetUserById;
 using Security.API.Application.Queries.GetUserByUserName;
-using Security.API.Models;
 using Security.Infrastructure.Interfaces;
 using Security.API.Application.Commands.RegisterUser;
 

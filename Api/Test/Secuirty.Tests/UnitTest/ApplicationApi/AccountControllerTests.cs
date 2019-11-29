@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Common.RegisterContainers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -6,7 +7,6 @@ using Microsoft.Extensions.Options;
 using Moq;
 using Security.API.Controllers;
 using Security.API.Dto;
-using Security.API.Models;
 using Security.Infrastructure.Interfaces;
 using Xunit;
 

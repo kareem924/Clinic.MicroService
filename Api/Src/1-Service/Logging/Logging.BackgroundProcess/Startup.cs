@@ -21,17 +21,13 @@ namespace Logging.BackgroundProcess
         }
 
         public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Infrastructure.Configure.ConfigureServices(services);
+            Infrastructure.Configure.ConfigureServices(services, Configuration);
             services.AddMongoDB(Configuration);
-            services.AddScoped<IIntegrationEventHandler<WriteLogEvent>, WriteLogEventHandler>();
-
-            services.AddIntegrationSupport();
+            HandlerRegister.Register(Assembly.GetExecutingAssembly(), services, Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            services.AddLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,10 +36,8 @@ namespace Logging.BackgroundProcess
             ILoggerFactory loggerFactory,
             IServiceProvider serviceProvider)
         {
-            app.AddIntegrationSupport(Assembly.GetExecutingAssembly());
+            app.ConfigureAppBuilderExt(loggerFactory, serviceProvider, Configuration, Assembly.GetExecutingAssembly());
             app.UseAuthentication();
-            app.UseHttpsRedirection();
-            app.ConfigureAppBuilder(loggerFactory, serviceProvider, Configuration);
-        }
+            app.UseHttpsRedirection();        }
     }
 }
