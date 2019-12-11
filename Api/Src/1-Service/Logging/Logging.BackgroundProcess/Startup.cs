@@ -26,7 +26,7 @@ namespace Logging.BackgroundProcess
         {
             Infrastructure.Configure.ConfigureServices(services, Configuration);
             services.AddMongoDB(Configuration);
-            HandlerRegister.Register(Assembly.GetExecutingAssembly(), services, Configuration);
+            //HandlerRegister.Register(Assembly.GetExecutingAssembly(), services, Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 

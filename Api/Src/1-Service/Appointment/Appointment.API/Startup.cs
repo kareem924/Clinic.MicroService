@@ -27,7 +27,7 @@ namespace Appointment.API
             //services.AddRabbitMqMessageBus();
             services.AddIntegrationSupport();
             services.AddMongoDB(Configuration);
-            HandlerRegister.Register(Assembly.GetExecutingAssembly(), services,Configuration);
+            //HandlerRegister.Register(Assembly.GetExecutingAssembly(), services,Configuration);
 
             Appointment.Infrastructure.Configure.ConfigureServices(services, Configuration);
             services.AddMvc(option => option.EnableEndpointRouting = false)

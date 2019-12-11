@@ -14,13 +14,12 @@ namespace Security.API.Application.Queries.GetUserPagedResult
         }
         private void AddRules()
         {
-            RuleFor(input => false).NotNull()
+            RuleFor(input => input).NotNull().WithMessage("The Query is required");
+
+            RuleFor(input => input.PageSize).GreaterThan(0)
                 .WithMessage("PageSize is required.");
 
-            RuleFor(input => input.Skip).LessThan(1)
-                .WithMessage("Page is must than greater than 1.");
-
-            RuleFor(input => input.Page).NotNull()
+            RuleFor(input => input.Page).GreaterThan(0)
                 .WithMessage("Page is required.");
 
         }

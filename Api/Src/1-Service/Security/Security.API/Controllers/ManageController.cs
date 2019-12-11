@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.General.Entity;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Security.API.Application.Queries.GetUserById;
 using Security.API.Application.Queries.GetUserByUserName;
+using Security.API.Application.Queries.GetUserDtoId;
 using Security.API.Application.Queries.GetUserPagedResult;
 using Security.Core.Entities;
 
@@ -13,7 +16,7 @@ namespace Security.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ManageController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -33,24 +36,28 @@ namespace Security.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<ActionResult<UserDto>> Get(Guid id)
         {
-            return "value";
+            var users = await _mediator.Send(new GetUserDtoByIdQuery(id));
+            return Ok(users);
         }
 
         [HttpPost]
         public void Post([FromBody] string value)
         {
+
         }
 
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+
         }
     }
 }

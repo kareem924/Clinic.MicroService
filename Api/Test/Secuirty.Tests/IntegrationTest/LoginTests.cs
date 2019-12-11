@@ -45,7 +45,11 @@ namespace IntegrationTest
                         "DemoLast",
                         "demouser@microsoft.com",
                         "demouser@microsoft.com",
-                        true, null, DateTime.MaxValue,String.Empty);
+                        true,
+                        null,
+                        DateTime.MaxValue,
+                        String.Empty,
+                        true);
                     await userManager.CreateAsync(defaultUser, "Pass@word1");
                     var result = await userManager.CheckPasswordAsync(defaultUser, "Pass@word1");
                     result.ShouldBeTrue();

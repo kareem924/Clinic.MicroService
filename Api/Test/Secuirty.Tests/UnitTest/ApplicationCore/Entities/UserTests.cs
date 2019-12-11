@@ -19,7 +19,8 @@ namespace UnitTest.ApplicationCore.Entities
                 true, 
                 null, 
                 DateTime.MaxValue, 
-                string.Empty);
+                string.Empty,
+                true);
             user.AddRefreshToken(refreshToken, Guid.NewGuid(), "127.0.0.1");
 
             var result = user.HasValidRefreshToken(refreshToken);
@@ -39,7 +40,8 @@ namespace UnitTest.ApplicationCore.Entities
                 true, 
                 null, 
                 DateTime.MaxValue,
-                string.Empty);
+                string.Empty,
+                true);
 
             var result = user.HasValidRefreshToken(refreshToken);
 
@@ -58,7 +60,8 @@ namespace UnitTest.ApplicationCore.Entities
                 true,
                 null,
                 DateTime.MaxValue,
-                string.Empty);
+                string.Empty,
+                true);
             user.AddRole(role);
 
             var result = user.HasRole(role);

@@ -13,4 +13,8 @@
     <EmbeddedResource Include="Certificate\clinic.pfx" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
+  </ItemGroup>
+
 </Project>

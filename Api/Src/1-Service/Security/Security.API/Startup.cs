@@ -6,6 +6,7 @@ using Common.Mvc;
 using Common.RabbitMq;
 using Common.RegisterContainers;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,8 +41,17 @@ namespace Security.API
                 {
                     option.Filters.Add(typeof(InvalidInputActionFilter));
                     option.EnableEndpointRouting = false;
+
                 })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0).AddFluentValidation()
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    options.SuppressConsumesConstraintForFormFileParameters = true;
+                    options.SuppressInferBindingSourcesForParameters = true;
+                    options.SuppressModelStateInvalidFilter = true;
+                    options.SuppressMapClientErrors = true;
+                    
+                });
 
             services.AddTransient<IValidator<TokenRequestDto>, TokenRequestDtoValidator>();
             services.AddTransient<IValidator<SignUpRequestDto>, SignUpRequestDtoValidator>();
@@ -94,7 +104,6 @@ namespace Security.API
             //test
             services.AddIntegrationSupport();
 
-            services.AddJwt(Configuration);
             //// Register the Swagger generator, defining 1 or more Swagger documents
             //services.AddSwaggerGen(c =>
             //{

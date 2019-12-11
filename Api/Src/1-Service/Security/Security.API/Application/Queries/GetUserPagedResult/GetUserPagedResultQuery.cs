@@ -6,6 +6,8 @@ namespace Security.API.Application.Queries.GetUserPagedResult
 {
     public class GetUserPagedResultQuery : PagedQueryBase,IQuery<PagedResult<UserDto>>
     {
+
+
         public string Name { get;  set; }
 
         public string Email { get;  set; }

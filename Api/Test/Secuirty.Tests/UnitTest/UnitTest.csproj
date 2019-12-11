@@ -23,6 +23,7 @@
     <Folder Include="ApplicationCore\Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Src\0-Common\Common.Security\Common.Security.csproj" />
     <ProjectReference Include="..\..\..\Src\1-Service\Security\Security.API\Security.API.csproj" />
     <ProjectReference Include="..\..\..\Src\1-Service\Security\Security.Core\Security.Core.csproj" />
     <ProjectReference Include="..\..\..\Src\1-Service\Security\Security.Infrastructure\Security.Infrastructure.csproj" />

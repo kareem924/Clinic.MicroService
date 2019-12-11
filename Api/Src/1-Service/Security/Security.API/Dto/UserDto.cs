@@ -39,7 +39,5 @@ namespace Security.API.Application.Queries.GetUserPagedResult
         public Guid Id { get; set; }
 
         public string Name { get; set; }
-
-
     }
 }

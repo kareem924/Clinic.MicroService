@@ -2,6 +2,7 @@
 using System.Text;
 using System.Threading.Tasks;
 using Common.RegisterContainers;
+using Common.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

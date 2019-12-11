@@ -23,6 +23,8 @@ namespace Security.Core.Entities
 
         public Address Address { get; private set; }
 
+        public bool IsActive { get; set; }
+
         public string FullName => $"{FirstName}  {LastName}";
 
         private readonly List<UserRole> _roles = new List<UserRole>();
@@ -44,7 +46,8 @@ namespace Security.Core.Entities
             bool emailConfirmed,
             Address address,
             DateTime birthDate,
-            string phoneNumber)
+            string phoneNumber,
+            bool isActive)
         {
             if (string.IsNullOrWhiteSpace(firstName))
                 throw new ArgumentNullException(nameof(firstName));
@@ -58,16 +61,28 @@ namespace Security.Core.Entities
             Address = address;
             BirthDate = birthDate;
             PhoneNumber = phoneNumber;
+            IsActive = isActive;
         }
 
-        public void AddRole(Role role)
+        public void AddRole(params Role[] roles)
         {
-            _roles.Add(new UserRole(){Role = role ,UserId = Id });
+            foreach (var role in roles)
+            {
+                _roles.Add(new UserRole() { Role = role, UserId = Id });
+            }
+        }
+
+        public void UpdateRoles(params Role[] roles)
+        {
+            foreach (var role in roles)
+            {
+                _roles.Add(new UserRole() { Role = role, UserId = Id });
+            }
         }
 
         public bool HasRole(Role role)
         {
-            return _roles.Any(rt => rt.Role== role);
+            return _roles.Any(rt => rt.Role == role);
         }
 
         public bool HasValidRefreshToken(string refreshToken)
