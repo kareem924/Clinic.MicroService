@@ -27,7 +27,7 @@ namespace Security.Core.Entities
 
         public string FullName => $"{FirstName}  {LastName}";
 
-        private readonly List<UserRole> _roles = new List<UserRole>();
+        private List<UserRole> _roles = new List<UserRole>();
 
         public IReadOnlyCollection<UserRole> Roles => _roles.AsReadOnly();
 
@@ -72,12 +72,20 @@ namespace Security.Core.Entities
             }
         }
 
+        public void RemoveRole(params Role[] roles)
+        {
+            var rolesToRemove = _roles
+                .Where(userRole =>
+                    roles.Contains(userRole.Role)).ToArray();
+            _roles = _roles.Except(rolesToRemove).ToList();
+        }
         public void UpdateRoles(params Role[] roles)
         {
-            foreach (var role in roles)
-            {
-                _roles.Add(new UserRole() { Role = role, UserId = Id });
-            }
+            var userRoles = _roles.Select(role => role.Role).ToList();
+            var rolesToRemove = userRoles.Except(roles).ToArray();
+            var rolesToAdd = roles.Except(userRoles).ToArray();
+            RemoveRole(rolesToRemove);
+            AddRole(rolesToAdd);
         }
 
         public bool HasRole(Role role)
@@ -103,5 +111,7 @@ namespace Security.Core.Entities
         {
             _refreshTokens.Remove(_refreshTokens.First(t => t.Token == refreshToken));
         }
+
+
     }
 }

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.CQRS;
 using MassTransit.Initializers;
-using Security.API.Application.Queries.GetUserById;
 using Security.API.Application.Queries.GetUserPagedResult;
 using Security.Core.Entities;
 using Security.Core.Repositories;
