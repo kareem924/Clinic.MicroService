@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+
 using System.Threading.Tasks;
 using Common.General.Entity;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Security.API.Application.Queries.GetUserById;
-using Security.API.Application.Queries.GetUserByUserName;
-using Security.API.Application.Queries.GetUserDtoId;
-using Security.API.Application.Queries.GetUserPagedResult;
-using Security.Core.Entities;
+using Security.Infrastructure.Application.Dto;
+using Security.Infrastructure.Application.Queries.GetUserDtoId;
+using Security.Infrastructure.Application.Queries.GetUserPagedResult;
 
 namespace Security.API.Controllers
 {

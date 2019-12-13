@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Common.General.UnitOfWork;
 using IntegrationTest.Builders;
 using Microsoft.EntityFrameworkCore;
-using Security.API.Application.Commands.ExchangeRefreshToken;
+using Security.Infrastructure.Application.Commands.ExchangeRefreshToken;
 using Security.Infrastructure.Data;
 using Security.Infrastructure.Data.Repositories;
 using Shouldly;

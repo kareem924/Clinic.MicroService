@@ -21,10 +21,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\0-Common\Common.CQRS\Common.CQRS.csproj" />
     <ProjectReference Include="..\..\..\0-Common\Common.Email\Common.Communication.csproj" />
     <ProjectReference Include="..\..\..\0-Common\Common.General\Common.General.csproj" />
     <ProjectReference Include="..\..\..\0-Common\Common.RegisterContainers\Common.RegisterContainers.csproj" />
     <ProjectReference Include="..\Security.Core\Security.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FluentValidation">
+      <HintPath>..\..\..\..\..\..\..\..\.nuget\packages\fluentvalidation\8.5.0\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
  

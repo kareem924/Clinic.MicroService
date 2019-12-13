@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Security.API.Application.Commands.RegisterUser;
 using Security.Core.Entities;
 using Security.Infrastructure.Data;
 using Security.Infrastructure.Data.Repositories;
@@ -15,6 +14,7 @@ using System.Threading.Tasks;
 using Security.Core.Specification;
 using Xunit;
 using Xunit.Abstractions;
+using Security.Infrastructure.Application.Commands.RegisterUser;
 
 namespace IntegrationTest.CommandHandlers
 {
