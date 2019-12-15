@@ -57,7 +57,7 @@ namespace FunctionalTest
                         // seed sample user data
                         var userManager = scopedServices.GetRequiredService<UserManager<User>>();
 
-                        SecurityDbContextSeed.SeedAsync(userManager).Wait();
+                        SecurityDbContextSeed.SeedUserAsync(userManager).Wait();
                     }
                     catch (Exception ex)
                     {

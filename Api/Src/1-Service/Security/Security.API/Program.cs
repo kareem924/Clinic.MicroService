@@ -23,7 +23,7 @@ namespace Security.API
                 try
                 {
                     var userManager = services.GetRequiredService<UserManager<User>>();
-                    await SecurityDbContextSeed.SeedAsync(userManager);
+                    await SecurityDbContextSeed.SeedUserAsync(userManager);
                     var roleManager = services.GetRequiredService<RoleManager<Role>>();
                     await SecurityDbContextSeed.SeedRolesAsync(roleManager);
                 }

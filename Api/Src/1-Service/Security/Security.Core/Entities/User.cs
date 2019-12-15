@@ -49,6 +49,29 @@ namespace Security.Core.Entities
             string phoneNumber,
             bool isActive)
         {
+            UpdateUserData(
+                firstName,
+                lastName,
+                userName,
+                email,
+                emailConfirmed,
+                address,
+                birthDate,
+                phoneNumber,
+                isActive);
+        }
+
+        public void UpdateUserData(
+            string firstName,
+            string lastName,
+            string userName,
+            string email,
+            bool emailConfirmed,
+            Address address,
+            DateTime birthDate,
+            string phoneNumber,
+            bool isActive)
+        {
             if (string.IsNullOrWhiteSpace(firstName))
                 throw new ArgumentNullException(nameof(firstName));
             if (string.IsNullOrWhiteSpace(email))
@@ -63,7 +86,6 @@ namespace Security.Core.Entities
             PhoneNumber = phoneNumber;
             IsActive = isActive;
         }
-
         public void AddRole(params Role[] roles)
         {
             foreach (var role in roles)

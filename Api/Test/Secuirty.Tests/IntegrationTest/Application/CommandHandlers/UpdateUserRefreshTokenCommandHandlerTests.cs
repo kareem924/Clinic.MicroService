@@ -11,7 +11,7 @@ using Shouldly;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace IntegrationTest.CommandHandlers
+namespace IntegrationTest.Application.CommandHandlers
 {
     public class UpdateUserRefreshTokenCommandHandlerTests
     {

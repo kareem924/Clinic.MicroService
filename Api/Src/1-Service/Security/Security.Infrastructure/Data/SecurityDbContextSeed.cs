@@ -10,7 +10,7 @@ namespace Security.Infrastructure.Data
 {
     public static class SecurityDbContextSeed
     {
-        public static async Task SeedAsync(UserManager<User> userManager)
+        public static async Task SeedUserAsync(UserManager<User> userManager)
         {
             var defaultUser = new User(
                 "demoFirst",
@@ -21,6 +21,7 @@ namespace Security.Infrastructure.Data
                 DateTime.MaxValue, "",
                 true);
             await userManager.CreateAsync(defaultUser, "Pass@word1");
+            await userManager.AddToRoleAsync(defaultUser, Roles.Admin);
         }
         public static async Task SeedRolesAsync(RoleManager<Role> roleManager)
         {

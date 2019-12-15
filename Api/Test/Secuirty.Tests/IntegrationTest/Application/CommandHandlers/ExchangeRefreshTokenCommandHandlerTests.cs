@@ -11,7 +11,7 @@ using Shouldly;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace IntegrationTest.CommandHandlers
+namespace IntegrationTest.Application.CommandHandlers
 {
     public class ExchangeRefreshTokenCommandHandlerTests
     {
@@ -54,6 +54,8 @@ namespace IntegrationTest.CommandHandlers
                 CancellationToken.None);
             var userAfterUpdated = await _userRepository.GetByIdAsync(userId);
             var tokenAfterUpdated = userAfterUpdated.RefreshTokens.FirstOrDefault();
+
+
             tokenAfterUpdated.ShouldNotBeNull();
             tokenAfterUpdated.Token.ShouldBe(newRefreshToken);
         }

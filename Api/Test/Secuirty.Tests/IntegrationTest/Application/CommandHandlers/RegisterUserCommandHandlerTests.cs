@@ -1,22 +1,22 @@
-﻿using Common.General.UnitOfWork;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Common.General.UnitOfWork;
 using IntegrationTest.Builders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Security.Core.Entities;
+using Security.Core.Specification;
+using Security.Infrastructure.Application.Commands.RegisterUser;
 using Security.Infrastructure.Data;
 using Security.Infrastructure.Data.Repositories;
 using Shouldly;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Security.Core.Specification;
 using Xunit;
 using Xunit.Abstractions;
-using Security.Infrastructure.Application.Commands.RegisterUser;
 
-namespace IntegrationTest.CommandHandlers
+namespace IntegrationTest.Application.CommandHandlers
 {
     public class RegisterUserCommandHandlerTests
     {
@@ -31,8 +31,6 @@ namespace IntegrationTest.CommandHandlers
             ITestOutputHelper output)
         {
             _output = output;
-
-
             _services = new ServiceCollection()
                 .AddEntityFrameworkInMemoryDatabase();
             _services.AddDbContext<SecurityDbContext>(options =>
@@ -46,9 +44,6 @@ namespace IntegrationTest.CommandHandlers
                 .AddEntityFrameworkStores<SecurityDbContext>()
                 .AddDefaultTokenProviders();
             _services.AddLogging();
-
-
-
         }
 
         [Fact]
@@ -82,8 +77,6 @@ namespace IntegrationTest.CommandHandlers
                     string.IsNullOrEmpty(ex.Message).ShouldBeTrue();
                 }
             }
-
-
         }
     }
 }
