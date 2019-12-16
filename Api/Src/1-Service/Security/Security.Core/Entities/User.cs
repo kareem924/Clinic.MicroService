@@ -11,7 +11,7 @@ namespace Security.Core.Entities
 
         public string LastName { get; private set; }
 
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; private set; }
 
         public Guid CreatedBy { get; private set; }
 
@@ -86,6 +86,7 @@ namespace Security.Core.Entities
             PhoneNumber = phoneNumber;
             IsActive = isActive;
         }
+
         public void AddRole(params Role[] roles)
         {
             foreach (var role in roles)
@@ -94,13 +95,6 @@ namespace Security.Core.Entities
             }
         }
 
-        public void RemoveRole(params Role[] roles)
-        {
-            var rolesToRemove = _roles
-                .Where(userRole =>
-                    roles.Contains(userRole.Role)).ToArray();
-            _roles = _roles.Except(rolesToRemove).ToList();
-        }
         public void UpdateRoles(params Role[] roles)
         {
             var userRoles = _roles.Select(role => role.Role).ToList();
@@ -113,6 +107,14 @@ namespace Security.Core.Entities
         public bool HasRole(Role role)
         {
             return _roles.Any(rt => rt.Role == role);
+        }
+
+        public void RemoveRole(params Role[] roles)
+        {
+            var rolesToRemove = _roles
+                .Where(userRole =>
+                    roles.Contains(userRole.Role)).ToArray();
+            _roles = _roles.Except(rolesToRemove).ToList();
         }
 
         public bool HasValidRefreshToken(string refreshToken)
@@ -134,6 +136,15 @@ namespace Security.Core.Entities
             _refreshTokens.Remove(_refreshTokens.First(t => t.Token == refreshToken));
         }
 
+        public void ChangeUserActivatedStatus(bool status)
+        {
+            IsActive = status;
+        }
+
+        public void ChangeUserConfirmedEmailStatus(bool status)
+        {
+            EmailConfirmed = status;
+        }
 
     }
 }

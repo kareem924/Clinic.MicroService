@@ -40,7 +40,8 @@ namespace Security.Infrastructure.Application.Queries.GetUserPagedResult
                 City = user.Address.City,
                 Country = user.Address.Country,
                 Street = user.Address.Street,
-                State = user.Address.State
+                State = user.Address.State,
+                Email = user.Email
             };
             if (user.Roles.Any())
             {

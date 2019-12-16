@@ -1,11 +1,13 @@
 ﻿using System;
-
 using System.Threading.Tasks;
 using Common.General.Entity;
 using MediatR;
-
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Security.Infrastructure.Application.Commands.ActivateUserCommand;
+using Security.Infrastructure.Application.Commands.ConfirmUserEmailCommand;
+using Security.Infrastructure.Application.Commands.CreateUserCommand;
+using Security.Infrastructure.Application.Commands.DeleteUserCommand;
+using Security.Infrastructure.Application.Commands.UpdateUserCommand;
 using Security.Infrastructure.Application.Dto;
 using Security.Infrastructure.Application.Queries.GetUserDtoId;
 using Security.Infrastructure.Application.Queries.GetUserPagedResult;
@@ -18,12 +20,10 @@ namespace Security.API.Controllers
     public class ManageController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<ManageController> _logger;
 
-        public ManageController(IMediator mediator, ILogger<ManageController> logger)
+        public ManageController(IMediator mediator)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpGet]
@@ -41,21 +41,42 @@ namespace Security.API.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] CreateUserCommand input)
         {
-
+            await _mediator.Publish(input);
+            return Ok();
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(Guid id, [FromBody] UpdateUserCommand input)
         {
-
+            input.Id = id;
+            await _mediator.Publish(new GetUserDtoByIdQuery(id));
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
+            var deletePackage = new DeleteUserCommand { Id = id };
+            await _mediator.Publish(deletePackage);
+            return Ok();
+        }
 
+        [HttpPatch("{id}/ActivateUser")]
+        public async Task<IActionResult> ActivateUser(Guid id, ActivateUserCommand input)
+        {
+            input.Id = id;
+            await _mediator.Publish(input);
+            return Ok();
+        }
+
+        [HttpPatch("{id}/ConfirmUserEmail")]
+        public async Task<IActionResult> ConfirmUserEmail(Guid id, ConfirmUserEmailCommand input)
+        {
+            input.Id = id;
+            await _mediator.Publish(input);
+            return Ok();
         }
     }
 }

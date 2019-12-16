@@ -6,14 +6,14 @@ namespace Security.Infrastructure.Application.Commands.DeleteUserCommand
 {
     public class DeleteUserCommand : ICommand
     {
-        public Guid UserId { get; set; }
+        public Guid Id { get; set; }
     }
 
     public class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommand>
     {
         public DeleteUserCommandValidator()
         {
-            RuleFor(input => input.UserId).NotNull()
+            RuleFor(input => input.Id).NotNull()
                 .WithMessage("UserId required.");
         }
     }

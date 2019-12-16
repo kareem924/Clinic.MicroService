@@ -6,30 +6,30 @@ using Common.General.UnitOfWork;
 using Microsoft.Extensions.Logging;
 using Security.Core.Repositories;
 
-namespace Security.Infrastructure.Application.Commands.DeleteUserCommand
+namespace Security.Infrastructure.Application.Commands.ActivateUserCommand
 {
-    public class DeleteUserCommandHandler : ICommandHandler<DeleteUserCommand>
+    class ActivateUserCommandHandler : ICommandHandler<ActivateUserCommand>
     {
         private readonly IUserRepository _userRepository;
-        private readonly ILogger<DeleteUserCommandHandler> _logger;
+        private readonly ILogger<ActivateUserCommandHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
-        public DeleteUserCommandHandler(
+        public ActivateUserCommandHandler(
             IUserRepository userRepository,
-            ILogger<DeleteUserCommandHandler> logger,
+            ILogger<ActivateUserCommandHandler> logger,
             IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
             _logger = logger;
             _unitOfWork = unitOfWork;
         }
-        public async Task Handle(DeleteUserCommand notification, CancellationToken cancellationToken)
+        public async Task Handle(ActivateUserCommand notification, CancellationToken cancellationToken)
         {
-            var deletedUser = await _userRepository.GetByIdAsync(notification.Id);
-            if (deletedUser == null)
+            var updatedUser = await _userRepository.GetByIdAsync(notification.Id);
+            if (updatedUser == null)
             {
                 throw new ValidationErrorException("Deleted User Can't be null");
             }
-            _userRepository.Delete(deletedUser);
+            updatedUser.ChangeUserActivatedStatus(notification.UserActive);
             await _unitOfWork.CommitAsync();
         }
     }

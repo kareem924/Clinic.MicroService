@@ -11,6 +11,8 @@ namespace Security.Infrastructure.Application.Dto
 
         public string LastName { get; set; }
 
+        public string Email { get; set; }
+
         public bool IsDeleted { get; set; }
 
         public Guid CreatedBy { get; set; }
