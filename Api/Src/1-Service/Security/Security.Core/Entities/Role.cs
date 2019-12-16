@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Security.Core.Entities
 {
-    public class Role : IdentityRole<Guid>, IAggregateRoot
+    public class Role : IdentityRole<Guid>, IAggregateRoot,IEntity
     {
         private readonly List<UserRole> _users = new List<UserRole>();
 

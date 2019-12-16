@@ -16,7 +16,10 @@ namespace Security.Infrastructure.Application.Commands.UpdateUserCommand
         private readonly IUserRepository _userRepository;
         private readonly ILogger<UpdateUserCommandHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
-        public UpdateUserCommandHandler(IUserRepository userRepository, ILogger<UpdateUserCommandHandler> logger, IUnitOfWork unitOfWork)
+        public UpdateUserCommandHandler(
+            IUserRepository userRepository,
+            ILogger<UpdateUserCommandHandler> logger,
+            IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
             _logger = logger;
