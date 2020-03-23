@@ -9,6 +9,6 @@ namespace Security.Infrastructure.Application.Commands.ActivateUserCommand
     {
         public Guid Id { get; set; }
 
-        public bool UserActive { get; set; }
+        public bool IsActive { get; set; }
     }
 }

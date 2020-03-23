@@ -20,6 +20,7 @@ namespace Security.API.Dto
         {
             AccessToken = accessToken;
             RefreshToken = refreshToken;
+            Success = success;
         }
 
         public AccessTokenDto AccessToken { get; set; }

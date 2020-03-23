@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
+using Newtonsoft.Json;
 using Security.API.Dto;
 using Security.Core.Entities;
 using Security.Infrastructure.Application.Queries.GetUserByUserName;
@@ -33,10 +33,17 @@ namespace Security.API
         }
 
         public IConfiguration Configuration { get; }
+        readonly string _myAllowSpecificOrigins = "_myAllowOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(_myAllowSpecificOrigins,
+                    builder => { builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin(); });
+            });
+
             services.AddMvc(option =>
                 {
                     option.Filters.Add(typeof(InvalidInputActionFilter));
@@ -50,7 +57,7 @@ namespace Security.API
                     options.SuppressInferBindingSourcesForParameters = true;
                     options.SuppressModelStateInvalidFilter = true;
                     options.SuppressMapClientErrors = true;
-                    
+
                 });
 
             services.AddTransient<IValidator<TokenRequestDto>, TokenRequestDtoValidator>();
@@ -59,7 +66,11 @@ namespace Security.API
 
             var sendGridKey = Configuration.GetSection("SendGrid");
             services.Configure<AuthMessageSenderOptions>(sendGridKey);
-
+            services.AddMvc()
+                .AddNewtonsoftJson(options =>
+                    {
+                        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+                    });
 
 
             services.AddTransient<IMapperService, MapperService>();
@@ -137,7 +148,7 @@ namespace Security.API
 
             //// Enable middleware to serve generated Swagger as a JSON endpoint.
             //app.UseSwagger();
-
+            app.UseCors(_myAllowSpecificOrigins);
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseHttpsRedirection();

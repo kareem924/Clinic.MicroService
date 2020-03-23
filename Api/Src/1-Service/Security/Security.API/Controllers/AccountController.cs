@@ -51,7 +51,7 @@ namespace Security.API.Controllers
             if (user == null)
             {
                 _logger.LogWarning("User is null");
-                return Unauthorized(new TokenResponseDto(null, ""));
+                return Ok(new TokenResponseDto(null, ""));
             }
             var refreshToken = _tokenFactory.GenerateToken();
             await _mediator.Publish(new UpdateUserRefreshTokenCommand(

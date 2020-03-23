@@ -22,15 +22,15 @@ namespace Appointment.API.Controllers
             _logger = logger;
         }
         // GET api/values
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Session>>> Get()
-        {
-            await _sessionRepositry.AddAsync(new Session(SessionStatus.Canceled, DateTime.Today, TimeSpan.FromHours(1)));
-            var sessions = await _sessionRepositry.GetAllAsync();
-            var user = User.Claims.Select(x => new { x.Type, x.Value });
-            _logger.LogInformation("test");
-            return sessions.ToArray();
-        }
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Session>>> Get()
+        //{
+        //    await _sessionRepositry.AddAsync(new Session(SessionStatus.Canceled, DateTime.Today, TimeSpan.FromHours(1)));
+        //    var sessions = await _sessionRepositry.GetAllAsync();
+        //    var user = User.Claims.Select(x => new { x.Type, x.Value });
+        //    _logger.LogInformation("test");
+        //    return sessions.ToArray();
+        //}
 
         // GET api/values/5
         [HttpGet("{id}")]

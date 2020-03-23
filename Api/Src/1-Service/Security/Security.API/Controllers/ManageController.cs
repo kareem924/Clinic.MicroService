@@ -4,10 +4,12 @@ using Common.General.Entity;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Security.Infrastructure.Application.Commands.ActivateUserCommand;
+using Security.Infrastructure.Application.Commands.ChangePasswordCommand;
 using Security.Infrastructure.Application.Commands.ConfirmUserEmailCommand;
 using Security.Infrastructure.Application.Commands.CreateUserCommand;
 using Security.Infrastructure.Application.Commands.DeleteUserCommand;
 using Security.Infrastructure.Application.Commands.UpdateUserCommand;
+using Security.Infrastructure.Application.Commands.UpdateUserRolesCommand;
 using Security.Infrastructure.Application.Dto;
 using Security.Infrastructure.Application.Queries.GetUserDtoId;
 using Security.Infrastructure.Application.Queries.GetUserPagedResult;
@@ -63,7 +65,7 @@ namespace Security.API.Controllers
             return Ok();
         }
 
-        [HttpPatch("{id}/ActivateUser")]
+        [HttpPatch("{id}/activate-user")]
         public async Task<IActionResult> ActivateUser(Guid id, ActivateUserCommand input)
         {
             input.Id = id;
@@ -71,8 +73,24 @@ namespace Security.API.Controllers
             return Ok();
         }
 
-        [HttpPatch("{id}/ConfirmUserEmail")]
+        [HttpPatch("{id}/confirm-user-email")]
         public async Task<IActionResult> ConfirmUserEmail(Guid id, ConfirmUserEmailCommand input)
+        {
+            input.Id = id;
+            await _mediator.Publish(input);
+            return Ok();
+        }
+
+        [HttpPatch("{id}/change-password")]
+        public async Task<IActionResult> ChangePassword(Guid id, ChangePasswordCommand input)
+        {
+            input.Id = id;
+            await _mediator.Publish(input);
+            return Ok();
+        }
+
+        [HttpPatch("{id}/update-user-roles")]
+        public async Task<IActionResult> UpdateUserRoles(Guid id, UpdateUserRolesCommand input)
         {
             input.Id = id;
             await _mediator.Publish(input);
