@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Portals.Extivita.SharedKernel.Domain.Events;
+using Common.RabbitMq;
 
-namespace Portals.Extivita.Core.Appointments.Events
+namespace Appointment.Core.Events
 {
-    public class AppointmentCanceledEvent : DomainEvent
+    public class AppointmentCanceledEvent : IntegrationEvent
     {
         public Guid AppointmentId { get; }
 
         public bool RefundPayment { get; }
-        
+
         public AppointmentCanceledEvent(Guid appointmentId, bool refundPayment)
         {
             AppointmentId = appointmentId;

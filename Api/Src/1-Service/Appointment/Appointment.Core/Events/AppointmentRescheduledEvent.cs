@@ -1,15 +1,16 @@
 ﻿using System;
-using Portals.Extivita.SharedKernel.Domain.Events;
+using System.Collections.Generic;
+using System.Text;
+using Common.RabbitMq;
 
-namespace Portals.Extivita.Core.Appointments.Events
+namespace Appointment.Core.Events
 {
-    public class AppointmentRescheduledEvent : DomainEvent
+    public class AppointmentRescheduledEvent : IntegrationEvent
     {
         public Guid AppointmentId { get; }
 
         public DateTime OldDateTime { get; }
 
-        //TODO: need to pass sequence[version] of the appointment, issue will happen in future reschedules
         public AppointmentRescheduledEvent(Guid appointmentId, DateTime oldDateTime)
         {
             AppointmentId = appointmentId;

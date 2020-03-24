@@ -5,15 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MongoDB.Bson" Version="2.9.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\0-Common\Common.General\Common.General.csproj" />
+    <ProjectReference Include="..\..\..\0-Common\Common.RabbitMq\Common.RabbitMq.csproj" />
   </ItemGroup>
 
   

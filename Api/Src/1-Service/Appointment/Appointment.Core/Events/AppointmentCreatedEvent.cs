@@ -1,10 +1,9 @@
 ﻿using System;
-using MediatR;
-using Portals.Extivita.SharedKernel.Domain.Events;
+using Common.RabbitMq;
 
-namespace Portals.Extivita.Core.Appointments.Events
+namespace Appointment.Core.Events
 {
-    public class AppointmentCreatedEvent : DomainEvent
+    public class AppointmentCreatedEvent : IntegrationEvent
     {
         public Guid AppointmentId { get; }
 
