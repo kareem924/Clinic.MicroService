@@ -8,6 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using Common.General.Helper;
 using Security.Core.Entities;
 using Common.Security;
 
@@ -35,7 +36,9 @@ namespace Security.Infrastructure.Service
                  new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
                  new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
                  identity.FindFirst(Helper.Constants.Strings.JwtClaimIdentifiers.Rol),
-                 identity.FindFirst(Helper.Constants.Strings.JwtClaimIdentifiers.Id)
+                 identity.FindFirst(Helper.Constants.Strings.JwtClaimIdentifiers.Id),
+                 identity.FindFirst(Helper.Constants.Strings.JwtClaimIdentifiers.FullName),
+
              };
 
             var jwt = new JwtSecurityToken(
@@ -54,7 +57,8 @@ namespace Security.Infrastructure.Service
             var claimsIdentity = new ClaimsIdentity(new GenericIdentity(user.UserName, "Token"), new[]
             {
                 new Claim(Helper.Constants.Strings.JwtClaimIdentifiers.Id, user.Id.ToString()),
-              
+                new Claim(Helper.Constants.Strings.JwtClaimIdentifiers.FullName, user.FullName.ToString()),
+
             });
             user.Roles.ToList()
                 .ForEach(role =>

@@ -29,7 +29,7 @@ namespace Security.Infrastructure.Application.Commands.ActivateUserCommand
             {
                 throw new ValidationErrorException("Deleted User Can't be null");
             }
-            updatedUser.ChangeUserActivatedStatus(notification.UserActive);
+            updatedUser.ChangeUserActivatedStatus(notification.IsActive);
             await _unitOfWork.CommitAsync();
         }
     }

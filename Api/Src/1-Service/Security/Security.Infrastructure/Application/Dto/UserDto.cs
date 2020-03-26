@@ -31,6 +31,8 @@ namespace Security.Infrastructure.Application.Dto
 
         public string Country { get;  set; }
 
+        public bool IsActive { get;  set; }
+
         public IEnumerable<RoleDto> Roles { get; set; }
 
     }

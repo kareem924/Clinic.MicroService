@@ -41,7 +41,9 @@ namespace Security.Infrastructure.Application.Queries.GetUserPagedResult
                 Country = user.Address.Country,
                 Street = user.Address.Street,
                 State = user.Address.State,
-                Email = user.Email
+                Email = user.Email,
+                IsActive = user.IsActive
+                
             };
             if (user.Roles.Any())
             {
